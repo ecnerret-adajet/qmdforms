@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','form_password','positon'
     ];
 
     /**
@@ -28,4 +28,40 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * ccirform model
+     */
+    public function ccirforms()
+    {
+        return $this->hasMany('App\Ccirform');
+    }
+
+    /**
+     * ddrforms model
+     */
+    public function ddrforms()
+    {
+        return $this->hasMany('App\Ddrform');
+    }
+
+
+    /**
+     * drdrforms model
+     */
+    public function drdrforms()
+    {
+        return $this->hasMany('App\Drdrform');
+    }
+
+    /**
+     * ncnforms model
+     */
+    public function ncnforms()
+    {
+        return $this->hasMany('App\Ncnform');
+    }
+
+
+
 }

@@ -28,7 +28,7 @@ class CreateNcnformsTable extends Migration
             $table->text('action_taken');
             $table->string('responsible');
             $table->timestamp('date_execution');
-            $table->string('attache_file_notify');
+            $table->string('attach_file_notify');
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade');
             $table->timestamps();

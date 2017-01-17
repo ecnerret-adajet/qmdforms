@@ -20,15 +20,11 @@ class CreateNcnformsTable extends Migration
             $table->string('position');
             $table->string('notif_number');
             $table->string('recurrence_no');
+            $table->timestamp('date_issuance');
             $table->string('issued_by'); //ask where this will come from
             $table->string('issued_position'); // ask this field, where will this come from
             $table->text('details_non_conformity');
             $table->string('attach_file');
-            $table->timestamp('date_approved'); //for approval page
-            $table->text('action_taken');
-            $table->string('responsible');
-            $table->timestamp('date_execution');
-            $table->string('attach_file_notify');
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade');
             $table->timestamps();
@@ -58,6 +54,14 @@ class CreateNcnformsTable extends Migration
             $table->foreign('ncnform_id')->references('id')->on('ncnforms')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('ncnform_user', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('ncnform_id')->unsigned();
+            $table->foreign('ncnform_id')->references('id')->on('ncnforms')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -67,6 +71,7 @@ class CreateNcnformsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('ncnform_user');
         Schema::dropIfExists('ncnform_status');
         Schema::dropIfExists('department_ncnform');
         Schema::dropIfExists('company_ncnform');

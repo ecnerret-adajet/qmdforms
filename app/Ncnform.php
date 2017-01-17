@@ -11,16 +11,12 @@ class Ncnform extends Model
     	'issuer',
     	'position',
     	'notif_number',
-    	'recurrence_no',
+        'recurrence_no',
+    	'date_issuance',
     	'issued_by',
     	'issued_position',
     	'details_non_conformity',
-    	'attach_file',
-    	'date_approved',
-    	'action_taken',
-    	'responsible',
-    	'date_execution',
-    	'attach_file_notify'
+    	'attach_file'
     ];
 
     protected $dates = [
@@ -77,6 +73,20 @@ class Ncnform extends Model
 
 
     /**
+     * users model
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
+
+    public function getUserListAttribute()
+    {
+        return $this->users->pluck('id')->all();
+    }
+
+
+    /**
      * nonconformity model
      */
     public function nonconformities()
@@ -92,26 +102,17 @@ class Ncnform extends Model
     /**
      * Date configuration
      */
-    public function setDateApprovedAttribute($date)
+    public function setDateIssuanceAttribute($date)
     {
-    	$this->attributes['date_approved'] = Carbon::parse($date);
+    	$this->attributes['date_issuance'] = Carbon::parse($date);
     }
 
-    public function getDateApprovedAttribute($date)
-    {
-    	return Carbon::parse($date);
-    }
-
-
-    public function setDateExecutionAttribute($date)
-    {
-    	$this->attributes['date_execution'] = Carbon::parse($date);
-    }
-
-    public function getDateExecutionAttribute($date)
+    public function getDateIssuanceAttribute($date)
     {
     	return Carbon::parse($date);
     }
+
+
     
 
 }

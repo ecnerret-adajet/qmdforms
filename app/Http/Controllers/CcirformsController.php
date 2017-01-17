@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Collection;
+use Carbon\Carbon;
+use Alert;
+use App\Ccirform;
+use App\Company;
+
 
 class CcirformsController extends Controller
 {
@@ -13,7 +20,8 @@ class CcirformsController extends Controller
      */
     public function index()
     {
-        //
+        $ccirforms = Ccirform::all();
+        return view('ccirforms.index', compact('ccirforms'));
     }
 
     /**
@@ -34,7 +42,10 @@ class CcirformsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ccirrequester = Auth::user()->ccirforms()->create($request->all());
+        $ccirrequester->companies()->attach($request->input('company_list'));
+        Alert::success('Success Message', 'Successfully submitted a form');
+        return redirect('ccirforms');
     }
 
     /**

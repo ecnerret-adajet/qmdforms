@@ -25,4 +25,9 @@ class Status extends Model
     	return $this->belongsToMany('App\Ncnform');
     }
 
+    public function ddrapprovers()
+    {
+        return $this->belongsToMany('App\Ddrapprover');
+    }
+
 }

@@ -17,10 +17,11 @@ class CreateDdrformsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('ddr_no');
+            $table->string('requested_by');
+            $table->string('position');
             $table->text('reason_distribution');
             $table->timestamp('date_needed');
             $table->timestamp('date_requested');
-            $table->timestamp('date_approval');
             $table->foreign('user_id')->references('id')
                   ->on('users')->onDelete('cascade');
             $table->timestamps();

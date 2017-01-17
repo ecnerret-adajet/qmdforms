@@ -10,15 +10,15 @@ class Ddrform extends Model
 	protected $fillable = [
 		'ddr_no',
 		'reason_distribution',
+		'requested_by',
+		'position',
 		'date_needed',
 		'date_requested',
-		'date_approval',
 	];
 
 	protected $dates = [
 		'date_needed',
 		'date_requested',
-		'date_approval'
 	];
 
 	/**
@@ -27,6 +27,37 @@ class Ddrform extends Model
 	public function user()
 	{
 		return $this->belongsTo('App\User');
+	}
+
+	/**
+	 * has many ddrapprover
+	 */
+	public function ddrapprovers()
+	{
+		return $this->hasMany('App\Ddrapprover');
+	}
+
+	/**
+	 * configure date
+	 */
+	public function setDateNeededAttribute($date)
+	{
+		$this->attributes['date_needed'] = Carbon::parse($date);
+	}
+
+	public function getDateNeededAttribute($date)
+	{
+		return Carbon::parse($date);
+	}
+
+	public function setDateRequestedAttribute($date)
+	{
+		$this->attributes['date_requested'] = Carbon::parse($date);
+	}
+
+	public function getDateRequestedAttribute($date)
+	{
+		return Carbon::parse($date);
 	}
 
 	/**

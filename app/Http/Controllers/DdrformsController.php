@@ -13,6 +13,7 @@ use App\Ddrform;
 use App\Status;
 use App\Department;
 use App\Ddrlist;
+use App\Ddrapprover;
 
 class DdrformsController extends Controller
 {
@@ -23,7 +24,8 @@ class DdrformsController extends Controller
      */
     public function index()
     {
-        //
+        $ddrforms = Ddrform::all();
+        return view('ddrforms.index', compact('ddrforms'));
     }
 
     /**
@@ -33,7 +35,7 @@ class DdrformsController extends Controller
      */
     public function create()
     {
-        //
+        return view('ddrforms.create');
     }
 
     /**
@@ -44,7 +46,45 @@ class DdrformsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ddrrequest = new Ddrfrom;
+        $ddrrequest->user()->associate(Auth::user());
+        $ddrrequest->departments()->attach($request->input('department_list'));
+        $ddrrequest->reason_distribution = $request->input('reason_distribution');
+        $ddrrequest->requested_by = Auth::user()->name;
+        $ddrrequest->position = Auth::user()->position;
+        $ddrrequest->date_requested = Carbon::now();
+        $ddrrequest->date_needed = $request->input('date_needed');
+        $ddrrequest->save();
+
+        $ddrlist = new Ddrlist;
+        $ddrlist->document_title = $request->input('document_title');
+        $ddrlist->control_code = $request->input('control_code');
+        $ddrlist->copy_no = $request->input('copy_no');
+        $ddrlist->copy_holder = $request->input('copy_holder');
+        $ddrlist->recieved_by = $request->input('recieved_by');
+        $ddrlist->date_list = $request->input('date_list');
+        $ddrlis->save();
+
+        Alert::success('Success Message', 'Successfully submitted a form');
+        return redirect('ddrforms');
+    }
+
+    public function ddrapprovers($id, Request $request)
+    {
+        $ddrforms = Ddrform::findOrFail($id);
+
+        $ddrapprover = new Ddrapprover;
+        $ddrapprover->ddrform()->associate($ddrforms);
+        $ddrapprover->user()->associate(Auth::user());
+        $ddrapprover->approved_by = $request->input('approved_by');
+        $ddrapprover->position = $request->input('position');
+        $ddrapprover->date_approved = Carbon::now();
+        $ddrapprover->statuses()->attach($request->input('status_list'));
+        $ddrapprover->save();
+
+        Alert::success('Success Message', 'Successfully updated a form');
+        return redirect('ddrforms');
+
     }
 
     /**

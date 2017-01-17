@@ -72,6 +72,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Ncnform');
     }
 
+    /**
+     * ddrapprover
+     */
+    public function ddrapprovers()
+    {
+        return $this->hasMany('App\Ddrapprover');
+    }
 
 
 }

@@ -10,14 +10,11 @@ class Drdrform extends Model
     protected $fillable = [
     	'drdr_no',
     	'document_title',
+        'reason_request',
     	'revision_number',
-    	'reason_request',
+        'requester'
     	'attach_file',
-    	'date_review' //date
     	'date_request' //date
-    	'date_approved' //date
-    	'date_mr' //date
-    	'date_effective' //date
     ];
 
     protected $dates = [
@@ -34,6 +31,23 @@ class Drdrform extends Model
     public function user()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    /**
+     * drdrreviewer model
+     */
+    public function drdrreviewers()
+    {
+        return $this->hasMany('App\Drdrreviewer');
+    }
+
+
+    /**
+     * drdrapprover model
+     */
+    public function drdrapprovers()
+    {
+        return $this->hasMany('App\Drdrapprover');
     }
 
     /**
@@ -63,19 +77,6 @@ class Drdrform extends Model
     }
 
     /**
-     * Link to status model
-     */
-    public function statuses()
-    {
-    	return $this->belongsToMany('App\Status')->withTimestamps();
-    }
-
-    public function getStatusListAttribute()
-    {
-    	return $this->statuses->pluck('id')->all();
-    }
-
-    /**
      * list to department model
      */
     public function departments()
@@ -91,16 +92,6 @@ class Drdrform extends Model
     /**
      * Dates configuration for drdrforms
      */
-    public function setDateReviewAttribute($date)
-    {
-    	$this->attributes['date_review'] = Carbon::parse($date);
-    }
-
-    public function getDateReviewAttribute($date)
-    {
-    	return Carbon::parse($date);
-    }
-
     public function setDateRequestAttribute($date)
     {
     	$this->attributes['date_request'] = Carbon::parse($date);
@@ -109,37 +100,6 @@ class Drdrform extends Model
     public function getDateRequestAttribute($date)
     {
     	return Carbon::parase($date);
-    }
-
-    public function setDateApprovedAttribute($date)
-    {
-    	$this->attributes['date_approved'] = Carbon::parse($date);
-    }
-
-    public function getDateApprovedAttribute($date)
-    {
-    	return Carbon::parse($date);
-    }
-
-    public function setDateMrAttribute($date)
-    {
-    	$this->attributes['date_mr'] = Carbon::parse($date);
-    }
-
-    public function getDateMrAttribute($date)
-    {
-    	return Carbon::parse($date);
-    }
-
-
-    public function setDateEffectiveAttribute($date)
-    {
-    	$this->attributes['date_effective'] = Carbon::parse($date);
-    }
-
-    public function getDateEffectiveAttribute($date)
-    {
-    	return Carbon::parse($date);
     }
 
 

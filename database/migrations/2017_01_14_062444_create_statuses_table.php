@@ -19,13 +19,6 @@ class CreateStatusesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('drdrform_status', function (Blueprint $table) {
-            $table->integer('drdrform_id')->unsigned();
-            $table->foreign('drdrform_id')->references('id')->on('drdrforms')->onDelete('cascade');
-            $table->integer('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -35,7 +28,6 @@ class CreateStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drdrform_status');
         Schema::dropIfExists('statuses');
     }
 }

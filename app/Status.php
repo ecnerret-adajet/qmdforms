@@ -10,9 +10,9 @@ class Status extends Model
     	'name'
     ];
 
-    public function drdrforms()
+    public function drdrreviewers()
     {
-    	return $this->belongsToMany('App\Drdrform');
+    	return $this->belongsToMany('App\drdrreviewer');
     }
 
     public function ddrforms()

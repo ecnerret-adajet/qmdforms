@@ -3,6 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facade\Auth;
+use Illuminate\Support\Facades\Collection;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Image;
+use Alert;
+use App\Ddrform;
+use App\Status;
+use App\Department;
+use App\Ddrlist;
 
 class DdrformsController extends Controller
 {

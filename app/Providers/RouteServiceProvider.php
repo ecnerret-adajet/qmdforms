@@ -23,9 +23,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+        Route::model('drdrforms', 'App\Drdrform');
+        Route::model('ddrforms', 'App\Ddrform');
     }
 
     /**

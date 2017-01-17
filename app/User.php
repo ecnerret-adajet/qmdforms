@@ -45,6 +45,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Ddrform');
     }
 
+    public function drdrapprovers()
+    {
+        return $this->hasMany('App\Drdrapprovers');
+    }
+
+    public function drdrreviewers()
+    {
+        return $this->hasMany('App\Drdrreviewers');
+    }
+
 
     /**
      * drdrforms model

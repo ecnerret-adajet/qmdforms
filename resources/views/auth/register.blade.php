@@ -38,6 +38,22 @@
                             </div>
                         </div>
 
+
+                         <div class="form-group{{ $errors->has('department_list') ? ' has-error' : '' }}">
+                            <label for="department_list" class="col-md-4 control-label">Department</label>
+
+                            <div class="col-md-6">
+                                {!! Form::select('department_list',  $departments, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 

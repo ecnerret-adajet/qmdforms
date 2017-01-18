@@ -26,5 +26,13 @@ class Department extends Model
     	return $this->belongsToMany('App\Drdrform');
     }
 
+    /**
+     * user list model
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
 }
 

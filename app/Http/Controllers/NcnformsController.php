@@ -64,9 +64,8 @@ class NcnformsController extends Controller
         $ncnrequest->details_non_conformity = $request->input('details_non_conformity');
         $ncnrequest->attach_file = $request->file('attach_file')->store('ncnforms');
         $ncnrequest->save();
-        
-        //send email to approver
-        Notification::send($ncnrequest->users, new MissingToApproverSuccessNotification($ncnrequest));
+                //send email to approver
+        Notification::send($ncnrequest->users, new NcnrequestToApproverNotification($ncnrequest));
 
         Alert::success('Success Message', 'Successfully submitted a form');
         return redirect('ncnforms');
@@ -86,6 +85,17 @@ class NcnformsController extends Controller
         $ncnapprover->statuses()->attach($request->input('status_list')); 
         $ncnapprover->users()->attach($request->input('user_list')); //select notified user
         $ncnapprover->save();
+
+         /**
+         * Notify the approver via email
+         */
+        foreach($ncnapprover->statuses as $status){
+            if($status->id == 1){
+            Notification::send($ncnapprover->users, new MissingApproverToManagementSuccessNotification($ncnapprover));
+            }else{
+            Notification::send($ncnform->user, new MissingApproverToManagementFailedNotification($ncnapprover));               
+            }
+        }
 
 
         Alert::success('Success Message', 'Successfully updated a form');

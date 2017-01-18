@@ -26,6 +26,14 @@ class CreateCompaniesTable extends Migration
             $table->foreign('drdrform_id')->references('id')->on('drdrforms')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('company_user', function (Blueprint $table) {
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -35,6 +43,7 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('company_user');
         Schema::dropIfExists('company_drdrform');
         Schema::dropIfExists('companies');
     }

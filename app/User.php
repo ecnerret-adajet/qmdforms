@@ -80,5 +80,30 @@ class User extends Authenticatable
         return $this->hasMany('App\Ddrapprover');
     }
 
+    /**
+     * department model
+     */
+    public function departments()
+    {
+        return $this->belongsToMany('App\Department')->withTimestamps();
+    }
+    public function getDepartmentListAttribute()
+    {
+        return $this->departments->pluck('id')->all();
+    }
+
+    /**
+     * company model list
+     */
+    public function companies()
+    {
+        return $this->belongsToMany('App\Company')->withTimestamps();
+    }
+
+    public function getCompanyListAttribute()
+    {
+        return $this->companies->pluck('id')->all();
+    }
+
 
 }

@@ -24,4 +24,13 @@ class Company extends Model
     {
     	return $this->belongsToMany('App\Ncnform');
     }
+
+    /**
+     * user list model
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
 }

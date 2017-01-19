@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class Drdrapprover extends Model
 {
@@ -11,6 +13,7 @@ class Drdrapprover extends Model
     	'date_approved',
     	'attach_file',
     	'date_effective',
+      'name'
     ];
 
    protected $dates = [
@@ -25,6 +28,30 @@ class Drdrapprover extends Model
    {
    		return $this->belongsTo('App\User');
    }
+
+    /**
+     * configure date
+     */
+    public function setDateEffectiveAttribute($date)
+    {
+      $this->attributes['date_effective'] = Carbon::parse($date);
+    }
+
+    public function getDateEffectiveAttribute($date)
+    {
+      return Carbon::parse($date);
+    }
+
+
+    public function setDateApprovedAttribute($date)
+    {
+      $this->attributes['date_approved'] = Carbon::parse($date);
+    }
+
+    public function getDateApprovedAttribute($date)
+    {
+      return Carbon::parse($date);
+    }
 
    /**
     * drdrforms model

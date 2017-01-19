@@ -45,9 +45,23 @@
                             <div class="col-md-6">
                                 {!! Form::select('department_list',  $departments, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('department_list'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('department_list') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('company_list') ? ' has-error' : '' }}">
+                            <label for="company_list" class="col-md-4 control-label">Company</label>
+
+                            <div class="col-md-6">
+                                {!! Form::select('company_list',  $companies, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
+
+                                @if ($errors->has('company_list'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('company_list') }}</strong>
                                     </span>
                                 @endif
                             </div>

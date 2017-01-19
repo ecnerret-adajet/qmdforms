@@ -3,26 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
 class Drdrform extends Model
 {
+
+     use Notifiable;
+
     protected $fillable = [
     	'drdr_no',
     	'document_title',
         'reason_request',
     	'revision_number',
-        'requester'
+        'name',
     	'attach_file',
     	'date_request' //date
     ];
 
     protected $dates = [
     	'date_review',
-    	'date_request',
-    	'date_approved',
-    	'date_mr',
-    	'date_effective'
     ];
 
     /**
@@ -99,7 +99,20 @@ class Drdrform extends Model
 
     public function getDateRequestAttribute($date)
     {
-    	return Carbon::parase($date);
+    	return Carbon::parse($date);
+    }
+
+    /**
+     * users list reviewer
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
+
+    public function getUserListAttribute()
+    {
+        return $this->users->pluck('id')->all();
     }
 
 

@@ -30,7 +30,9 @@ Route::get('/home', 'HomeController@index');
  * drdrforms setup route
  */
 Route::resource('/drdrforms','DrdrformsController');
+Route::get('/drdrforms/reviewer/create/{id}','DrdrformsController@drdrReviewerCreate');
 Route::post('/drdrforms/reviewer/{id}','DrdrformsController@drdrreviewer');
+Route::get('/drdrforms/approver/create/{id}','DrdrformsController@drdrApproverCreate');
 Route::post('/drdrforms/approver/{id}','DrdrformsController@drdrapprover');
 
 /**

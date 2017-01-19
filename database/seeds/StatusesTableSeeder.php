@@ -11,6 +11,9 @@ class StatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('statuses')->insert([
+          array('name'=>'Approved'),
+          array('name'=>'Reject')
+        ]);
     }
 }

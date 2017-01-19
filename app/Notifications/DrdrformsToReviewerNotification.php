@@ -2,23 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Drdrform;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class DrdrReviewerNotification extends Notification
+class DrdrformsToReviewerNotification extends Notification
 {
     use Queueable;
+
+    protected $drdrform;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Drdrform $drdrform)
     {
-        //
+        $this->drdrform = $drdrform;
     }
 
     /**
@@ -41,9 +44,12 @@ class DrdrReviewerNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'https://laravel.com')
-                    ->line('Thank you for using our application!');
+                    ->success()
+                    ->subject('Document review and distribution')
+                    ->greeting('Good day!')
+                    ->line($this->drdrform->name.' has submitted a missing authorization under your approval')
+                    ->action('Visit the portal now',  url('/drdrforms/reviewer/create/'.$this->drdrform->id))
+                    ->line('Thank you, have a nice day!');
     }
 
     /**

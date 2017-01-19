@@ -17,13 +17,23 @@ class CreateDrdrformsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('drdr_no');
-            $table->string('requester');
+            $table->string('name');
             $table->string('document_title');
             $table->string('revision_number');
             $table->text('reason_request');
             $table->string('attach_file');
             $table->timestamp('date_request');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('drdrform_user', function (Blueprint $table) {
+            $table->integer('drdrform_id')->unsigned();
+            $table->foreign('drdrform_id')->references('id')->on('drdrforms')
+                    ->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +45,7 @@ class CreateDrdrformsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('drdrform_user');
         Schema::dropIfExists('drdrforms');
     }
 }

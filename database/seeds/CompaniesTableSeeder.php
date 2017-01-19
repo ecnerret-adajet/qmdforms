@@ -11,6 +11,15 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('companies')->insert([
+          array('name'=>'PFMC'),
+          array('name'=>'LFUG'),
+          array('name'=>'PLILI'),
+          array('name'=>'ATH'),
+          array('name'=>'MGC'),
+          array('name'=>'MGPCI'),
+          array('name'=>'ALC'),
+          array('name'=>'MTPCI')
+        ]);
     }
 }

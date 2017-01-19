@@ -3,13 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
 class Drdrreviewer extends Model
 {
+
+    use Notifiable;
+    
     protected $fillable = [
     	'attach_file', // draft for approval
     	'date_review',
+      'remarks',
+      'name'
     ];
 
     protected $dates = [

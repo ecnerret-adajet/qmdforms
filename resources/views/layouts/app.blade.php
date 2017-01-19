@@ -83,5 +83,9 @@
 
     <!-- Scripts -->
     <script src="{{url('js/app.js')}}"></script>
+  <script src="{{asset('/js/bootstrap-filestyle.min.js')}}" type="text/javascript"></script>
+    <script>
+       $(":file").filestyle({size: "sm", buttonName: "btn-primary", buttonBefore: true, buttonText: "Choose file"});
+     </script>
 </body>
 </html>

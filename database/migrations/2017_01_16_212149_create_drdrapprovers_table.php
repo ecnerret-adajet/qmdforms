@@ -18,10 +18,12 @@ class CreateDrdrapproversTable extends Migration
             $table->integer('user_id')->unsigned();
              $table->integer('drdrform_id')->unsigned();
 
+            $table->string('name');
             $table->string('remarks');
             $table->timestamp('date_approved');
             $table->string('attach_file');
             $table->timestamp('date_effective');
+            
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade');
             $table->foreign('drdrform_id')->references('id')

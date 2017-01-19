@@ -18,6 +18,8 @@ class CreateDrdrreviewersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('drdrform_id')->unsigned();
 
+            $table->string('name');
+            $table->text('remarks');
             $table->string('attach_file');
             $table->timestamp('date_review');
             $table->foreign('user_id')->references('id')

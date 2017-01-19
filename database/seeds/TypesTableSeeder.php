@@ -11,6 +11,10 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('types')->insert([
+          array('name'=>'Proposed'),
+          array('name'=>'Existing Document'),
+          array('name'=>'Cancellation')
+        ]);
     }
 }

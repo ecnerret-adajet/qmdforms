@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Ncnapprover extends Model
 {
     protected $fillable = [
+        'name',
+        'position',
     	'remarks',
     	'date_approval'
     ];

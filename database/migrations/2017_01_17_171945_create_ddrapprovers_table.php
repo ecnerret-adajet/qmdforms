@@ -18,7 +18,8 @@ class CreateDdrapproversTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('ddrform_id')->unsigned();
             
-            $table->string('approved_by');
+            $table->string('name');
+            $table->string('remarks');
             $table->string('position');
             $table->timestamp('date_approved');
 

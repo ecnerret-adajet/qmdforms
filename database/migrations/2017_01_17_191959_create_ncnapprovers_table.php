@@ -18,7 +18,8 @@ class CreateNcnapproversTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('ncnform_id')->unsigned();
 
-            
+            $table->string('name');
+            $table->string('position');
             $table->string('remarks');
             $table->timestamp('date_approval');
 

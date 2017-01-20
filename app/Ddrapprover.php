@@ -3,12 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class Ddrapprover extends Model
 {
+
+    use Notifiable;
+    
     protected $fillable = [
-    	'approved_by',
+    	'name',
     	'position',
+        'remarks',
     	'date_approved',
     ];
 

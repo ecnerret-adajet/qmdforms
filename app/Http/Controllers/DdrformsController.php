@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facade\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Collection;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\DdrformsToApproverNotification;
+use App\Notifications\DdrformApprovedFailedNotification;
+use App\Notifications\DdrformApprovedSuccessNotification;
+use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
 use Image;
 use Alert;
@@ -14,6 +18,7 @@ use App\Status;
 use App\Department;
 use App\Ddrlist;
 use App\Ddrapprover;
+use App\User;
 
 class DdrformsController extends Controller
 {
@@ -34,8 +39,19 @@ class DdrformsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('ddrforms.create');
+    {     
+        $users = User::pluck('name','id');
+        $departments = Department::pluck('name','id');
+        return view('ddrforms.create',compact('departments','users'));
+    }    
+
+
+    public function ddrApproverCreate($id)
+    {     
+        $ddrform = Ddrform::findOrFail($id);
+        $statuses = Status::pluck('name','id');
+
+        return view('ddrforms.approver-create',compact('ddrform','statuses','id'));
     }
 
     /**
@@ -46,41 +62,63 @@ class DdrformsController extends Controller
      */
     public function store(Request $request)
     {
-        $ddrrequest = new Ddrfrom;
-        $ddrrequest->user()->associate(Auth::user());
-        $ddrrequest->departments()->attach($request->input('department_list'));
-        $ddrrequest->reason_distribution = $request->input('reason_distribution');
-        $ddrrequest->requested_by = Auth::user()->name;
-        $ddrrequest->position = Auth::user()->position;
-        $ddrrequest->date_requested = Carbon::now();
-        $ddrrequest->date_needed = $request->input('date_needed');
-        $ddrrequest->save();
+        $ddrform = new Ddrform;
+        $ddrform->user()->associate(Auth::user());
+        $ddrform->reason_distribution = $request->input('reason_distribution');
+        $ddrform->name = Auth::user()->name;
+        $ddrform->position = Auth::user()->position;
+        $ddrform->date_requested = Carbon::now();
+        $ddrform->date_needed = $request->input('date_needed');
+        $ddrform->save();
+
+        $ddrform->departments()->attach($request->input('department_list'));
+        $ddrform->users()->attach($request->input('user_list'));
 
         $ddrlist = new Ddrlist;
+        $ddrlist->ddrform()->associate($ddrform);
         $ddrlist->document_title = $request->input('document_title');
         $ddrlist->control_code = $request->input('control_code');
         $ddrlist->copy_no = $request->input('copy_no');
         $ddrlist->copy_holder = $request->input('copy_holder');
         $ddrlist->recieved_by = $request->input('recieved_by');
         $ddrlist->date_list = $request->input('date_list');
-        $ddrlis->save();
+        $ddrlist->save();
+
+        //send email to approver
+        Notification::send($ddrform->users, new DdrformsToApproverNotification($ddrform));
+
 
         Alert::success('Success Message', 'Successfully submitted a form');
         return redirect('ddrforms');
     }
 
-    public function ddrapprovers($id, Request $request)
+    public function ddrapprover($id, Request $request)
     {
-        $ddrforms = Ddrform::findOrFail($id);
+        $ddrform = Ddrform::findOrFail($id);
 
         $ddrapprover = new Ddrapprover;
-        $ddrapprover->ddrform()->associate($ddrforms);
         $ddrapprover->user()->associate(Auth::user());
-        $ddrapprover->approved_by = $request->input('approved_by');
-        $ddrapprover->position = $request->input('position');
+        $ddrapprover->ddrform()->associate($ddrform);
+
+        $ddrapprover->name = Auth::user()->name;
+        $ddrapprover->remarks = $request->input('remarks');
+        $ddrapprover->position = Auth::user()->position;
         $ddrapprover->date_approved = Carbon::now();
-        $ddrapprover->statuses()->attach($request->input('status_list'));
+        
         $ddrapprover->save();
+
+        $ddrapprover->statuses()->attach($request->input('status_list'));
+        /**
+         * Notify the approver via email
+        */
+        foreach($ddrapprover->statuses as $status){
+            if($status->id == 1){
+                  Notification::send($ddrform->user, new DdrformApprovedSuccessNotification($ddrapprover));                                     
+            }else{
+                  Notification::send($ddrform->user, new DdrformApprovedFailedNotification($ddrapprover));
+            }
+        }
+        
 
         Alert::success('Success Message', 'Successfully updated a form');
         return redirect('ddrforms');

@@ -21,7 +21,7 @@
 <div class="form-group{{ $errors->has('company_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('company_list', 'Document Title:') !!}
+{!! Form::label('company_list', 'Company:') !!}
 </label>
 </div>
 

@@ -29,6 +29,9 @@ class RouteServiceProvider extends ServiceProvider
 
 
         Route::model('ddrforms', 'App\Ddrform');
+        Route::model('ddrapprover', 'App\Ddrapprover');
+
+
         Route::model('ncnforms', 'App\Ncnform');
     }
 

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Ncnform extends Model
 {
     protected $fillable = [
-    	'issuer',
+    	'name',
     	'position',
     	'notif_number',
         'recurrence_no',

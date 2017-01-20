@@ -16,7 +16,7 @@ class CreateNcnformsTable extends Migration
         Schema::create('ncnforms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('issuer');
+            $table->string('name');
             $table->string('position');
             $table->string('notif_number');
             $table->string('recurrence_no');

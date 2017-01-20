@@ -3,14 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
 class Ddrform extends Model
 {
+
+	use Notifiable;
+	
 	protected $fillable = [
 		'ddr_no',
 		'reason_distribution',
-		'requested_by',
+		'name',
 		'position',
 		'date_needed',
 		'date_requested',
@@ -29,6 +33,20 @@ class Ddrform extends Model
 		return $this->belongsTo('App\User');
 	}
 
+    /**
+     * users list reviewer
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
+
+    public function getUserListAttribute()
+    {
+        return $this->users->pluck('id')->all();
+    }
+
+    
 	/**
 	 * has many ddrapprover
 	 */

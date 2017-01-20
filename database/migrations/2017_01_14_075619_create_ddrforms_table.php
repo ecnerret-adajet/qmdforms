@@ -17,7 +17,7 @@ class CreateDdrformsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('ddr_no');
-            $table->string('requested_by');
+            $table->string('name');
             $table->string('position');
             $table->text('reason_distribution');
             $table->timestamp('date_needed');
@@ -42,6 +42,14 @@ class CreateDdrformsTable extends Migration
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('ddrform_user', function (Blueprint $table) {
+            $table->integer('ddrform_id')->unsigned();
+            $table->foreign('ddrform_id')->references('id')->on('ddrforms')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -51,6 +59,7 @@ class CreateDdrformsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('ddrform_user');
         Schema::dropIfExists('ddrform_status');
         Schema::dropIfExists('ddrform_department');
         Schema::dropIfExists('ddrforms');

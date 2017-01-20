@@ -39,7 +39,15 @@ Route::post('/drdrforms/approver/{id}','DrdrformsController@drdrapprover');
  * ddrform setup route
  */
 Route::resource('/ddrforms','DdrformsController');
-Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprovers');
+Route::get('/ddrforms/approver/create/{id}', 'DdrformsController@ddrApproverCreate');
+Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
+
+
+/**
+ * Ncn form setup route
+ */
+Route::resource('/ncnforms','NcnformsController');
+
 
 
 

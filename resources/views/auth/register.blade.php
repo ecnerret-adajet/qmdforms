@@ -38,6 +38,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
+                            <label for="position" class="col-md-4 control-label">Position</label>
+
+                            <div class="col-md-6">
+                                {!! Form::text('position', null,  ['class' => 'form-control']) !!}  
+
+                                @if ($errors->has('position'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('position') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
 
                          <div class="form-group{{ $errors->has('department_list') ? ' has-error' : '' }}">
                             <label for="department_list" class="col-md-4 control-label">Department</label>

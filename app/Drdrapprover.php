@@ -8,6 +8,9 @@ use Carbon\Carbon;
 
 class Drdrapprover extends Model
 {
+
+  use Notifiable;
+  
     protected $fillable = [
     	'remarks',
     	'date_approved',

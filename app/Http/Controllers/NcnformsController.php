@@ -15,6 +15,7 @@ use App\Department;
 use App\Nonconformity;
 use App\Status;
 use App\Ncnapprover;
+use App\User;
 
 
 class NcnformsController extends Controller
@@ -27,7 +28,7 @@ class NcnformsController extends Controller
     public function index()
     {
         $ncnforms = Ncnform::all();
-        return view('ncnform.index', compact('ncnforms'));
+        return view('ncnforms.index', compact('ncnforms'));
     }
 
     /**
@@ -37,7 +38,14 @@ class NcnformsController extends Controller
      */
     public function create()
     {
-        return view('ncnform.create');
+        $companies = Company::pluck('name','id');
+        $departments = Department::pluck('name','id');
+        $nonconformities = Nonconformity::pluck('name','id');
+        $users = User::pluck('name','id');
+        return view('ncnforms.create', compact('companies',
+            'nonconformities',
+            'users',
+            'departments'));
     }
 
     /**
@@ -50,20 +58,22 @@ class NcnformsController extends Controller
     {
         $ncnrequest = new Ncnform;
         $ncnrequest->user()->associate(Auth::user());
-        $ncnrequest->issuer = $request->input('issuer');
-        $ncnrequest->position = $request->input('position');
-        $ncnrequest->companies()->attach($request->input('company_list'));
-        $ncnrequest->departments()->attach($request->input('department_list'));
-        $ncnrequest->nonconformities()->attach($request->input('nonconformity_list'));
+        $ncnrequest->name = Auth::user()->name;
+        $ncnrequest->position = Auth::user()->position;
         $ncnrequest->notif_number = $request->input('notif_number');
         $ncnrequest->recurrence_no = $request->input('recurrence_no');
         $ncnrequest->date_issuance = $request->input('date_issuance');
         $ncnrequest->issued_by = $request->input('issued_by');
         $ncnrequest->issued_position = $request->input('issued_position');
-        $ncnrequest->users()->attach($request->input('user_list'));
         $ncnrequest->details_non_conformity = $request->input('details_non_conformity');
         $ncnrequest->attach_file = $request->file('attach_file')->store('ncnforms');
         $ncnrequest->save();
+
+        $ncnrequest->companies()->attach($request->input('company_list'));
+        $ncnrequest->departments()->attach($request->input('department_list'));
+        $ncnrequest->nonconformities()->attach($request->input('nonconformity_list'));
+        $ncnrequest->users()->attach($request->input('user_list'));
+
                 //send email to approver
         Notification::send($ncnrequest->users, new NcnrequestToApproverNotification($ncnrequest));
 

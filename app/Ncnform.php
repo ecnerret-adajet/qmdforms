@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
 class Ncnform extends Model
 {
+
+    use Notifiable;
+    
     protected $fillable = [
     	'name',
     	'position',
@@ -31,6 +35,16 @@ class Ncnform extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+
+    /**
+     * connect to ncnapprover
+     */
+    public function ncnapprovers()
+    {
+        return $this->hasMany('App\Ncnapprover');
+    }
+
 
     /**
      * company model

@@ -47,6 +47,8 @@ Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
  * Ncn form setup route
  */
 Route::resource('/ncnforms','NcnformsController');
+Route::get('/ncnforms/approver/create/{id}','NcnformsController@ncnapproverCreate');
+Route::post('/ncnforms/approver/{id}','NcnformsController@ncnapprover');
 
 
 

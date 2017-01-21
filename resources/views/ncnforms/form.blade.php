@@ -126,7 +126,7 @@
 <div class="form-group{{ $errors->has('date_issuance') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('date_issuance', 'Recurrence No:') !!}
+{!! Form::label('date_issuance', 'Date of issuance:') !!}
 </label>
 </div>
 

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Collection;
-use App\Notification\NcnrequestToApproverNotification; // send to approval
+use App\Notifications\NcnrequestToApproverNotification; // send to approval
+use App\Notifications\NcnapproverToNotifiedSuccessNotification; // send to approval
+use App\Notifications\NcnapproverToNotifiedFailNotification; // send to approval
 use Illuminate\Support\Facades\Notification;
 use Alert;
 use Carbon\Carbon;
@@ -48,6 +50,19 @@ class NcnformsController extends Controller
             'departments'));
     }
 
+    public function ncnapproverCreate($id)
+    {
+
+        $ncnform = Ncnform::findOrFail($id);
+        $statuses = Status::pluck('name','id');
+        $users = User::pluck('name','id');
+
+        return view('ncnforms.approver-create',compact('statuses',
+            'id',
+            'ncnform',
+            'users'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -56,26 +71,26 @@ class NcnformsController extends Controller
      */
     public function store(Request $request)
     {
-        $ncnrequest = new Ncnform;
-        $ncnrequest->user()->associate(Auth::user());
-        $ncnrequest->name = Auth::user()->name;
-        $ncnrequest->position = Auth::user()->position;
-        $ncnrequest->notif_number = $request->input('notif_number');
-        $ncnrequest->recurrence_no = $request->input('recurrence_no');
-        $ncnrequest->date_issuance = $request->input('date_issuance');
-        $ncnrequest->issued_by = $request->input('issued_by');
-        $ncnrequest->issued_position = $request->input('issued_position');
-        $ncnrequest->details_non_conformity = $request->input('details_non_conformity');
-        $ncnrequest->attach_file = $request->file('attach_file')->store('ncnforms');
-        $ncnrequest->save();
+        $ncnform = new Ncnform;
+        $ncnform->user()->associate(Auth::user());
+        $ncnform->name = Auth::user()->name;
+        $ncnform->position = Auth::user()->position;
+        $ncnform->notif_number = $request->input('notif_number');
+        $ncnform->recurrence_no = $request->input('recurrence_no');
+        $ncnform->date_issuance = $request->input('date_issuance');
+        $ncnform->issued_by = $request->input('issued_by');
+        $ncnform->issued_position = $request->input('issued_position');
+        $ncnform->details_non_conformity = $request->input('details_non_conformity');
+        $ncnform->attach_file = $request->file('attach_file')->store('ncnforms');
+        $ncnform->save();
 
-        $ncnrequest->companies()->attach($request->input('company_list'));
-        $ncnrequest->departments()->attach($request->input('department_list'));
-        $ncnrequest->nonconformities()->attach($request->input('nonconformity_list'));
-        $ncnrequest->users()->attach($request->input('user_list'));
+        $ncnform->companies()->attach($request->input('company_list'));
+        $ncnform->departments()->attach($request->input('department_list'));
+        $ncnform->nonconformities()->attach($request->input('nonconformity_list'));
+        $ncnform->users()->attach($request->input('user_list'));
 
                 //send email to approver
-        Notification::send($ncnrequest->users, new NcnrequestToApproverNotification($ncnrequest));
+        Notification::send($ncnform->users, new NcnrequestToApproverNotification($ncnform));
 
         Alert::success('Success Message', 'Successfully submitted a form');
         return redirect('ncnforms');
@@ -85,25 +100,30 @@ class NcnformsController extends Controller
 
     public function ncnapprover($id, Request $request)
     {
-        $ncnrequest = Ncnform::findOrFail($id);
+        $ncnform = Ncnform::findOrFail($id);
 
         $ncnapprover = new Ncnapprover;
         $ncnapprover->user()->associate(Auth::user());
-        $ncnapprover->ncnform()->associate($ncnrequest);
+        $ncnapprover->ncnform()->associate($ncnform);
+
         $ncnapprover->date_approval = Carbon::now();
+        $ncnapprover->name = Auth::user()->name;
+        $ncnapprover->position = Auth::user()->position;
         $ncnapprover->remarks = $request->input('remarks');
+        
+        $ncnapprover->save();
+
         $ncnapprover->statuses()->attach($request->input('status_list')); 
         $ncnapprover->users()->attach($request->input('user_list')); //select notified user
-        $ncnapprover->save();
 
          /**
          * Notify the approver via email
          */
         foreach($ncnapprover->statuses as $status){
             if($status->id == 1){
-            Notification::send($ncnapprover->users, new MissingApproverToManagementSuccessNotification($ncnapprover));
+            Notification::send($ncnapprover->user, new NcnapproverToNotifiedSuccessNotification($ncnapprover));
             }else{
-            Notification::send($ncnform->user, new MissingApproverToManagementFailedNotification($ncnapprover));               
+            Notification::send($ncnform->user, new NcnapproverToNotifiedFailNotification($ncnapprover));               
             }
         }
 

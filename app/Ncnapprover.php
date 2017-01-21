@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+
 
 class Ncnapprover extends Model
 {
+
+    use Notifiable;
+    
     protected $fillable = [
         'name',
         'position',
@@ -28,6 +34,14 @@ class Ncnapprover extends Model
     public function getDateApprovalAttribute($date)
     {
     	return Carbon::parse($date);
+    }
+
+    /**
+     * connect to ncnform model
+     */
+    public function ncnform()
+    {
+        return $this->belongsTo('App\Ncnform');
     }
 
     /**

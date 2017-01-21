@@ -2,23 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Ncnapprover;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NcnapproverToSuccessNotification extends Notification
+class NcnapproverToNotifiedFailNotification extends Notification
 {
     use Queueable;
+
+    protected $ncnapprover;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Ncnapprover $ncnapprover)
     {
-        //
+        $this->ncnapprover = $ncnapprover;
     }
 
     /**
@@ -41,9 +44,11 @@ class NcnapproverToSuccessNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'https://laravel.com')
-                    ->line('Thank you for using our application!');
+               ->subject('Non-conformance Notificatoin: Deny!')
+                    ->greeting('Good day!')
+                    ->line($this->ncnapprover->name.' has denied your missing authorization form.')
+                    ->line('Remarks: '.$this->ncnapprover->remarks)
+                    ->line('Thank you, have a nice day!');
     }
 
     /**

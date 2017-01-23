@@ -1,7 +1,7 @@
 <div class="form-group{{ $errors->has('user_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('user_list', 'Notified Person:') !!}
+{!! Form::label('user_list', 'Approver:') !!}
 </label>
 </div>
 

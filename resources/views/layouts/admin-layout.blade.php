@@ -14,6 +14,9 @@
     <link href="{{url('css/all.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Miriam+Libre:400,700" rel="stylesheet">
 
+        <!-- Custom CSS -->
+    <link href="{{url('css/simple-sidebar.css')}}" rel="stylesheet">
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -21,8 +24,7 @@
         ]); ?>
     </script>
 
-
-        <style>
+    <style>
         body {
         font-family: 'Miriam Libre', sans-serif;
         }
@@ -31,10 +33,39 @@
             font-family: 'Miriam Libre', sans-serif;
         }
     </style>
+    
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#" style="background-color: #2c3e50; color: #ccc; border-bottom: 1px solid #34495e ">
+                        QMD Forms
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Forms</a>
+                </li>
+                <li>
+                    <a href="#">Settings</a>
+                </li>
+                <li>
+                    <a href="#">Roles</a>
+                </li>
+                <li>
+                    <a href="#">Users</a>
+                </li>
+            
+            </ul>
+        </div>
+
+              <nav class="navbar navbar-default navbar-static-top" style="padding: 5px;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -47,9 +78,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'QMD-Form') }}
-                    </a>
+              
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -59,7 +88,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
@@ -84,14 +113,23 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                
+                            </li>
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- /#sidebar-wrapper -->
 
-        @yield('content')
-    </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                    @yield('content')
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
 
     <!-- Scripts -->
     <script src="{{url('js/app.js')}}"></script>
@@ -99,5 +137,14 @@
     <script>
        $(":file").filestyle({size: "sm", buttonName: "btn-primary", buttonBefore: true, buttonText: "Choose file"});
      </script>
+
+         <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
 </body>
 </html>

@@ -8,13 +8,15 @@ use Carbon\Carbon;
 class Ccirform extends Model
 {
     protected $fillable = [
-    	'issuer',
+    	'name',
     	'date_issuance', // date
     	'customer_reference',
     	'brand_name',
     	'affected_quantities',
     	'product_no',
     	'date_delivery', // date
+        'conduct_traceability',
+        'suspected_counterfeit',
     	'verification',
     	'attach_file'
     ];

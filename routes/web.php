@@ -42,7 +42,6 @@ Route::resource('/ddrforms','DdrformsController');
 Route::get('/ddrforms/approver/create/{id}', 'DdrformsController@ddrApproverCreate');
 Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
 
-
 /**
  * Ncn form setup route
  */
@@ -50,7 +49,16 @@ Route::resource('/ncnforms','NcnformsController');
 Route::get('/ncnforms/approver/create/{id}','NcnformsController@ncnapproverCreate');
 Route::post('/ncnforms/approver/{id}','NcnformsController@ncnapprover');
 
+/**
+ * Ccir form setup routes
+ */
+Route::resource('/ccirforms', 'CcirformsController');
 
+
+/**
+ * admin page route setup
+ */
+Route::get('admin/dashboard', 'AdminPageController@forms');
 
 
 });

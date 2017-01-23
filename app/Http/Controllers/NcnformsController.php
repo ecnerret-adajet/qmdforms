@@ -9,6 +9,7 @@ use App\Notifications\NcnrequestToApproverNotification; // send to approval
 use App\Notifications\NcnapproverToNotifiedSuccessNotification; // send to approval
 use App\Notifications\NcnapproverToNotifiedFailNotification; // send to approval
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 use Alert;
 use Carbon\Carbon;
 use App\Ncnform;
@@ -119,9 +120,12 @@ class NcnformsController extends Controller
          /**
          * Notify the approver via email
          */
+
+
         foreach($ncnapprover->statuses as $status){
             if($status->id == 1){
             Notification::send($ncnapprover->user, new NcnapproverToNotifiedSuccessNotification($ncnapprover));
+
             }else{
             Notification::send($ncnform->user, new NcnapproverToNotifiedFailNotification($ncnapprover));               
             }

@@ -10,6 +10,19 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            <div class="col-md-offset-2 col-md-8">
+                                 <input name="avatar" type="file" class="filestyle" data-size="sm" data-buttonName="btn-primary" data-buttonBefore="true">
+
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 

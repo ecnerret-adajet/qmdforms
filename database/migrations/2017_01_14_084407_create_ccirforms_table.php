@@ -16,13 +16,16 @@ class CreateCcirformsTable extends Migration
         Schema::create('ccirforms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('issuer');
+            
+            $table->string('name');
             $table->timestamp('date_issuance');
             $table->string('customer_reference');
             $table->string('brand_name');
             $table->string('affected_quantities');
             $table->string('product_no');
             $table->timestamp('date_delivery');
+            $table->string('conduct_traceability');
+            $table->string('suspected_counterfeit');
             $table->string('verification');
             $table->string('attach_file');
 
@@ -38,6 +41,7 @@ class CreateCcirformsTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
+
     }
 
     /**

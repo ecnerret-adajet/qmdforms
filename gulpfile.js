@@ -16,10 +16,16 @@ require('laravel-elixir-vue-2');
 elixir(mix => {
 
     mix.styles([
+    	'buttons.bootstrap.min.css',
+    	'dataTables.bootstrap.min.css',
+    	'dataTables.tableTools.css',
+    	'font-awesome.css',
+    	'responsive.bootstrap.min.css',
         'style.css',
         'app.css',
-        'simple-sidebar'
+        'simple-sidebar.css'
     ],'public/css/all.css');
+    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/fonts/bootstrap');
 
 
 });

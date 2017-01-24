@@ -43,23 +43,34 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#" style="background-color: #2c3e50; color: #ccc; border-bottom: 1px solid #34495e ">
-                        QMD Forms
+                        DocStream
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="{{url('/dashboard')}}">Dashboard</a>
                 </li>
+
+<!--                 <li data-toggle="collapse" data-target="#forms" class="collapsed">
+                  <a href="#">Forms  <span class="pull-right" style="margin-right: 15px;"><i class="fa fa-caret-down" aria-hidden="true"></i></span> </a>
+                </li>  
+                <ul class="sub-menu collapse" id="forms">
+                  <li>
+                   DRDR Forms
+                  </li>
+                </ul> -->
+
                 <li>
                     <a href="#">Forms</a>
                 </li>
+
                 <li>
-                    <a href="#">Settings</a>
+                    <a href="{{url('settings')}}">Settings</a>
                 </li>
                 <li>
                     <a href="#">Roles</a>
                 </li>
                 <li>
-                    <a href="#">Users</a>
+                    <a href="{{url('users')}}">Users</a>
                 </li>
             
             </ul>
@@ -88,7 +99,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 60px;">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
@@ -132,11 +143,27 @@
         <!-- /#page-content-wrapper -->
 
     <!-- Scripts -->
-    <script src="{{url('js/app.js')}}"></script>
+  <script src="{{url('js/app.js')}}"></script>
   <script src="{{asset('/js/bootstrap-filestyle.min.js')}}" type="text/javascript"></script>
     <script>
        $(":file").filestyle({size: "sm", buttonName: "btn-primary", buttonBefore: true, buttonText: "Choose file"});
      </script>
+
+      <!-- datatables   -->  
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('js/responsive.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.columnFilter.js') }}"></script>
+    <script src="{{ asset('js/dataTables.tableTools.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jszip.min.js') }}"></script>
+    <script src="{{ asset('js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
+
+    <script src="{{ asset('js/custom.js') }}"></script>
 
          <!-- Menu Toggle Script -->
     <script>

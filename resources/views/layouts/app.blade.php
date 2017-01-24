@@ -48,7 +48,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'QMD-Form') }}
+                        {{ config('app.name', 'DocStream') }}
                     </a>
                 </div>
 

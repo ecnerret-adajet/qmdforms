@@ -6,3 +6,49 @@ body {
 h1,h2,h3,h4,h5,h6{
 	font-family: 'Miriam Libre', sans-serif;
 }
+
+
+.table_custom {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table_custom thead tr th {
+    padding: 15px;
+    font-family: 'Miriam Libre', sans-serif;
+    background-color: #34495e;
+    color: #fff;
+}
+
+.table_custom tbody tr td {
+     padding: 15px;
+}
+
+
+.table_custom_default {
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 20px;
+}
+
+.table_custom_default thead tr th {
+    padding: 15px;
+    font-family: 'Miriam Libre', sans-serif;
+    background-color: #bdc3c7;
+    color: #fff;
+    border: 0 ! important;
+
+
+}
+
+.table_custom_default tbody tr td {
+     padding: 15px;
+    border: 0 ! important;
+
+}
+
+.table_custom_default tbody  {
+    height: 100px ! important;
+    overflow-y: scroll;    /* Trigger vertical scroll    */
+    overflow-x: hidden;
+}

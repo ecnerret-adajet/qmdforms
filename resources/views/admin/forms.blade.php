@@ -1,4 +1,4 @@
-@extends('layouts.admin-layout')
+    @extends('layouts.admin-layout')
 
 @section('content')
 <div class="container">
@@ -24,19 +24,35 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Document Review & Distribution Request</td>
+                        <td>
+                        <a href="{{url('drdrforms')}}">
+                        Document Review & Distribution Request
+                        </a>
+                        </td>
                         <td>{{$drdrforms->count()}}</td>
                     </tr>
                     <tr>
-                        <td>Document Distribution Request</td>
+                        <td>
+                        <a href="{{url('ddrforms')}}">
+                        Document Distribution Request
+                        </a>
+                        </td>
                         <td>{{$ddrforms->count()}}</td>
                     </tr>
                     <tr>
-                        <td>Non-conformance Notification</td>
+                        <td>
+                         <a href="{{url('ncnforms')}}">
+                        Non-conformance Notification
+                        </a>
+                        </td>
                         <td>{{$ncnforms->count()}}</td>
                     </tr>                    
                     <tr>
-                        <td>Customer Complaint Information Report</td>
+                        <td>
+                         <a href="{{url('ccirforms')}}">
+                        Customer Complaint Information Report
+                        </a>
+                        </td>
                         <td>{{$ccirforms->count()}}</td>
                     </tr>
                 </tbody>
@@ -46,5 +62,46 @@
             </div>
         </div>
     </div>
+
+   <div class="row">
+        <div class="col-md-9 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                    <strong>
+                    Report Summary
+                    </strong>
+                    </h4>
+                </div>
+
+                <div class="panel-body">
+                        
+              
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+       <div class="row">
+        <div class="col-md-9 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                    <strong>
+                    Users Report
+                    </strong>
+                    </h4>
+                </div>
+
+                <div class="panel-body">
+                        
+              
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 @endsection

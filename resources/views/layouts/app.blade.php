@@ -47,9 +47,12 @@
                     </button>
 
                     <!-- Branding Image -->
+
                     <a class="navbar-brand" href="{{ url('/') }}">
+                    <img class="img-responsive" src="{{asset('image/portal-logo.png')}}" style="display: inline; width: auto; height: 30px; padding: 0; ">
                         {{ config('app.name', 'DocStream') }}
                     </a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

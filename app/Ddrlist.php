@@ -31,14 +31,14 @@ class Ddrlist extends Model
     /**
      * date configuration
      */
-    public function setDateListAttribute($date)
-    {
-    	$this->attributes['date_list'] = Carbon::parse($date);
-    }
+    // public function setDateListAttribute($date)
+    // {
+    // 	$this->attributes['date_list'] = Carbon::parse($date);
+    // }
 
-    public function getDateListAttribute($date)
-    {
-    	return Carbon::parse($date);
-    }
+    // public function getDateListAttribute($date)
+    // {
+    // 	return Carbon::parse($date);
+    // }
 
 }

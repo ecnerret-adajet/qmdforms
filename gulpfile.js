@@ -23,9 +23,9 @@ elixir(mix => {
     	'responsive.bootstrap.min.css',
         'style.css',
         'app.css',
+        'ionicons.min.css',
         'simple-sidebar.css'
     ],'public/css/all.css');
     mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/fonts/bootstrap');
-
 
 });

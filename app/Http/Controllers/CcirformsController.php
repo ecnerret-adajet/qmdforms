@@ -68,7 +68,7 @@ class CcirformsController extends Controller
         //send email to approver
         Notification::send(User::first(), new CcirformToMrNotification($ccirform));
 
-        Alert::success('Success Message', 'Successfully submitted a form');
+        alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('admin/dashboard');
     }
 

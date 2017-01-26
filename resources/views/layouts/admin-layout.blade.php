@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Qmdforms') }}</title>
+    <title>{{ config('app.name', 'E-Forms') }}</title>
 
     <!-- Styles -->
     <link href="{{url('css/all.css')}}" rel="stylesheet">
@@ -16,6 +16,7 @@
 
         <!-- Custom CSS -->
     <link href="{{url('css/simple-sidebar.css')}}" rel="stylesheet">
+    <link href="{{url('css/sweetalert.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -43,7 +44,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#" style="background-color: #2c3e50; color: #ccc; border-bottom: 1px solid #34495e ">
-                        DocStream
+                        E-Forms
                     </a>
                 </li>
                 <li>
@@ -59,9 +60,7 @@
                   </li>
                 </ul> -->
 
-                <li>
-                    <a href="#">Forms</a>
-                </li>
+ 
 
                 <li>
                     <a href="{{url('settings')}}">Settings</a>
@@ -164,6 +163,11 @@
     <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
 
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
+
+    <!-- Include this after the sweet alert js file -->
+    @include('sweet::alert')
 
          <!-- Menu Toggle Script -->
     <script>

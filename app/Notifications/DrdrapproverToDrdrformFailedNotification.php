@@ -46,7 +46,7 @@ class DrdrapproverToDrdrformFailedNotification extends Notification
         return (new MailMessage)
                     ->subject('Document Review & Document Request: Deny!')
                     ->greeting('Good day!')
-                    ->line($this->drdrapprover->name.' has denied your missing authorization form.')
+                    ->line($this->drdrapprover->name.' has denied your document request form.')
                     ->line('Remarks: '.$this->drdrapprover->remarks)
                     ->line('Thank you, have a nice day!');
     }

@@ -52,13 +52,6 @@
 </div>
 
 
-@if (isset($errors) && $errors->has(''))
-   @foreach ($errors->all() as $error)
-      <div>{{ $error }}</div>
-  @endforeach
-@endif
-
-
 <table class="table table-striped table-bordered table-hover" width="100%">	
 		<thead>
 				<th width="20%">Docoument Title</th>
@@ -69,47 +62,35 @@
 				<th>Date</th>
 		</thead>
 		<tbody>
-			<tr>
-				<td>
-				{!! Form::text('document_title[]', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('control_code[]', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('copy_no[]', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('copy_holder[]', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('recieved_by[]', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
-				</td>
-	
-			</tr>
 
 			<tr>
 				<td>
-				{!! Form::text('document_title[]', null, ['class' => 'form-control', 'id' => 'document_title-2'] ) !!}
+				{!! Form::text('document_title', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('control_code[]', null, ['class' => 'form-control', 'id' => 'control_code-2'] ) !!}
+					{!! Form::text('control_code', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('copy_no[]', null, ['class' => 'form-control', 'id' => 'copy_no-2'] ) !!}
+					{!! Form::text('copy_no', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('copy_holder[]', null, ['class' => 'form-control', 'id' => 'copy_holder-2'] ) !!}
+					{!! Form::text('copy_holder', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('recieved_by[]', null, ['class' => 'form-control', 'id' => 'recieved_by-2'] ) !!}
+					{!! Form::text('recieved_by', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
 				</td>
-	
+				<td>
+					{!! Form::input('date', 'date_list', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
+				</td>
 			</tr>
-			
+
+	
+		
+		
 		</tbody>
 
 </table>
+
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 <div class="col-md-12 ">

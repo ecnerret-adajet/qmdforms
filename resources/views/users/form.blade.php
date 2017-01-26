@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                {!! Form::text('name', null,  ['class' => 'form-control']) !!}  
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -29,7 +29,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                            {!! Form::text('email', null,  [ 'type' => 'email', 'class' => 'form-control']) !!}  
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -58,7 +58,7 @@
                             <label for="department_list" class="col-md-4 control-label">Department</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('department_list',  $departments, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
+                                {!! Form::select('department_list[]',  $departments, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
 
                                 @if ($errors->has('department_list'))
                                     <span class="help-block">
@@ -72,7 +72,7 @@
                             <label for="company_list" class="col-md-4 control-label">Company</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('company_list',  $companies, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
+                                {!! Form::select('company_list[]',  $companies, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
 
                                 @if ($errors->has('company_list'))
                                     <span class="help-block">
@@ -87,7 +87,7 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -101,23 +101,24 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('roles_list') ? ' has-error' : '' }}">
                             <label for="roles" class="col-md-4 control-label">Roles</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('roles[]',  $roles, null,  ['class' => 'form-control', 'placeholder' => '--Select Role --']) !!}  
+                                {!! Form::select('roles_list[]',  $roles, null,  ['class' => 'form-control', 'placeholder' => '--Select Role --']) !!}  
 
-                                @if ($errors->has('roles'))
+                                @if ($errors->has('roles_list'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('roles') }}</strong>
+                                        <strong>{{ $errors->first('roles_list') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
+                        
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

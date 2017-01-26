@@ -15,6 +15,7 @@ use Hash;
 use App\Company;
 use App\Department;
 use App\Permission;
+use Alert;
 
 class UsersController extends Controller
 {
@@ -103,13 +104,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
         $roles = Role::pluck('display_name','id');
-        $userRole = $user->roles->pluck('id','id')->toArray();
+        $companies = Company::pluck('name','id');
+        $departments = Department::pluck('name','id'); 
+        $roles = Role::pluck('display_name','id');
+        // $userRole = $user->roles->pluck('id','id')->toArray();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole','departments','companies'));
     }
 
     /**
@@ -119,26 +122,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user, $id)
-    {
-          if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');
-            $filename = time() . '.' .$avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save( public_path('/img/avatars/'.$filename ) ); 
-            $user = Auth::user();
-            $user->avatar = $filename;
-            $user->save();
-        }
-
-
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
-        ]);
-
-       
+    public function update(Request $request, User $user)
+    {       
 
         $input = $request->all();
         if(!empty($input['password'])){ 
@@ -147,17 +132,14 @@ class UsersController extends Controller
             $input = array_except($input,array('password'));    
         }
 
-        $user = User::find($id);
         $user->update($input);
-        DB::table('role_user')->where('user_id',$id)->delete();
+        $user->companies()->sync( (array) $request->input('company_list') );
+        $user->departments()->sync( (array) $request->input('department_list') );
+        $user->roles()->sync( (array) $request->input('roles_list') );
 
-        
-        foreach ($request->input('roles') as $key => $value) {
-            $user->attachRole($value);
-        }
+        alert()->success('Success Message', 'Update Succesfully');
 
-        return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+        return redirect('users');
     }
 
     /**

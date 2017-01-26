@@ -47,7 +47,7 @@ class CcirformToMrNotification extends Notification
                     ->success()
                     ->subject('Customer Complaint Information Report')
                     ->greeting('Good day!')
-                    ->line($this->ccirform->name.' Has submitted a CCIR Form')
+                    ->line($this->ccirform->name.' Has submitted a document request under your approval')
                     ->line('Thank you, have a nice day!');
     }
 

@@ -46,7 +46,7 @@ class NcnapproverToNotifiedFailNotification extends Notification
         return (new MailMessage)
                ->subject('Non-conformance Notificatoin: Deny!')
                     ->greeting('Good day!')
-                    ->line($this->ncnapprover->name.' has denied your missing authorization form.')
+                    ->line($this->ncnapprover->name.' has denied your document request form.')
                     ->line('Remarks: '.$this->ncnapprover->remarks)
                     ->line('Thank you, have a nice day!');
     }

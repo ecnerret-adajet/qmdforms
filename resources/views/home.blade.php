@@ -3,8 +3,7 @@
 @section('content')
 <div class="container">
   <div class="jumbotron">
-    <h1>QMD DocStream</h1> 
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.</p> 
+    <h1>QMD E-Form</h1> 
   </div>
 
 </div>
@@ -28,7 +27,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing.
+                                     is the process of control in proposal, revision or cancellation of documents.
                                 </span>
                             </div>
 
@@ -42,7 +41,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing.
+                                   pertains to the process of requesting up to distribution of controlled and/or uncontrolled copy of documents to both internal.
                                 </span>
                             </div>
 
@@ -57,7 +56,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing.
+                                    is the process of verifying a non-conformance (either valid or invalid) up to implementation of applicable correction and corrective action.
                                 </span>
                             </div>
 
@@ -71,7 +70,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing.
+                                    is the issuance of notice to responsible office / person due to non-fulfillment of a requirement/s.
                                 </span>
                             </div>
 

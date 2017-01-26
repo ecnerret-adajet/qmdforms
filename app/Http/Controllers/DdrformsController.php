@@ -19,6 +19,8 @@ use App\Department;
 use App\Ddrlist;
 use App\Ddrapprover;
 use App\User;
+use DB;
+use Illuminate\Support\Facades\Input;
 
 class DdrformsController extends Controller
 {
@@ -62,6 +64,15 @@ class DdrformsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'reason_distribution' => 'required',
+            'date_needed' => 'required|date',
+            'department_list' => 'required',
+            'user_list' => 'required',
+        ]); 
+
+
         $ddrform = new Ddrform;
         $ddrform->user()->associate(Auth::user());
         $ddrform->reason_distribution = $request->input('reason_distribution');
@@ -75,31 +86,47 @@ class DdrformsController extends Controller
         $ddrform->users()->attach($request->input('user_list'));
 
 
-
-        // $this->validate($request,[
-        //     'document_title.*' => 'required',
-        //     'control_code.*' => 'required',
-        //     'copy_no.*' => 'required',
-        //     'copy_holder.*' => 'required',
-        //     'recieved_by.*' => 'required',
-        //     'date_list.*' => 'required|date'
+        // $drdrlist = $ddrform->ddrlists()->saveMany([
+        //     for($i=0; $i <= count($request->input('recieved_by'));  $i++){
+        //             new Ddrlist([
+        //             'document_title' => $request->input('document_title'),
+        //             'control_code' => $request->input('control_code'),
+        //             'copy_no' => $request->input('copy_no'),
+        //             'copy_holder' => $request->input('copy_holder'),
+        //             'recieved_by' => $request->input('recieved_by'),
+        //             ]),
+        //     }
         // ]);
 
-        $ddrlists = $request->all();
-        foreach($request->input('document_title') as $ddrInput){
-            $ddrlist = $ddrform->ddrlists()->save(new Ddrlist($ddrInput));
-        }
+        $ddrlist = $ddrform->ddrlists()->create($request->only(
+            'document_title',
+            'control_code',
+            'copy_no',
+            'copy_holder',
+            'recieved_by',
+            'date_list'));
+
+
+
+
 
         //send email to approver
         Notification::send($ddrform->users, new DdrformsToApproverNotification($ddrform));
 
 
-        Alert::success('Success Message', 'Successfully submitted a form');
+         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('ddrforms');
     }
 
     public function ddrapprover($id, Request $request)
     {
+
+        $this->validate($request, [
+            'remarks' => 'required',
+            'status_list' => 'required'
+        ]); 
+
+
         $ddrform = Ddrform::findOrFail($id);
 
         $ddrapprover = new Ddrapprover;
@@ -126,7 +153,7 @@ class DdrformsController extends Controller
         }
     
 
-        Alert::success('Success Message', 'Successfully updated a form');
+        alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('ddrforms');
 
     }

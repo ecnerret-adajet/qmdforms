@@ -37,7 +37,7 @@
                       Department
                     </th>
                     <th>
-                   Last Login
+                        Role
                     </th>
 
                 </tr>
@@ -67,7 +67,9 @@
                         @endforeach
                         </td>
                         <td>
-                      
+                        @foreach($user->roles as $role)
+                            {{$role->name}}
+                        @endforeach
                         </td>
                     </tr>
                 @endforeach
@@ -128,10 +130,63 @@
       </div>
       <div class="modal-body">
 
+      <table class="table table_custom">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <td>
+                    {{$user->name}}
+                </td>
+                <th class="success">
+                    Role
+                </th>
+                <td>
+                    @foreach($user->roles as $role)
+                      {{$role->display_name}}
+                    @endforeach
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Email
+                </th>
+                <td colspan="3">
+                    {{$user->email}}
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    Company
+                </th>
+                <td colspan="3">
+                  @foreach($user->companies as $company)
+                    {{$company->name}}
+                  @endforeach
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                   Department
+                </th>
+                <td colspan="3">
+                  @foreach($user->departments as $department)
+                    {{$department->name}}
+                  @endforeach
+                </td>
+            </tr>
+
+
+      </table>
+
+
     
       
       </div><!-- modal body -->
       <div class="modal-footer">
+        <a href="{{url('users/'.$user->id.'/edit')}}" class="btn btn-primary">Update Info</a>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div><!-- /.modal-content -->

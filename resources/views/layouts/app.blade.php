@@ -34,7 +34,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="padding: 20px;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -49,17 +49,20 @@
                     <!-- Branding Image -->
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="img-responsive" src="{{asset('image/portal-logo.png')}}" style="display: inline; width: auto; height: 30px; padding: 0; ">
-                        {{ config('app.name', 'DocStream') }}
+                    <img class="img-responsive" src="{{asset('image/portal-logo.png')}}" style="display: inline; width: auto; height: 20px; margin-bottom:  10px;  ">
+                      <strong>  {{ config('app.name', 'E-Forms') }} </strong>
                     </a>
 
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @if (Auth::check())
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                       <li><a href="{{ url('/home') }}">Home</a></li>
+                       <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

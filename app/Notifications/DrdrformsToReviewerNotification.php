@@ -47,7 +47,7 @@ class DrdrformsToReviewerNotification extends Notification
                     ->success()
                     ->subject('Document review and distribution')
                     ->greeting('Good day!')
-                    ->line($this->drdrform->name.' has submitted a missing authorization under your approval')
+                    ->line($this->drdrform->name.' has submitted a Document Request for your review and approval')
                     ->action('Visit the portal now',  url('/drdrforms/reviewer/create/'.$this->drdrform->id))
                     ->line('Thank you, have a nice day!');
     }

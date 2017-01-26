@@ -80,6 +80,16 @@ class DrdrformsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'document_title' => 'required',
+            'reason_request' => 'required',
+            'revision_number' => 'required',
+            'attach_file' => 'required',
+            'company_list' => 'required',
+            'type_list' => 'required',
+            'user_list' => 'required'
+        ]); 
+
         $drdrform = new Drdrform;
         $drdrform->user()->associate(Auth::user());
         $drdrform->document_title = $request->input('document_title');
@@ -97,13 +107,21 @@ class DrdrformsController extends Controller
         //send email to approver
         Notification::send($drdrform->users, new DrdrformsToReviewerNotification($drdrform));
 
-        Alert::success('Success Message', 'Successfully submitted a form');
+         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('drdrforms');
     }
 
 
     public function drdrreviewer($id, Request $request)
     {
+        $this->validate($request, [
+            'remarks' => 'required',
+            'attach_file' => 'required',
+            'status_list' => 'required',
+            'user_list' => 'required'
+        ]); 
+
+
         $drdrform = Drdrform::findOrFail($id);
 
         $drdrreviewer =  new Drdrreviewer;
@@ -114,6 +132,8 @@ class DrdrformsController extends Controller
         $drdrreviewer->attach_file = $request->file('attach_file')->store('drdrreviewer');
         $drdrreviewer->drdrform()->associate($drdrform);
         $drdrreviewer->save();
+
+        
 
         $drdrreviewer->statuses()->attach($request->input('status_list'));
         $drdrreviewer->users()->attach($request->input('user_list'));
@@ -129,13 +149,20 @@ class DrdrformsController extends Controller
             }
         }
 
-        Alert::success('Success Message', 'Successfully updated a form');
+         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('drdrforms');
     }
 
 
     public function drdrapprover($id, Request $request)
     {
+
+        $this->validate($request, [
+            'remarks' => 'required',
+            'attach_file' => 'required',
+            'status_list' => 'required',
+        ]); 
+
 
         $drdrform = Drdrform::findOrFail($id);
 
@@ -157,13 +184,13 @@ class DrdrformsController extends Controller
         */
         foreach($drdrapprover->statuses as $status){
             if($status->id == 1){
-                  Notification::send($drdrapprover->user, new DrdrapproverToDrdrformSuccessNotification($drdrapprover));                                     
+                  Notification::send($drdrform->user, new DrdrapproverToDrdrformSuccessNotification($drdrapprover));                                     
             }else{
                   Notification::send($drdrform->user, new DrdrapproverToDrdrformFailedNotification($drdrapprover));
             }
         }
 
-        Alert::success('Success Message', 'Successfully updated a form');
+         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('drdrforms');
         
     }

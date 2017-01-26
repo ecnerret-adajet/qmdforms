@@ -46,7 +46,7 @@ class DdrformApprovedFailedNotification extends Notification
         return (new MailMessage)
                     ->subject('Document Distribution Request: Deny!')
                     ->greeting('Good day!')
-                    ->line($this->ddrapprover->name.' has denied your missing authorization form.')
+                    ->line($this->ddrapprover->name.' has denied your document request form.')
                     ->line('Remarks: '.$this->ddrapprover->remarks)
                     ->line('Thank you, have a nice day!');
     }

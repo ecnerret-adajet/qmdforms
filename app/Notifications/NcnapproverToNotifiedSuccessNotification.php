@@ -47,7 +47,7 @@ class NcnapproverToNotifiedSuccessNotification extends Notification
                     ->success()
                     ->subject('Non-conformance Notification: Approved')
                     ->greeting('Good day!')
-                    ->line('Your form is succefully approved by'.$this->ncnapprover->name)
+                    ->line('Your Document Request is succefully approved by'.$this->ncnapprover->name)
                     ->line('Thank you, have a nice day!');
     }
 

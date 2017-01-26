@@ -109,5 +109,13 @@ class User extends Authenticatable
         return $this->companies->pluck('id')->all();
     }
 
+    /**
+     * get role
+     */
+    public function getRoleListAttribute()
+    {
+        return $this->roles->pluck('id')->all();
+    }
+
 
 }

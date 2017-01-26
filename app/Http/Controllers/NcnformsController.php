@@ -93,7 +93,7 @@ class NcnformsController extends Controller
                 //send email to approver
         Notification::send($ncnform->users, new NcnrequestToApproverNotification($ncnform));
 
-        Alert::success('Success Message', 'Successfully submitted a form');
+         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('ncnforms');
 
     }
@@ -124,7 +124,7 @@ class NcnformsController extends Controller
 
         foreach($ncnapprover->statuses as $status){
             if($status->id == 1){
-            Notification::send($ncnapprover->user, new NcnapproverToNotifiedSuccessNotification($ncnapprover));
+            Notification::send($ncnform->user, new NcnapproverToNotifiedSuccessNotification($ncnapprover));
 
             }else{
             Notification::send($ncnform->user, new NcnapproverToNotifiedFailNotification($ncnapprover));               
@@ -132,7 +132,7 @@ class NcnformsController extends Controller
         }
 
 
-        Alert::success('Success Message', 'Successfully updated a form');
+         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('ncnforms');
 
 

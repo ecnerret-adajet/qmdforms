@@ -10,6 +10,9 @@
                     <strong>
                     Dashboard
                     </strong>
+                    <a class="btn btn-default" href="{{url('/home')}}">
+                    Home
+                    </a>
                     </h4>
                 </div>
 

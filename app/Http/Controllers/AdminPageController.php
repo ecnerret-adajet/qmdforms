@@ -37,7 +37,7 @@ class AdminPageController extends Controller
     public function settings()
     {
         $companies = Company::orderBy('id','DESC')->paginate(3);
-        $departments = Department::all();
+        $departments = Department::orderBy('id','DESC')->paginate(3);
 
         return view('admin.settings', compact('companies','departments'));
     }
@@ -82,6 +82,16 @@ class AdminPageController extends Controller
         $department->name = $request->input('name');
         $department->save();
 
+        return redirect('settings');
+    }
+
+    public function editDepartment(Request $request, $id)
+    {
+        $department = Department::findOrFail($id);
+        $department->name  = $request->input('name');
+        $department->save();
+
+        alert()->success('Department name has been added', 'Update Succesfully');
         return redirect('settings');
     }
 

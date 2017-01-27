@@ -34,6 +34,7 @@ Route::get('/drdrforms/reviewer/create/{id}','DrdrformsController@drdrReviewerCr
 Route::post('/drdrforms/reviewer/{id}','DrdrformsController@drdrreviewer');
 Route::get('/drdrforms/approver/create/{id}','DrdrformsController@drdrApproverCreate');
 Route::post('/drdrforms/approver/{id}','DrdrformsController@drdrapprover');
+Route::post('/drdrforms/drdrmr/{id}', 'DrdrformsController@drdrmr');
 
 /**
  * ddrform setup route
@@ -65,6 +66,8 @@ Route::post('/companies', 'AdminPageController@storeCompany');
 Route::patch('/companies/{id}', ['as' => 'companies.update', 'uses' => 'AdminPageController@editCompany'] );
 
 Route::post('/departments','AdminPageController@storeDepartment');
+Route::patch('/departments/{id}', ['as' => 'departments.update', 'uses' => 'AdminPageController@editDepartment'] );
+
 
 /**
  * User controller route setup

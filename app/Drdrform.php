@@ -116,4 +116,12 @@ class Drdrform extends Model
     }
 
 
+    /**
+     * For management review approval
+     */
+    public function drdrmrs()
+    {
+        return $this->hasMany('App\Drdrmr');
+    }
+
 }

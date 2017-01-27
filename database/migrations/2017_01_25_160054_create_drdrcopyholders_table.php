@@ -15,7 +15,13 @@ class CreateDrdrcopyholdersTable extends Migration
     {
         Schema::create('drdrcopyholders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer();
+            $table->integer('drdrreviewer_id')->unsigned();
+            
+            $table->string('copy_no');
+            $table->string('copyholder');
+
+            $table->foreign('drdrreviewer_id')->references('id')
+                   ->on('drdrreviewers')->onDelete('cascade');
             $table->timestamps();
         });
     }

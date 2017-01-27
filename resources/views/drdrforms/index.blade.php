@@ -116,11 +116,45 @@
       
       </div><!-- modal body -->
       <div class="modal-footer">
+        <a href="" data-toggle="modal" data-target=".bs-verify-drdrform-{{$drdrform->id}}-modal-lg" class="btn btn-primary pull-left">Verify Document</a>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->    
+
+
+
+    <!-- Verify modal information -->
+    <div class="modal fade bs-verify-drdrform-{{$drdrform->id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog">
+        <div class="modal-content" style="min-width: 850px;  margin-left: -80px;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Management Verification</h4>
+          </div>
+          <div class="modal-body">
+
+            <form class="form-horizontal" method="POST" action="{{url('drdrforms/drdrmr/'.$drdrform->id)}}" enctype="multipart\form-data">
+            {!! csrf_field() !!}
+
+                    @include('drdrforms.management')        
+          
+          </div><!-- modal body -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" >Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+           </form>
+
+          </div>
+          
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->    
+
+
+
 @endforeach
 
 

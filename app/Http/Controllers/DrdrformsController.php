@@ -22,6 +22,8 @@ use App\Type;
 use App\Department;
 use App\Drdrreviewer;
 use App\Drdrapprover;
+use App\Drdrcopyholder;
+use App\Drdrmr;
 use App\User;
 
 
@@ -132,11 +134,17 @@ class DrdrformsController extends Controller
         $drdrreviewer->attach_file = $request->file('attach_file')->store('drdrreviewer');
         $drdrreviewer->drdrform()->associate($drdrform);
         $drdrreviewer->save();
-
-        
-
         $drdrreviewer->statuses()->attach($request->input('status_list'));
         $drdrreviewer->users()->attach($request->input('user_list'));
+
+        /**
+         * create copy holder data
+         */
+        $drdrcopyholder = new Drdrcopyholder;
+        $drdrcopyholder->drdrreviewer()->associate($drdrreviewer);
+        $drdrcopyholder->copy_no = $request->input('copy_no');
+        $drdrcopyholder->copyholder = $request->input('copyholder');
+        $drdrcopyholder->save();
 
         /**
          * Notify the approver via email
@@ -193,6 +201,24 @@ class DrdrformsController extends Controller
          alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('home');
         
+    }
+
+    /**
+     * For Management Review verification
+     */
+    public function drdrmr(Request $request, $id)
+    {
+        $drdrform = Drdrform::findOrFail($id);
+
+        $drdrmr = new Drdrmr($request->all());
+        // attach file here
+        $drdrmr->drdrform()->associate($drdrform);
+        $drdrmr->verified_date = Carbon::now();
+        $drdrmr->save();
+
+        alert()->success('Success Message', 'Submitted Succesfully');
+        return redirect('drdrforms');
+
     }
 
 

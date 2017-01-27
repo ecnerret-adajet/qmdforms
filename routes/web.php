@@ -60,7 +60,10 @@ Route::resource('/ccirforms', 'CcirformsController');
  */
 Route::get('/dashboard', 'AdminPageController@forms');
 Route::get('/settings', 'AdminPageController@settings');
+
 Route::post('/companies', 'AdminPageController@storeCompany');
+Route::patch('/companies/{id}', ['as' => 'companies.update', 'uses' => 'AdminPageController@editCompany'] );
+
 Route::post('/departments','AdminPageController@storeDepartment');
 
 /**

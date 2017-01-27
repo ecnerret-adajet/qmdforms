@@ -48,32 +48,67 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/dashboard')}}">Dashboard</a>
+                    <a href="{{url('/dashboard')}}">
+                    <i class="ion-ios-speedometer-outline"></i>
+                    Dashboard
+                    </a>
                 </li>
 
-<!--                 <li data-toggle="collapse" data-target="#forms" class="collapsed">
-                  <a href="#">Forms  <span class="pull-right" style="margin-right: 15px;"><i class="fa fa-caret-down" aria-hidden="true"></i></span> </a>
-                </li>  
-                <ul class="sub-menu collapse" id="forms">
-                  <li>
-                   DRDR Forms
-                  </li>
-                </ul> -->
 
  
 
                 <li>
-                    <a href="{{url('settings')}}">Settings</a>
+                    <a href="{{url('settings')}}">
+                    <i class="ion-ios-gear-outline"></i>
+                    Settings
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Roles</a>
+                    <a href="#">
+                    <i class="ion-ios-copy-outline"></i>
+                    Reports
+                    </a>
                 </li>
                 <li>
-                    <a href="{{url('users')}}">Users</a>
+                    <a href="{{url('users')}}">
+                    <i class="ion-ios-people-outline"></i>
+                    Users
+                    </a>
                 </li>
-            
+
+
+        
             </ul>
-        </div>
+
+             <ul class="sidebar-nav-bottom">
+             <li>
+                  <a href="{{url('users')}}" class="ion-ios-person-outline" > Account</a>
+             </li>
+
+                <li>
+                 
+                
+                  <a href="{{ url('/logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    <i class="ion-log-out" ></i> Logout
+                </a>
+
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+
+
+                </li>
+             </ul>
+
+
+
+        </div><!-- end side wrapper -->
+
+
+
+
 
               <nav class="navbar navbar-default navbar-static-top" style="padding: 5px;">
             <div class="container">
@@ -94,7 +129,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li>
+                            <a>
+                            {{ date('F d, Y', strtotime(Carbon\Carbon::now())) }}
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -104,28 +143,7 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                
-                            </li>
+    
                         @endif
                     </ul>
                 </div>
@@ -139,7 +157,7 @@
                     @yield('content')
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
+     </div>   <!-- /#page-content-wrapper -->
 
     <!-- Scripts -->
   <script src="{{url('js/app.js')}}"></script>

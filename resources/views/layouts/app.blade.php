@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{url('css/all.css')}}" rel="stylesheet">
+    <link href="{{url('css/loader.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Miriam+Libre:400,700" rel="stylesheet">
 
     <!-- Scripts -->
@@ -60,7 +61,9 @@
                     @if (Auth::check())
                     <ul class="nav navbar-nav">
                        <li><a href="{{ url('/home') }}">Home</a></li>
+                        @role(('Administrator'))
                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                       @endrole
                     </ul>
                     @endif
 

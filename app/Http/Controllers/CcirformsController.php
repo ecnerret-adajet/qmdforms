@@ -69,7 +69,7 @@ class CcirformsController extends Controller
         Notification::send(User::first(), new CcirformToMrNotification($ccirform));
 
         alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('admin/dashboard');
+        return redirect('home');
     }
 
     /**

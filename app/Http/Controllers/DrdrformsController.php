@@ -108,7 +108,7 @@ class DrdrformsController extends Controller
         Notification::send($drdrform->users, new DrdrformsToReviewerNotification($drdrform));
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('drdrforms');
+        return redirect('home');
     }
 
 
@@ -150,7 +150,7 @@ class DrdrformsController extends Controller
         }
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('drdrforms');
+        return redirect('home');
     }
 
 
@@ -191,7 +191,7 @@ class DrdrformsController extends Controller
         }
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('drdrforms');
+        return redirect('home');
         
     }
 

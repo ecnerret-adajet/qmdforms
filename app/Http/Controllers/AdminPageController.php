@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Collection;
+use Illuminate\Pagination\Paginator;
 use Carbon\Carbon;
 use App\Drdrform;
 use App\Ddrform;
@@ -35,7 +36,7 @@ class AdminPageController extends Controller
 
     public function settings()
     {
-        $companies = Company::all();
+        $companies = Company::orderBy('id','DESC')->paginate(3);
         $departments = Department::all();
 
         return view('admin.settings', compact('companies','departments'));
@@ -51,9 +52,25 @@ class AdminPageController extends Controller
         $company->name = $request->input('name');
         $company->save();
 
+        alert()->success('New company has been added', 'Add Succesfully');
         return redirect('settings');
 
     }
+
+    public function editCompany(Request $request, $id)
+    {
+        $company = Company::findOrFail($id);
+        $company->name  = $request->input('name');
+        $company->save();
+
+        alert()->success('Company name has been added', 'Update Succesfully');
+        return redirect('settings');
+    }
+
+
+
+
+
 
     public function storeDepartment(Request $request)
     {

@@ -94,7 +94,7 @@ class NcnformsController extends Controller
         Notification::send($ncnform->users, new NcnrequestToApproverNotification($ncnform));
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('ncnforms');
+        return redirect('home');
 
     }
 
@@ -133,7 +133,7 @@ class NcnformsController extends Controller
 
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('ncnforms');
+        return redirect('home');
 
 
     }

@@ -115,7 +115,7 @@ class DdrformsController extends Controller
 
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('ddrforms');
+       return redirect('home');
     }
 
     public function ddrapprover($id, Request $request)
@@ -154,7 +154,7 @@ class DdrformsController extends Controller
     
 
         alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('ddrforms');
+        return redirect('home');
 
     }
 

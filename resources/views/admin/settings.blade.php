@@ -42,7 +42,9 @@
                                 Edit
                                 </a>
                                 </li>
-                                <li><a href="#">Delete</a></li>
+                                <li><a data-toggle="modal" data-target=".bs-delete{{$company->id}}-modal-lg" href="">
+                                Delete
+                                </a></li>
                                </ul>
                             </div>
                           </div>
@@ -94,6 +96,47 @@
                         </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->    
+
+
+
+                    <!-- Delete a company modal -->
+                      <div class="modal fade bs-delete{{$company->id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">Delete a company</h4>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="row">
+                              <div class="col-md-12">
+                              <div class="panel-body text-center"> 
+                          
+                              <h4>  
+                                  Are you sure you want to delete this company ?
+                              </h4>
+                              <em>
+                              <small>This may affect documents that selects under this name</small>
+                              </em>
+                                          
+                           <form method="POST" action="companies/{{$company->id}}">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="_method" value="DELETE">   
+                                                              
+                          </div>
+                              </div>
+                          </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-primary">Confirm</button>
+                                
+                                 
+                            </div>
+                            </form> 
+                          </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                      </div><!-- /.modal -->      
 
 
 
@@ -202,7 +245,9 @@
                                 Edit
                                 </a>
                                 </li>
-                                <li><a href="#">Delete</a></li>
+                                  <li><a data-toggle="modal" data-target=".bs-delete{{$department->id}}-modal-lg" href="">
+                                Delete
+                                </a></li>
                                </ul>
                             </div>
                           </div>
@@ -254,6 +299,46 @@
                         </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->    
+
+
+                     <!-- Delete a department modal -->
+                      <div class="modal fade bs-delete{{$department->id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">Delete a Department</h4>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="row">
+                              <div class="col-md-12">
+                              <div class="panel-body text-center"> 
+                          
+                              <h4>  
+                                  Are you sure you want to delete this department ?
+                              </h4>
+                              <em>
+                              <small>This may affect documents that selects under this name</small>
+                              </em>
+                                          
+                           <form method="POST" action="departments/{{$department->id}}">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="_method" value="DELETE">   
+                                                              
+                          </div>
+                              </div>
+                          </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-primary">Confirm</button>
+                                
+                                 
+                            </div>
+                            </form> 
+                          </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                      </div><!-- /.modal -->      
 
 
 

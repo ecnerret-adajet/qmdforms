@@ -25,9 +25,11 @@ class CreateNcnformsTable extends Migration
             $table->string('issued_position'); // ask this field, where will this come from
             $table->text('details_non_conformity');
             $table->string('attach_file');
+            $table->boolean('active')->default(1);
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('company_ncnform', function (Blueprint $table) {

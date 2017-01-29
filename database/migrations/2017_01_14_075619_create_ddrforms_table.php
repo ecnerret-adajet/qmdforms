@@ -22,9 +22,11 @@ class CreateDdrformsTable extends Migration
             $table->text('reason_distribution');
             $table->timestamp('date_needed');
             $table->timestamp('date_requested');
+            $table->boolean('active')->default(1);
             $table->foreign('user_id')->references('id')
                   ->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('ddrform_department', function (Blueprint $table) {

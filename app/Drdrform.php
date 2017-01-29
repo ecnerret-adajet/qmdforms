@@ -4,12 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
 class Drdrform extends Model
 {
 
      use Notifiable;
+     use SoftDeletes;
 
     protected $fillable = [
     	'drdr_no',
@@ -18,11 +20,13 @@ class Drdrform extends Model
     	'revision_number',
         'name',
     	'attach_file',
+        'active',
     	'date_request' //date
     ];
 
     protected $dates = [
     	'date_review',
+        'deleted_at'
     ];
 
     /**

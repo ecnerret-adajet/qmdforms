@@ -256,6 +256,20 @@ class DrdrformsController extends Controller
         //
     }
 
+
+    /**
+     * Document Transfer to archive
+     */
+    public function archive(Request $request, $id)
+    {
+        $drdrform = Drdrform::findOrFail($id);
+        $drdrform->active = 0;
+        $drdrform->save();
+
+        alert()->success('Success Message', 'Document is succefully archived');
+        return redirect('drdrforms');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

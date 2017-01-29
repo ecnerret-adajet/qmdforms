@@ -35,6 +35,7 @@ Route::post('/drdrforms/reviewer/{id}','DrdrformsController@drdrreviewer');
 Route::get('/drdrforms/approver/create/{id}','DrdrformsController@drdrApproverCreate');
 Route::post('/drdrforms/approver/{id}','DrdrformsController@drdrapprover');
 Route::post('/drdrforms/drdrmr/{id}', 'DrdrformsController@drdrmr');
+Route::post('/drdrforms/archive/{id}', 'DrdrformsController@archive');
 
 /**
  * ddrform setup route
@@ -42,6 +43,7 @@ Route::post('/drdrforms/drdrmr/{id}', 'DrdrformsController@drdrmr');
 Route::resource('/ddrforms','DdrformsController');
 Route::get('/ddrforms/approver/create/{id}', 'DdrformsController@ddrApproverCreate');
 Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
+Route::post('/ddrforms/archive/{id}', 'DdrformsController@archive');
 
 /**
  * Ncn form setup route
@@ -49,12 +51,13 @@ Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
 Route::resource('/ncnforms','NcnformsController');
 Route::get('/ncnforms/approver/create/{id}','NcnformsController@ncnapproverCreate');
 Route::post('/ncnforms/approver/{id}','NcnformsController@ncnapprover');
+Route::post('/ncnforms/archive/{id}', 'NcnformsController@archive');
 
 /**
  * Ccir form setup routes
  */
 Route::resource('/ccirforms', 'CcirformsController');
-
+Route::post('/ccirforms/archive/{id}', 'CcirformsController@archive');
 
 /**
  * admin page route setup
@@ -64,10 +67,11 @@ Route::get('/settings', 'AdminPageController@settings');
 
 Route::post('/companies', 'AdminPageController@storeCompany');
 Route::patch('/companies/{id}', ['as' => 'companies.update', 'uses' => 'AdminPageController@editCompany'] );
+Route::delete('/companies/{id}', 'AdminPageController@destroyCompany');
 
 Route::post('/departments','AdminPageController@storeDepartment');
 Route::patch('/departments/{id}', ['as' => 'departments.update', 'uses' => 'AdminPageController@editDepartment'] );
-
+Route::delete('/departments/{id}', 'AdminPageController@destroyDepartment');
 
 /**
  * User controller route setup

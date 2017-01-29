@@ -3,10 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
 class Ccirform extends Model
 {
+
+     use Notifiable;
+     use SoftDeletes;
+
     protected $fillable = [
     	'name',
     	'date_issuance', // date
@@ -18,12 +24,14 @@ class Ccirform extends Model
         'conduct_traceability',
         'suspected_counterfeit',
     	'verification',
-    	'attach_file'
+    	'attach_file',
+        'active',
     ];
 
     protected $dates = [
     	'date_issuance',
-    	'date_delivery'
+    	'date_delivery',
+        'deleted_at'
     ];
 
     /**

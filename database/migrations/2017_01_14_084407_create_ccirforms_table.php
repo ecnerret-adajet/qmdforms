@@ -28,10 +28,11 @@ class CreateCcirformsTable extends Migration
             $table->string('suspected_counterfeit');
             $table->string('verification');
             $table->string('attach_file');
-
+            $table->boolean('active')->default(1);
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('ccirform_company', function (Blueprint $table) {

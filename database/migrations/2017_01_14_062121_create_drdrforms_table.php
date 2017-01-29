@@ -23,7 +23,9 @@ class CreateDrdrformsTable extends Migration
             $table->text('reason_request');
             $table->string('attach_file');
             $table->timestamp('date_request');
+            $table->boolean('active')->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
 

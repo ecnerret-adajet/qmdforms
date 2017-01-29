@@ -48,6 +48,6 @@ class CreateDrdrmrsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('drdrmr_user');
-        Schema::dropIfExists('drdrrmrs');
+        Schema::dropIfExists('drdrmrs');
     }
 }

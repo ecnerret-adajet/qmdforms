@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
@@ -10,6 +11,7 @@ class Ncnform extends Model
 {
 
     use Notifiable;
+    use SoftDeletes;
     
     protected $fillable = [
     	'name',
@@ -20,12 +22,14 @@ class Ncnform extends Model
     	'issued_by',
     	'issued_position',
     	'details_non_conformity',
-    	'attach_file'
+    	'attach_file',
+        'active',
     ];
 
     protected $dates = [
     	'date_approved',
-    	'date_execution'
+    	'date_execution',
+        'deleted_at'
     ];
 
     /**

@@ -117,6 +117,7 @@
       </div><!-- modal body -->
       <div class="modal-footer">
         <a href="" data-toggle="modal" data-target=".bs-verify-drdrform-{{$drdrform->id}}-modal-lg" class="btn btn-primary pull-left">Verify Document</a>
+        <a href="" class="btn btn-primary pull-left">Trash</a>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div><!-- /.modal-content -->

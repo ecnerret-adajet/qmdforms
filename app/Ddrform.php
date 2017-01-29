@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
@@ -10,6 +11,7 @@ class Ddrform extends Model
 {
 
 	use Notifiable;
+	use SoftDeletes;
 	
 	protected $fillable = [
 		'ddr_no',
@@ -18,11 +20,13 @@ class Ddrform extends Model
 		'position',
 		'date_needed',
 		'date_requested',
+		'active',
 	];
 
 	protected $dates = [
 		'date_needed',
 		'date_requested',
+		'deleted_at',
 	];
 
 	/**

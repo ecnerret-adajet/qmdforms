@@ -173,6 +173,19 @@ class NcnformsController extends Controller
     }
 
     /**
+     * Transfer document to archive
+     */
+    public function archive(Request $request, $id)
+    {
+        $ncnform = Ncnform::findOrFail($id);
+        $ncnform->active = 0;
+        $ncnform->save();
+
+        alert()->success('Success Message', 'Document is succefully archived');
+        return redirect('drdrforms');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

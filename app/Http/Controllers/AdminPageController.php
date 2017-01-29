@@ -67,7 +67,14 @@ class AdminPageController extends Controller
         return redirect('settings');
     }
 
+    public function destroyCompany($id)
+    {
+        $company = Company::findOrFail($id);
+        $company->delete();
 
+        alert()->success('Company successfully deleted', 'Delete Succesfully');
+        return redirect('settings');
+    }
 
 
 
@@ -92,6 +99,15 @@ class AdminPageController extends Controller
         $department->save();
 
         alert()->success('Department name has been added', 'Update Succesfully');
+        return redirect('settings');
+    }
+
+    public function destroyDepartment($id)
+    {
+        $department = Department::findOrFail($id);
+        $department->delete();
+
+        alert()->success('Department successfully deleted', 'Delete Succesfully');
         return redirect('settings');
     }
 

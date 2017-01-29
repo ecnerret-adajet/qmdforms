@@ -106,6 +106,22 @@ class CcirformsController extends Controller
         //
     }
 
+
+    /**
+     * Transfer document to archive
+     */
+    public function archive(Request $request, $id)
+    {
+        $ccirform = Ccirform::findOrFail($id);
+        $ccirform->active = 0;
+        $ccirform->save();
+
+        alert()->success('Success Message', 'Document is succefully archived');
+        return redirect('drdrforms');
+    }
+
+    
+
     /**
      * Remove the specified resource from storage.
      *

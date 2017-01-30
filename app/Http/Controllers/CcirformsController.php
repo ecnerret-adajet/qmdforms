@@ -25,7 +25,12 @@ class CcirformsController extends Controller
     public function index()
     {
         $ccirforms = Ccirform::all();
-        return view('ccirforms.index', compact('ccirforms'));
+        $ccirtrashed = Ccirform::onlyTrashed()->get();
+        $ccirarchive = Ccirform::all()->where('active',0);
+        return view('ccirforms.index', compact(
+            'ccirtrashed',
+            'ccirarchive',
+            'ccirforms'));
     }
 
     /**
@@ -69,7 +74,7 @@ class CcirformsController extends Controller
         Notification::send(User::first(), new CcirformToMrNotification($ccirform));
 
         alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+        return redirect('submitted');
     }
 
     /**
@@ -117,7 +122,7 @@ class CcirformsController extends Controller
         $ccirform->save();
 
         alert()->success('Success Message', 'Document is succefully archived');
-        return redirect('drdrforms');
+        return redirect('ccirforms');
     }
 
     
@@ -128,8 +133,13 @@ class CcirformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ccirform $ccirform)
     {
-        //
+        $ccirform->active = 0;
+        $ccirform->save();
+        $ccirform->delete();
+
+        alert()->success('Success Message', 'Document is succefully trashed');
+        return redirect('ccirforms');
     }
 }

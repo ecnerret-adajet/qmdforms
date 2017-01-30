@@ -1,6 +1,8 @@
 $(function () {
 
 $('#table-data').DataTable();
+$('#trashed-data').DataTable();
+$('#archive-data').DataTable();
  $("[data-mask]").inputmask();
 
  var checker = document.getElementById('checkme');

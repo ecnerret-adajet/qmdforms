@@ -36,8 +36,12 @@ class DrdrformsController extends Controller
      */
     public function index()
     {
-        $drdrforms = Drdrform::all();
-        return view('drdrforms.index', compact('drdrforms'));
+        $drdrforms = Drdrform::all()->where('active',1);
+        $drdrtrashed = Drdrform::onlyTrashed()->get();
+        $drdrarchive = Drdrform::all()->where('active',0);
+        return view('drdrforms.index', compact('drdrforms',
+            'drdrtrashed',
+            'drdrarchive'));
     }
 
     /**
@@ -49,7 +53,11 @@ class DrdrformsController extends Controller
     {
         $companies = Company::pluck('name','id');
         $types = Type::pluck('name','id');
-        $users = User::pluck('name','id');
+
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',3); // to revierwer
+        })->pluck('name','id');
+
         return view('drdrforms.create', compact('companies','types','users'));
     }
 
@@ -58,7 +66,11 @@ class DrdrformsController extends Controller
         $drdrform = Drdrform::findOrFail($id);
 
         $statuses = Status::pluck('name','id');
-        $users = User::pluck('name','id');
+
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',2); // to approver
+        })->pluck('name','id');
+
         
         return view('drdrforms.reviewer-create', compact('statuses',
             'id',
@@ -109,8 +121,9 @@ class DrdrformsController extends Controller
         //send email to approver
         Notification::send($drdrform->users, new DrdrformsToReviewerNotification($drdrform));
 
-         alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+
+        alert()->success('Success Message', 'Submitted Succesfully');
+        return redirect('submitted');
     }
 
 
@@ -158,7 +171,7 @@ class DrdrformsController extends Controller
         }
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+        return redirect('submitted');
     }
 
 
@@ -199,7 +212,7 @@ class DrdrformsController extends Controller
         }
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+        return redirect('submitted');
         
     }
 
@@ -270,14 +283,21 @@ class DrdrformsController extends Controller
         return redirect('drdrforms');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Drdrform $drdrform)
     {
-        //
+        $drdrform->active = 0;
+        $drdrform->save();
+        $drdrform->delete();
+        
+        alert()->success('Success Message', 'Document is succefully trashed');
+        return redirect('drdrforms');
     }
+
 }

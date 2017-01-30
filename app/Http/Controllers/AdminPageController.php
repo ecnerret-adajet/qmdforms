@@ -21,6 +21,21 @@ class AdminPageController extends Controller
 		$this->middleware('auth');
 	}
 
+    public function submitted()
+    {
+        $drdrformsown = Drdrform::where('user_id', Auth::user()->id)->get();
+        $ddrformsown = Ddrform::where('user_id', Auth::user()->id)->get();
+        $ncnformsown = Ncnform::where('user_id', Auth::user()->id)->get();
+        $ccirformsown = Ccirform::where('user_id', Auth::user()->id)->get();
+
+        return view('admin.submitted', compact(
+            'drdrformsown',
+            'ddrformsown',
+            'ncnformsown',
+            'ccirformsown'
+        ));
+    }
+
     public function forms()
     {
     	$drdrforms = Drdrform::all();

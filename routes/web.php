@@ -45,6 +45,7 @@ Route::get('/ddrforms/approver/create/{id}', 'DdrformsController@ddrApproverCrea
 Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
 Route::post('/ddrforms/archive/{id}', 'DdrformsController@archive');
 
+
 /**
  * Ncn form setup route
  */
@@ -62,6 +63,7 @@ Route::post('/ccirforms/archive/{id}', 'CcirformsController@archive');
 /**
  * admin page route setup
  */
+Route::get('/submitted','AdminPageController@submitted');
 Route::get('/dashboard', 'AdminPageController@forms');
 Route::get('/settings', 'AdminPageController@settings');
 

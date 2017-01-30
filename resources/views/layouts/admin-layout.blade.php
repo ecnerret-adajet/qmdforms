@@ -47,16 +47,14 @@
                         E-Forms
                     </a>
                 </li>
+
+            @if(Auth::user()->hasRole('Administrator'))
                 <li>
                     <a href="{{url('/dashboard')}}">
                     <i class="ion-ios-speedometer-outline"></i>
                     Dashboard
                     </a>
                 </li>
-
-
- 
-
                 <li>
                     <a href="{{url('settings')}}">
                     <i class="ion-ios-gear-outline"></i>
@@ -75,6 +73,16 @@
                     Users
                     </a>
                 </li>
+
+            @else
+       
+                <li>
+                    <a href="#">
+                    <i class="ion-ios-copy-outline"></i>
+                    Submitted Forms
+                    </a>
+                </li>
+               @endif
 
 
         

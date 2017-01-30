@@ -31,7 +31,12 @@ class NcnformsController extends Controller
     public function index()
     {
         $ncnforms = Ncnform::all();
-        return view('ncnforms.index', compact('ncnforms'));
+        $ncntrashed = Ncnform::onlyTrashed()->get();
+        $ncnarchive = Ncnform::all()->where('active',0);
+        return view('ncnforms.index', compact(
+            'ncntrashed',
+            'ncnarchive',
+            'ncnforms'));
     }
 
     /**
@@ -44,7 +49,12 @@ class NcnformsController extends Controller
         $companies = Company::pluck('name','id');
         $departments = Department::pluck('name','id');
         $nonconformities = Nonconformity::pluck('name','id');
-        $users = User::pluck('name','id');
+
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',2); // to approver
+        })->pluck('name','id');
+
+
         return view('ncnforms.create', compact('companies',
             'nonconformities',
             'users',
@@ -56,7 +66,11 @@ class NcnformsController extends Controller
 
         $ncnform = Ncnform::findOrFail($id);
         $statuses = Status::pluck('name','id');
-        $users = User::pluck('name','id');
+        
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',5); // to notified
+        })->pluck('name','id');
+
 
         return view('ncnforms.approver-create',compact('statuses',
             'id',
@@ -94,7 +108,7 @@ class NcnformsController extends Controller
         Notification::send($ncnform->users, new NcnrequestToApproverNotification($ncnform));
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+        return redirect('submitted');
 
     }
 
@@ -133,7 +147,7 @@ class NcnformsController extends Controller
 
 
          alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+        return redirect('submitted');
 
 
     }
@@ -182,7 +196,7 @@ class NcnformsController extends Controller
         $ncnform->save();
 
         alert()->success('Success Message', 'Document is succefully archived');
-        return redirect('drdrforms');
+        return redirect('ncnforms');
     }
 
     /**
@@ -191,8 +205,12 @@ class NcnformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ncnform $ncnform)
     {
-        //
+        $ncnform->active = 0;
+        $ncnform->save();
+        $ncnform->delete();
+        alert()->success('Success Message', 'Document is succefully trashed');
+        return redirect('ncnforms');
     }
 }

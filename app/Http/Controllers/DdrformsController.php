@@ -31,9 +31,16 @@ class DdrformsController extends Controller
      */
     public function index()
     {
-        $ddrforms = Ddrform::all();
-        return view('ddrforms.index', compact('ddrforms'));
+        $ddrforms   = Ddrform::all();
+        $ddrtrashed = Ddrform::onlyTrashed()->get();
+        $ddrarchive = Ddrform::all()->where('active',0);
+
+        return view('ddrforms.index', compact(
+            'ddrtrashed',
+            'ddrarchive',
+            'ddrforms'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -42,12 +49,17 @@ class DdrformsController extends Controller
      */
     public function create()
     {     
-        $users = User::pluck('name','id');
         $departments = Department::pluck('name','id');
+        $users = User::pluck('name','id');
+
+
         return view('ddrforms.create',compact('departments','users'));
     }    
 
 
+    /**
+     * create form for approver
+     */
     public function ddrApproverCreate($id)
     {     
         $ddrform = Ddrform::findOrFail($id);
@@ -86,7 +98,7 @@ class DdrformsController extends Controller
         $ddrform->users()->attach($request->input('user_list'));
 
 
-        // $drdrlist = $ddrform->ddrlists()->saveMany([
+        // $ddrlist = $ddrform->ddrlists()->saveMany([
         //     for($i=0; $i <= count($request->input('recieved_by'));  $i++){
         //             new Ddrlist([
         //             'document_title' => $request->input('document_title'),
@@ -115,7 +127,7 @@ class DdrformsController extends Controller
 
 
          alert()->success('Success Message', 'Submitted Succesfully');
-       return redirect('home');
+       return redirect('submitted');
     }
 
     public function ddrapprover($id, Request $request)
@@ -154,7 +166,7 @@ class DdrformsController extends Controller
     
 
         alert()->success('Success Message', 'Submitted Succesfully');
-        return redirect('home');
+        return redirect('submitted');
 
     }
 
@@ -202,7 +214,7 @@ class DdrformsController extends Controller
         $ddrform->save();
 
         alert()->success('Success Message', 'Document is succefully archived');
-        return redirect('drdrforms');
+        return redirect('ddrforms');
     }
 
     /**
@@ -211,8 +223,13 @@ class DdrformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ddrform $ddrform)
     {
-        //
+        $ddrform->active = 0;
+        $ddrform->save();
+        $ddrform->delete();
+
+        alert()->success('Success Message', 'Document is succefully trashed');
+        return redirect('ddrforms');
     }
 }

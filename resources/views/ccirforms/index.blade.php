@@ -338,9 +338,8 @@
                 </h4>
     
                         
-             <form method="POST" action="/ccirforms/archive/{{$ccirform->id}}">
+             <form method="POST" action="{{ url('/ccirforms/archive/'.$ccirform->id) }}">
               {!! csrf_field() !!}
-              <input type="hidden" name="_method" value="DELETE">   
                                                 
             </div>
                 </div>

@@ -485,9 +485,8 @@
                 </h4>
     
                         
-             <form method="POST" action="/drdrfomrs/archive/{{$drdrform->id}}">
+             <form method="POST" action="{{  url('/drdrfomrs/archive/'.$drdrform->id ) }}">
               {!! csrf_field() !!}
-              <input type="hidden" name="_method" value="DELETE">   
                                                 
             </div>
                 </div>

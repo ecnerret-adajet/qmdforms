@@ -381,9 +381,8 @@
                 </h4>
     
                         
-             <form method="POST" action="/ncnforms/archive/{{$ncnform->id}}">
+             <form method="POST" action="{{ url('/ncnforms/archive/'.$ncnform->id) }}">
               {!! csrf_field() !!}
-              <input type="hidden" name="_method" value="DELETE">   
                                                 
             </div>
                 </div>

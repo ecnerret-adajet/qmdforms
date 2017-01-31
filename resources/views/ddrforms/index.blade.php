@@ -337,9 +337,8 @@
                 </h4>
     
                         
-             <form method="POST" action="/drdrfomrs/archive/{{$ddrform->id}}">
+             <form method="POST" action="{{ url('/drdrfomrs/archive/'.$ddrform->id) }}">
               {!! csrf_field() !!}
-              <input type="hidden" name="_method" value="DELETE">   
                                                 
             </div>
                 </div>
@@ -377,7 +376,6 @@
     
               {!! Form::open(['method' => 'DELETE', 'route' => ['ddrforms.destroy', $ddrform->id]]) !!}
               {!! csrf_field() !!}
-              <input type="hidden" name="_method" value="DELETE">   
                                                 
             </div>
                 </div>

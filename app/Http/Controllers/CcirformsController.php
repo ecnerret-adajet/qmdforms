@@ -83,9 +83,9 @@ class CcirformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ccirform $ccirform)
     {
-        //
+        return view('ccirforms.show',compact('ccirform'));
     }
 
     /**

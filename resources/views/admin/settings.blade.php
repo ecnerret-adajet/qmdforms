@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+
+
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
@@ -137,6 +139,7 @@
                           </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                       </div><!-- /.modal -->      
+                      <!-- end delete -->
 
 
 
@@ -150,6 +153,8 @@
                     @endforelse
                     </tbody>
                 </table>
+
+                <!-- end table -->
 
                       <div class="row">
                           <div class="col-md-12">

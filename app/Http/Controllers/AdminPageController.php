@@ -87,7 +87,7 @@ class AdminPageController extends Controller
         $company = Company::findOrFail($id);
         $company->delete();
 
-        alert()->success('Company successfully deleted', 'Delete Succesfully');
+        alert()->success('Company successfully deleted', 'Added Succesfully');
         return redirect('settings');
     }
 
@@ -104,6 +104,7 @@ class AdminPageController extends Controller
         $department->name = $request->input('name');
         $department->save();
 
+        alert()->success('Department successfully deleted', 'Added Succesfully');
         return redirect('settings');
     }
 

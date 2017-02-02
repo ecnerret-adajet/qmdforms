@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <h4>
                     <strong>
-                   Document Review& Distribution Request
+                   Document Review & Distribution Request
                     </strong>
                     </h4>
                 </div>
@@ -447,7 +447,6 @@
     
               {!! Form::open(['method' => 'DELETE', 'route' => ['drdrforms.destroy', $drdrform->id]]) !!}
               {!! csrf_field() !!}
-              <input type="hidden" name="_method" value="DELETE">   
                                                 
             </div>
                 </div>

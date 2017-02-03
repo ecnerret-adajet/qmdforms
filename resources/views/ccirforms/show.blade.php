@@ -91,28 +91,54 @@
 
 	<tr>
 		<td>Quantity of sample recieved?</td>
-		<td colspan="2"></td>
+		<td colspan="2">
+			{{$ccirform->quantity_received}}
+		</td>
 		<td>Return Date</td>
-		<td colspan="3"></td>
+		<td colspan="3">
+			{{ date('F m Y', strtotime($ccirform->retrun_date)) }}
+		</td>
 	</tr>
 
 	<tr>
 		<td rowspan="3">Naturn of Compalaint</td>
 		<td>Wet/Lumpy</td>
-		<td></td>
+		<td>
+			@if($ccirform->wet_lumpy == 1)
+				<i class="ion-checkmark-round" style="color: green;"></i>
+			@endif
+		</td>
 		<td>Busted Bag</td>
-		<td></td>
+		<td>
+			@if($ccirform->busted_bag == 1)
+				<i class="ion-checkmark-round" style="color: green;"></i>
+			@endif
+		</td>
 		<td>Under / Over Weight</td>
-		<td></td>
+		<td>
+			@if($ccirform->under_over_weight == 1)
+				<i class="ion-checkmark-round" style="color: green;"></i>
+			@endif
+		</td>
 	</tr>
 
 	<tr>
 		<td>Infested</td>
-		<td></td>
+		<td>
+			@if($ccirform->infested == 1)
+				<i class="ion-checkmark-round" style="color: green;"></i>
+			@endif
+		</td>
 		<td>Dirty Packaging</td>
-		<td></td>
+		<td>
+			@if($ccirform->dirty_package == 1)
+				<i class="ion-checkmark-round" style="color: green;"></i>
+			@endif
+		</td>
 		<td>Others</td>
-		<td></td>
+		<td>
+			{{$ccirform->others}}
+		</td>
 	</tr>
 
 	<tr>

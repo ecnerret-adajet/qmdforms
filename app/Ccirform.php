@@ -16,14 +16,22 @@ class Ccirform extends Model
     protected $fillable = [
     	'name',
     	'date_issuance', // date
-    	'customer_reference',
+    	// 'customer_reference',
     	'brand_name',
-    	'affected_quantities',
+        'affected_quantities',
+    	'quantity_received',
     	'product_no',
-    	'date_delivery', // date
-        'conduct_traceability',
-        'suspected_counterfeit',
-    	'verification',
+        'date_delivery', // date
+    	'return_date', // date
+        // 'conduct_traceability',
+        // 'suspected_counterfeit',
+    	// 'verification',
+        'wet_lumpy',
+        'busted_bag',
+        'under_over_weight',
+        'infested',
+        'dirty_package',
+        'others',
     	'attach_file',
         'active',
     ];
@@ -31,6 +39,7 @@ class Ccirform extends Model
     protected $dates = [
     	'date_issuance',
     	'date_delivery',
+        'return_date',
         'deleted_at'
     ];
 
@@ -82,6 +91,20 @@ class Ccirform extends Model
     public function getDateDeliveryAttribute($date)
     {
     	return Carbon::parse($date);
+    }
+
+    /**
+     * Set date configuration -> date_delivery
+     */
+
+    public function setReturnDateAttribute($date)
+    {
+        $this->attributes['return_date'] = Carbon::parse($date);
+    }
+
+    public function getReturnDateAttribute($date)
+    {
+        return Carbon::parse($date);
     }
 
 }

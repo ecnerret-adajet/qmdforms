@@ -127,23 +127,85 @@
 </div>
 </div>
 
-
-<div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('quantity_received') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('conduct_traceability', 'Conduct Traceability:') !!}
+{!! Form::label('quantity_received', 'Quantity of sample received:') !!}
 </label>
 </div>
 
 <div class="col-md-12">
-{!! Form::text('conduct_traceability', null, ['class' => 'form-control'] ) !!}
-@if ($errors->has('conduct_traceability'))
+{!! Form::text('quantity_received', null, ['class' => 'form-control'] ) !!}
+@if ($errors->has('quantity_received'))
 <span class="help-block">
-<strong>{{ $errors->first('conduct_traceability') }}</strong>
+<strong>{{ $errors->first('quantity_received') }}</strong>
 </span>
 @endif
 </div>
 </div>
+
+<div class="form-group{{ $errors->has('return_date') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('return_date', 'Return Date:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::input('date', 'return_date', $ccirform->return_date->format('Y-m-d'), ['class' => 'form-control'] ) !!}
+@if ($errors->has('return_date'))
+<span class="help-block">
+<strong>{{ $errors->first('return_date') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+
+
+
+
+<div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+Nature of complaint:
+</label>
+</div>
+
+<div class="col-md-2">
+Wet/Lumpy:  
+{{ Form::checkbox('wet_lumpy', 1) }}
+</div>
+
+<div class="col-md-2">
+Busted Bag:
+{{ Form::checkbox('busted_bag', 1) }}
+</div>
+
+<div class="col-md-2">
+Under/Over Weight:
+{{ Form::checkbox('under_over_weight', 1) }}
+</div>
+
+<div class="col-md-2">
+Infested:
+{{ Form::checkbox('infested', 1) }}
+</div>
+
+<div class="col-md-2">
+Dirty Packaging: 
+{{ Form::checkbox('dirty_package', 1) }}
+</div>
+</div>
+
+<div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
+<div class="col-md-12">
+For others, please specify:  
+{!! Form::text('others', null, ['class' => 'form-control'] ) !!}
+</div>
+</div>
+
+
 
 
   <div class="form-group{{ $errors->has('attach_file') ? ' has-error' : '' }}">

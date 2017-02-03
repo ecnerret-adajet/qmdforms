@@ -312,7 +312,7 @@
                 @foreach($ccirformsown as $ccirform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-ccirform-{{$ccirform->id}}-modal-lg" href="">
+                        <a href="{{url('ccirforms/'.$ccirform->id)}}">
                         {{$ccirform->id}}
                         </a>
                         </td>

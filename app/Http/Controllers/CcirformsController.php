@@ -53,16 +53,9 @@ class CcirformsController extends Controller
     public function store(Request $request)
     {
         
-        $ccirform = new Ccirform;
-        $ccirform->user()->associate(Auth::user());
+        $ccirform = Auth::user()->ccirforms()->create($request->all());
         $ccirform->date_issuance = Carbon::now();
         $ccirform->name = Auth::user()->name;
-        $ccirform->customer_reference = $request->input('customer_reference');
-        $ccirform->brand_name = $request->input('brand_name');
-        $ccirform->affected_quantities = $request->input('affected_quantities');
-        $ccirform->product_no = $request->input('product_no');
-        $ccirform->date_delivery = $request->input('date_delivery');
-        $ccirform->conduct_traceability = $request->input('conduct_traceability');
         if($request->hasFile('attach_file')){
         $ccirform->attach_file = $request->file('attach_file')->store('ccirforms');
         }

@@ -85,13 +85,10 @@ class DdrformsController extends Controller
         ]); 
 
 
-        $ddrform = new Ddrform;
-        $ddrform->user()->associate(Auth::user());
-        $ddrform->reason_distribution = $request->input('reason_distribution');
+        $ddrform = Auth::user()->ddrforms()->create($request->all());
         $ddrform->name = Auth::user()->name;
         $ddrform->position = Auth::user()->position;
         $ddrform->date_requested = Carbon::now();
-        $ddrform->date_needed = $request->input('date_needed');
         $ddrform->save();
 
         $ddrform->departments()->attach($request->input('department_list'));
@@ -110,13 +107,7 @@ class DdrformsController extends Controller
         //     }
         // ]);
 
-        $ddrlist = $ddrform->ddrlists()->create($request->only(
-            'document_title',
-            'control_code',
-            'copy_no',
-            'copy_holder',
-            'recieved_by',
-            'date_list'));
+        $ddrlist = $ddrform->ddrlists()->create($request->all());
 
 
 
@@ -176,9 +167,9 @@ class DdrformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ddrform $ddrform)
     {
-        //
+        return view('ddrforms.show', compact('ddrform'));
     }
 
     /**

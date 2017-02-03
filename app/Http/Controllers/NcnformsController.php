@@ -86,17 +86,13 @@ class NcnformsController extends Controller
      */
     public function store(Request $request)
     {
-        $ncnform = new Ncnform;
-        $ncnform->user()->associate(Auth::user());
+
+        $ncnform = Auth::user()->ncnforms()->create($request->all());
         $ncnform->name = Auth::user()->name;
         $ncnform->position = Auth::user()->position;
-        $ncnform->notif_number = $request->input('notif_number');
-        $ncnform->recurrence_no = $request->input('recurrence_no');
-        $ncnform->date_issuance = $request->input('date_issuance');
-        $ncnform->issued_by = $request->input('issued_by');
-        $ncnform->issued_position = $request->input('issued_position');
-        $ncnform->details_non_conformity = $request->input('details_non_conformity');
-        $ncnform->attach_file = $request->file('attach_file')->store('ncnforms');
+        if($request->hasFile('attach_file')){
+        $ccirform->attach_file = $request->file('attach_file')->store('ccirforms');
+        }
         $ncnform->save();
 
         $ncnform->companies()->attach($request->input('company_list'));
@@ -158,9 +154,9 @@ class NcnformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ncnform $ncnform)
     {
-        //
+        return view('ncnforms.show', compact('ncnform'));
     }
 
     /**

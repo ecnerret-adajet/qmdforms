@@ -43,7 +43,7 @@
 <!-- first set -->
 <tr>
 	<td>Proposed / Existing Document Title: </td>
-	<td></td>
+	<td>  {{$drdrform->document_title}} </td>
 	<td>Rev. No:</td>
 	<td colspan="3"></td>
 </tr>
@@ -54,20 +54,26 @@
 </tr>
 <tr>
 	<td colspan="6">
-		
+		{{$drdrform->reason_request}}
 	</td>
 </tr>
 
 <!-- third set -->
 <tr>
 	<td>Requester:</td>
-	<td></td>
+	<td>
+			{{$drdrform->name}}
+	</td>
 
 	<td>Position:</td>
-	<td></td>
+	<td>
+		{{$drdrform->position}} <!-- not is database -->
+	</td>
 
 	<td>Date:</td>
-	<td></td>
+	<td>
+		{{$drdrform->date_request}}
+	</td>
 
 </tr>
 </table>
@@ -85,20 +91,32 @@
 <table class="table" width="100%">
 	<tr>
 		<td>Reviewed By:</td>
-		<td></td>
+		<td>
+		@foreach($drdrform->drdrreviewers as $reviewer)
+			{{$reviewer->name}}
+		@endforeach
+		</td>
 		<td>Position:</td>
-		<td></td>
+		<td>
+		</td>
 		<td>Date:</td>
-		<td></td>
+		<td>
+		</td>
 	</tr>
 
 	<tr>
 		<td>Approved By:</td>
-		<td></td>
+		<td>
+
+		</td>
 		<td>Position:</td>
-		<td></td>
+		<td>
+
+		</td>
 		<td>Date:</td>
-		<td></td>
+		<td>
+
+		</td>
 	</tr>	
 
 </table>
@@ -138,9 +156,15 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>
+	
+			</td>
+			<td>
+				
+			</td>
+			<td>
+
+			</td>
 		</tr>
 
 		<tr>

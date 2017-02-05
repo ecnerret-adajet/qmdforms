@@ -15,7 +15,8 @@ class Drdrreviewer extends Model
     	'attach_file', // draft for approval
     	'date_review',
       'remarks',
-      'name'
+      'name',
+      'position'
     ];
 
     protected $dates = [

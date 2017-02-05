@@ -16,7 +16,8 @@ class Drdrapprover extends Model
     	'date_approved',
     	'attach_file',
     	'date_effective',
-      'name'
+      'name',
+      'position'
     ];
 
    protected $dates = [

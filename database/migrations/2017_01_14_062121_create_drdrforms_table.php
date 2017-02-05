@@ -18,6 +18,7 @@ class CreateDrdrformsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('drdr_no');
             $table->string('name');
+            $table->string('position');
             $table->string('document_title');
             $table->string('revision_number');
             $table->text('reason_request');

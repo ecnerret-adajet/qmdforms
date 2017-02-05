@@ -54,9 +54,11 @@ class DrdrformsController extends Controller
         $companies = Company::pluck('name','id');
         $types = Type::pluck('name','id');
 
-        $users = User::whereHas('roles', function($q){
-            $q->where('id',3); // to revierwer
-        })->pluck('name','id');
+        // $users = User::whereHas('roles', function($q){
+        //     $q->where('id',3); // to revierwer
+        // })->pluck('name','id');
+
+        $users = User::pluck('name','id');
 
         return view('drdrforms.create', compact('companies','types','users'));
     }
@@ -104,14 +106,13 @@ class DrdrformsController extends Controller
             'user_list' => 'required'
         ]); 
 
-        $drdrform = new Drdrform;
-        $drdrform->user()->associate(Auth::user());
-        $drdrform->document_title = $request->input('document_title');
-        $drdrform->reason_request = $request->input('reason_request');
-        $drdrform->revision_number = $request->input('revision_number');
+    
+        $drdrform = Auth::user()->drdrforms()->create($request->all());
         $drdrform->name = Auth::user()->name; //fake to main form
         $drdrform->date_request = Carbon::now(); //fake to main form
+        if($request->hasFile('attach_file')){
         $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
+        }
         $drdrform->save();
 
         $drdrform->companies()->attach($request->input('company_list'));
@@ -153,10 +154,14 @@ class DrdrformsController extends Controller
         /**
          * create copy holder data
          */
-        $drdrcopyholder = new Drdrcopyholder;
+        // $drdrcopyholder = new Drdrcopyholder;
+        // $drdrcopyholder->drdrreviewer()->associate($drdrreviewer);
+        // $drdrcopyholder->copy_no = $request->input('copy_no');
+        // $drdrcopyholder->copyholder = $request->input('copyholder');
+        // $drdrcopyholder->save();
+
+        $drdrcopyholder = Drdrcopyholder::create($request->all());
         $drdrcopyholder->drdrreviewer()->associate($drdrreviewer);
-        $drdrcopyholder->copy_no = $request->input('copy_no');
-        $drdrcopyholder->copyholder = $request->input('copyholder');
         $drdrcopyholder->save();
 
         /**

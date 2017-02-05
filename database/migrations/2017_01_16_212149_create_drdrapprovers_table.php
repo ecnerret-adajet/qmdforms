@@ -19,6 +19,7 @@ class CreateDrdrapproversTable extends Migration
              $table->integer('drdrform_id')->unsigned();
 
             $table->string('name');
+            $table->string('position');
             $table->string('remarks');
             $table->timestamp('date_approved');
             $table->string('attach_file');

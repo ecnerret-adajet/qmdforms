@@ -73,6 +73,35 @@
 
 
 
+<table class="table table-striped table-bordered table-hover" width="100%"> 
+    <thead>
+        <th>Copy #</th>
+        <th>Copy holder</th>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+        {!! Form::text('copy_no', null, ['class' => 'form-control'] ) !!}
+        </td>
+        <td>
+          {!! Form::text('copyholder', null, ['class' => 'form-control'] ) !!}
+        </td>
+      </tr>
+
+  
+    
+    
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
 <!-- submit or cancel button section -->
 
     </div>

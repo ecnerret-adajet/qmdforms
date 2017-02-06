@@ -63,7 +63,7 @@
                 @foreach($ddrforms as $ddrform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-ddrform-{{$ddrform->id}}-modal-lg" href="">
+                         <a href="{{url('ddrforms/'.$ddrform->id)}}">
                         {{$ddrform->id}}
                         </a>
                         </td>

@@ -55,10 +55,12 @@
 	</tr>
 	<tr>
 		<td>
-		Date Neeeded: 
+		<strong>
+		Date Neeeded:
+		</strong> 
 		</td>
 		<td>
-
+		{{ date('F d, Y', strtotime($ddrform->date_needed)) }}
 		</td>
 	</tr>
 </table>
@@ -94,15 +96,31 @@
 		</tr>
 	</thead>
 	<tbody>
+	@foreach($ddrform->ddrlists as $ddrlist)
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>
+				{{$ddrlist->document_title}}
+			</td>
+			<td>
+				{{$ddrlist->control_code}}
+			</td>
+			<td>
+		
+			</td>
+			<td>
+				{{$ddrlist->control_code}}
+			</td>
+			<td>
+				{{$ddrlist->copy_holder}}
+			</td>
+			<td>
+				{{$ddrlist->recieved_by}}
+			</td>
+			<td>
+					{{ date('F d, Y', strtotime($ddrlist->date_list)) }}
+			</td>
 		</tr>
+	@endforeach
 	</tbody>
 </table>
 
@@ -112,11 +130,27 @@
 
 <table class="table table-bordered">
 	<tr>
-		<td>Requested by: </td>
-		<td></td>
-		<td>Approved by:</td>
-		<td></td>
-		<td>Distbuted by:</td>
+		<td>
+		<strong>
+		Requested by: 
+		<strong>
+		</td>
+		<td> {{$ddrform->name}} </td>
+		<td>
+		<strong>
+		Approved by:
+		</strong>
+		</td>
+		<td>
+			@foreach($ddrform->ddrapprovers as $approver)
+				{{$approver->name}}
+			@endforeach
+		</td>
+		<td>
+		<strong>
+		Distbuted by:
+		</strong>
+		</td>
 		<td></td>
 	</tr>
 	<tr>

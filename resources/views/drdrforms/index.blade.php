@@ -59,7 +59,7 @@
                 @foreach($drdrforms as $drdrform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-drdrform-{{$drdrform->id}}-modal-lg" href="">
+                        <a href="{{url('drdrforms/'.$drdrform->id)}}">
                         {{$drdrform->id}}
                         </a>
                         </td>
@@ -112,6 +112,9 @@
                           </a>
                           <ul class="dropdown-menu">
                             <li>
+                            <a data-toggle="modal" data-target=".bs-verify-drdrform-{{$drdrform->id}}-modal-lg" href="">
+                               Verify Document
+                            </a>
                             <a data-toggle="modal" data-target=".bs-delete{{$drdrform->id}}-modal-lg" href="">
                                Move to trash
                             </a>

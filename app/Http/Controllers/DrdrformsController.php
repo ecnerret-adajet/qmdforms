@@ -69,9 +69,11 @@ class DrdrformsController extends Controller
 
         $statuses = Status::pluck('name','id');
 
-        $users = User::whereHas('roles', function($q){
-            $q->where('id',2); // to approver
-        })->pluck('name','id');
+        // $users = User::whereHas('roles', function($q){
+        //     $q->where('id',2); // to approver
+        // })->pluck('name','id');
+
+        $users = User::pluck('name','id');
 
         
         return view('drdrforms.reviewer-create', compact('statuses',
@@ -109,6 +111,7 @@ class DrdrformsController extends Controller
     
         $drdrform = Auth::user()->drdrforms()->create($request->all());
         $drdrform->name = Auth::user()->name; //fake to main form
+        $drdrform->position = Auth::user()->position; //fake to main form
         $drdrform->date_request = Carbon::now(); //fake to main form
         if($request->hasFile('attach_file')){
         $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
@@ -132,36 +135,36 @@ class DrdrformsController extends Controller
     {
         $this->validate($request, [
             'remarks' => 'required',
-            'attach_file' => 'required',
             'status_list' => 'required',
             'user_list' => 'required'
         ]); 
 
-
         $drdrform = Drdrform::findOrFail($id);
 
-        $drdrreviewer =  new Drdrreviewer;
+        $drdrreviewer = new Drdrreviewer;
+        $drdrreviewer->fill($request->all());
+        $drdrreviewer->drdrform()->associate($drdrform);
         $drdrreviewer->user()->associate(Auth::user());
         $drdrreviewer->date_review = Carbon::now();
         $drdrreviewer->name = Auth::user()->name;
-        $drdrreviewer->remarks = $request->input('remarks');
+        $drdrreviewer->position = Auth::user()->position;
+        if($request->hasFile('attach_file')){
         $drdrreviewer->attach_file = $request->file('attach_file')->store('drdrreviewer');
-        $drdrreviewer->drdrform()->associate($drdrform);
+        }
         $drdrreviewer->save();
+        /**
+         * belongs to many method
+         */
         $drdrreviewer->statuses()->attach($request->input('status_list'));
         $drdrreviewer->users()->attach($request->input('user_list'));
 
         /**
-         * create copy holder data
+         * Drdr copy holder reviwer section
          */
-        // $drdrcopyholder = new Drdrcopyholder;
-        // $drdrcopyholder->drdrreviewer()->associate($drdrreviewer);
-        // $drdrcopyholder->copy_no = $request->input('copy_no');
-        // $drdrcopyholder->copyholder = $request->input('copyholder');
-        // $drdrcopyholder->save();
-
-        $drdrcopyholder = Drdrcopyholder::create($request->all());
+        $drdrcopyholder = new Drdrcopyholder;
         $drdrcopyholder->drdrreviewer()->associate($drdrreviewer);
+        $drdrcopyholder->copy_no = $request->input('copy_no');
+        $drdrcopyholder->copyholder = $request->input('copyholder');
         $drdrcopyholder->save();
 
         /**
@@ -192,15 +195,16 @@ class DrdrformsController extends Controller
 
         $drdrform = Drdrform::findOrFail($id);
 
-        $drdrapprover = new Drdrapprover;
-        $drdrapprover->user()->associate(Auth::user());
-        $drdrapprover->name = Auth::user()->name;
-        $drdrapprover->attach_file = $request->file('attach_file')->store('drdrreviwer');
-        $drdrapprover->date_approved = Carbon::now();
-        $drdrapprover->date_effective = $request->input('date_effective');
-        $drdrapprover->remarks = $request->input('remarks');
+        $drdrapprover = Auth::user()->drdrapprovers()->create($request->all());
         $drdrapprover->drdrform()->associate($drdrform);
+        $drdrapprover->name = Auth::user()->name;
+        $drdrapprover->position = Auth::user()->position;
+        $drdrapprover->date_approved = Carbon::now();
+        if($request->hasFile('attach_file')){
+        $drdrapprover->attach_file = $request->file('attach_file')->store('drdrapprover');
+        }
         $drdrapprover->save();
+
 
         
         $drdrapprover->statuses()->attach($request->input('status_list'));

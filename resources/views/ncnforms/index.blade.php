@@ -65,7 +65,7 @@
                 @foreach($ncnforms as $ncnform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-ncnform-{{$ncnform->id}}-modal-lg" href="">
+                         <a href="{{url('ncnforms/'.$ncnform->id)}}">
                         {{$ncnform->id}}
                         </a>
                         </td>

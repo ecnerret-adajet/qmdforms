@@ -42,15 +42,29 @@
 <table class="table" width="100%">
 <!-- first set -->
 <tr>
-	<td>Proposed / Existing Document Title: </td>
+	<td>
+	<strong>
+	Proposed / Existing Document Title: 
+	</strong>
+	</td>
 	<td>  {{$drdrform->document_title}} </td>
-	<td>Rev. No:</td>
-	<td colspan="3"></td>
+	<td>
+	<strong>
+	Rev. No:
+	</strong>
+	</td>
+	<td colspan="3">
+		{{$drdrform->revision_number}}
+	</td>
 </tr>
 
 <!-- second set -->
 <tr>
-	<td colspan="5">Reason for proposal / change / cancellation:</td>
+	<td colspan="5">
+	<strong>
+	Reason for proposal / change / cancellation:
+	</strong>
+	</td>
 </tr>
 <tr>
 	<td colspan="6">
@@ -60,19 +74,19 @@
 
 <!-- third set -->
 <tr>
-	<td>Requester:</td>
+	<td><strong>Requester:</strong></td>
 	<td>
-			{{$drdrform->name}}
+		{{$drdrform->name}}
 	</td>
 
-	<td>Position:</td>
+	<td><strong>Position:</strong></td>
 	<td>
 		{{$drdrform->position}} <!-- not is database -->
 	</td>
 
-	<td>Date:</td>
+	<td><strong>Date:</strong></td>
 	<td>
-		{{$drdrform->date_request}}
+	{{ date('F d, Y', strtotime($drdrform->date_request)) }}
 	</td>
 
 </tr>
@@ -90,32 +104,68 @@
 
 <table class="table" width="100%">
 	<tr>
-		<td>Reviewed By:</td>
+		<td>
+		<strong>
+		Reviewed By:
+		</strong>
+		</td>
 		<td>
 		@foreach($drdrform->drdrreviewers as $reviewer)
 			{{$reviewer->name}}
 		@endforeach
 		</td>
-		<td>Position:</td>
 		<td>
+		<strong>
+		Position:
+		</strong>
 		</td>
-		<td>Date:</td>
 		<td>
+		@foreach($drdrform->drdrreviewers as $reviewer)
+			{{$reviewer->position}}
+		@endforeach
+		</td>
+		<td>
+		<strong>
+		Date:
+		</strong>
+		</td>
+		<td>
+		@foreach($drdrform->drdrreviewers as $reviewer)
+			{{ date('F d, Y', strtotime($reviewer->date_review)) }}
+		@endforeach
 		</td>
 	</tr>
 
 	<tr>
-		<td>Approved By:</td>
 		<td>
-
+		<strong>
+		Approved By:
+		</strong>
 		</td>
-		<td>Position:</td>
 		<td>
-
+		@foreach($drdrform->drdrapprovers as $approver)
+			{{$approver->name}}
+		@endforeach
 		</td>
-		<td>Date:</td>
 		<td>
-
+		<strong>
+		Position:
+		</strong>
+		</td>
+		<td>
+		@foreach($drdrform->drdrapprovers as $approver)
+			{{$approver->position}}
+		@endforeach
+		</td>
+		<td>
+		<strong>
+		Date:
+		</strong>
+		</td>
+		<td>
+		@foreach($drdrform->drdrapprovers as $approver)
+			{{$approver->date_approved}}
+		@endforeach
 		</td>
 	</tr>	
 

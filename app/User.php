@@ -51,12 +51,12 @@ class User extends Authenticatable
 
     public function drdrapprovers()
     {
-        return $this->hasMany('App\Drdrapprovers');
+        return $this->hasMany('App\Drdrapprover');
     }
 
     public function drdrreviewers()
     {
-        return $this->hasMany('App\Drdrreviewers');
+        return $this->hasMany('App\Drdrreviewer');
     }
 
 

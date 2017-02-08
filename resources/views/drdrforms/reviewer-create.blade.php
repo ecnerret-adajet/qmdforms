@@ -73,7 +73,7 @@
 
                         <tr>
                             <td colspan="2">
-                            <a href="{{asset('http://localhost/qmdforms/storage/app/'.$drdrform->attach_file)}}" class="btn btn-primary btn-block" download>  
+                            <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$drdrform->attach_file)}}" class="btn btn-primary btn-block" download>  
                                 Download Attachement
                             </a>  
 

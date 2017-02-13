@@ -141,41 +141,6 @@
 </div>
 
 
-<div class="form-group{{ $errors->has('issued_by') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
-<label class="control-label">
-{!! Form::label('issued_by', 'Issued By:') !!}
-</label>
-</div>
-
-<div class="col-md-12">
-{!! Form::text('issued_by', null, ['class' => 'form-control'] ) !!}
-@if ($errors->has('issued_by'))
-<span class="help-block">
-<strong>{{ $errors->first('issued_by') }}</strong>
-</span>
-@endif
-</div>
-</div>
-
-
-<div class="form-group{{ $errors->has('issued_position') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
-<label class="control-label">
-{!! Form::label('issued_position', 'Issued Position:') !!}
-</label>
-</div>
-
-<div class="col-md-12">
-{!! Form::text('issued_position', null, ['class' => 'form-control'] ) !!}
-@if ($errors->has('issued_position'))
-<span class="help-block">
-<strong>{{ $errors->first('issued_position') }}</strong>
-</span>
-@endif
-</div>
-</div>
-
 
 <div class="form-group{{ $errors->has('user_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">

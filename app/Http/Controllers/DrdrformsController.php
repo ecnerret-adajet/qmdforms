@@ -105,7 +105,8 @@ class DrdrformsController extends Controller
             'attach_file' => 'required',
             'company_list' => 'required',
             'type_list' => 'required',
-            'user_list' => 'required'
+            'user_list' => 'required',
+            'attach_file' => 'required'
         ]); 
 
     
@@ -113,9 +114,7 @@ class DrdrformsController extends Controller
         $drdrform->name = Auth::user()->name; //fake to main form
         $drdrform->position = Auth::user()->position; //fake to main form
         $drdrform->date_request = Carbon::now(); //fake to main form
-        if($request->hasFile('attach_file')){
         $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
-        }
         $drdrform->save();
 
         $drdrform->companies()->attach($request->input('company_list'));
@@ -136,7 +135,8 @@ class DrdrformsController extends Controller
         $this->validate($request, [
             'remarks' => 'required',
             'status_list' => 'required',
-            'user_list' => 'required'
+            'user_list' => 'required',
+            'attach_file' => 'required'
         ]); 
 
         $drdrform = Drdrform::findOrFail($id);
@@ -148,9 +148,7 @@ class DrdrformsController extends Controller
         $drdrreviewer->date_review = Carbon::now();
         $drdrreviewer->name = Auth::user()->name;
         $drdrreviewer->position = Auth::user()->position;
-        if($request->hasFile('attach_file')){
         $drdrreviewer->attach_file = $request->file('attach_file')->store('drdrreviewer');
-        }
         $drdrreviewer->save();
         /**
          * belongs to many method

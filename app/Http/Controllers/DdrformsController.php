@@ -95,21 +95,20 @@ class DdrformsController extends Controller
         $ddrform->users()->attach($request->input('user_list'));
 
 
-        // $ddrlist = $ddrform->ddrlists()->saveMany([
-        //     for($i=0; $i <= count($request->input('recieved_by'));  $i++){
-        //             new Ddrlist([
-        //             'document_title' => $request->input('document_title'),
-        //             'control_code' => $request->input('control_code'),
-        //             'copy_no' => $request->input('copy_no'),
-        //             'copy_holder' => $request->input('copy_holder'),
-        //             'recieved_by' => $request->input('recieved_by'),
-        //             ]),
-        //     }
-        // ]);
+        foreach($request->document_title as $key=>$value){
+            $data[]=[
+                'document_title'=> $value, 
+                'control_code'=> $request->control_code[$key], 
+                'copy_no'=> $request->copy_no[$key], 
+                'copy_holder'=> $request->copy_holder[$key], 
+                'recieved_by'=> $request->recieved_by[$key], 
+                'date_list'=> $request->date_list[$key], 
+            ];
+        }
 
-        $ddrlist = $ddrform->ddrlists()->create($request->all());
-
-
+        foreach($data as $row){
+            $ddrlist = $ddrform->ddrlists()->create($row);
+        }
 
 
 

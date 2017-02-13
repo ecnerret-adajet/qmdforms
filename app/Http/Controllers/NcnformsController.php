@@ -54,6 +54,8 @@ class NcnformsController extends Controller
             $q->where('id',2); // to approver
         })->pluck('name','id');
 
+        // $users = User::pluck('name','id');
+
 
         return view('ncnforms.create', compact('companies',
             'nonconformities',
@@ -87,12 +89,18 @@ class NcnformsController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate($request, [
+            'company_list' => 'required',
+            'department_list' => 'required',
+            'nonconformity_list' => 'required',
+            'user_list'  => 'required',
+            'attach_file' => 'required'
+        ]);
+
         $ncnform = Auth::user()->ncnforms()->create($request->all());
         $ncnform->name = Auth::user()->name;
         $ncnform->position = Auth::user()->position;
-        if($request->hasFile('attach_file')){
-        $ccirform->attach_file = $request->file('attach_file')->store('ccirforms');
-        }
+        $ncnform->attach_file = $request->file('attach_file')->store('ncnforms');
         $ncnform->save();
 
         $ncnform->companies()->attach($request->input('company_list'));

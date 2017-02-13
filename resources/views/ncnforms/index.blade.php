@@ -107,12 +107,12 @@
                           </a>
                           <ul class="dropdown-menu">
                             <li>
-                            <a data-toggle="modal" data-target=".bs-delete{{$nancform->id}}-modal-lg" href="">
+                            <a data-toggle="modal" data-target=".bs-delete{{$ncnform->id}}-modal-lg" href="">
                                Move to trash
                             </a>
                             </li>
                             <li>
-                            <a data-toggle="modal" data-target=".bs-archive{{$nancform->id}}-modal-lg" href="">
+                            <a data-toggle="modal" data-target=".bs-archive{{$ncnform->id}}-modal-lg" href="">
                               Mark as archive
                             </a>
                             </li>

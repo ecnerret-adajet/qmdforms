@@ -65,22 +65,43 @@
 
 			<tr>
 				<td>
-				{!! Form::text('document_title', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
+				{!! Form::text('document_title[]', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('control_code', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
+					{!! Form::text('control_code[]', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('copy_no', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
+					{!! Form::text('copy_no[]', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('copy_holder', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
+					{!! Form::text('copy_holder[]', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::text('recieved_by', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
+					{!! Form::text('recieved_by[]', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
 				</td>
 				<td>
-					{!! Form::input('date', 'date_list', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
+					{!! Form::input('date', 'date_list[]', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
+				</td>
+			</tr>
+
+						<tr>
+				<td>
+				{!! Form::text('document_title[]', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
+				</td>
+				<td>
+					{!! Form::text('control_code[]', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
+				</td>
+				<td>
+					{!! Form::text('copy_no[]', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
+				</td>
+				<td>
+					{!! Form::text('copy_holder[]', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
+				</td>
+				<td>
+					{!! Form::text('recieved_by[]', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
+				</td>
+				<td>
+					{!! Form::input('date', 'date_list[]', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
 				</td>
 			</tr>
 

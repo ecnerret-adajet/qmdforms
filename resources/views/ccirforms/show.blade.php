@@ -1,11 +1,14 @@
+
 @extends('layouts.admin-layout')
 @section('content')
 
-<p>
-	 <a href="#" class="btn btn-primary" download>  
-         <i class="ion-ios-cloud-download-outline"></i>  Download Attachement
-     </a>  
-</p>
+
+
+ <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$ccirform->attach_file)}}" class="btn btn-primary" download>  
+        Download Attachement
+  </a> 
+
+<hr/>
 
 
 <table class="table table-bordered">
@@ -16,17 +19,17 @@
 			<td colspan="4">La Filipina Uy Gongco Group of Companies</td>
 		</tr>
 		<tr>
-			<td>
-			Doc No. <strong>MTS-F-008</strong>
+			<td> 
+			Doc No. <strong>LFQM-F-029b</strong>
 			</td>
 			<td>
-			Rev No. <strong>04</strong>
+			Rev No. <strong>00</strong>
 			</td>
 			<td>
 			Effective Date
 			</td>
 			<td>
-			XXXXXX
+			
 			</td>
 		</tr>
 		<tr>

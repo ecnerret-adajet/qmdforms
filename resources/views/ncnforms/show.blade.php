@@ -1,6 +1,11 @@
 @extends('layouts.admin-layout')
 @section('content')
 
+       <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$ncnform->attach_file)}}" class="btn btn-primary" download>  
+                                Download Attachement
+                            </a> 
+                            <hr/>
+
 <table class="table table-bordered">
 		<tr>
 			<td rowspan="3" width="10%">

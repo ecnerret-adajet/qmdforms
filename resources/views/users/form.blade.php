@@ -109,7 +109,7 @@
                             <label for="roles" class="col-md-4 control-label">Roles</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('roles_list[]',  $roles, null,  ['class' => 'form-control', 'placeholder' => '--Select Role --']) !!}  
+                                {!! Form::select('roles_list[]',  $roles,$userRole,  ['class' => 'form-control', 'multiple']) !!}  
 
                                 @if ($errors->has('roles_list'))
                                     <span class="help-block">

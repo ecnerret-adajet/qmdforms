@@ -1,6 +1,11 @@
 @extends('layouts.admin-layout')
 @section('content')
 
+  <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$drdrform->attach_file)}}" class="btn btn-primary" download>  
+                                Download Attachement 
+      </a>  
+
+      <hr/>
 
 <table class="table table-bordered">
 		<tr>
@@ -11,7 +16,7 @@
 		</tr>
 		<tr>
 			<td>
-			Doc No. <strong>LFQM_F-001</strong>
+			Doc No. <strong>LFQM-F-001</strong>
 			</td>
 			<td>
 			Rev No. <strong>04</strong>
@@ -20,7 +25,7 @@
 			Effective Date
 			</td>
 			<td>
-			XXXXXX
+		
 			</td>
 		</tr>
 		<tr>

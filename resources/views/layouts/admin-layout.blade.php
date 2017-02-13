@@ -75,13 +75,20 @@
                 </li>
 
             @else
-       
+                           <li>
+                    <a href="{{url('/dashboard')}}">
+                    <i class="ion-ios-speedometer-outline"></i>
+                    Dashboard
+                    </a>
+                </li>
+
                 <li>
                     <a href="#">
                     <i class="ion-ios-copy-outline"></i>
                     Submitted Forms
                     </a>
                 </li>
+
                @endif
 
 

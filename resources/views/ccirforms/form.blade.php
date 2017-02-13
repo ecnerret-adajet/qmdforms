@@ -37,7 +37,7 @@
 <h4><strong>A. Initial Assesment</strong></h4>
 <hr/>
 
-<div class="form-group{{ $errors->has('customer_reference') ? ' has-error' : '' }}">
+<!-- <div class="form-group{{ $errors->has('customer_reference') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
 {!! Form::label('customer_reference', 'Customer Complaint Reference No:') !!}
@@ -52,7 +52,7 @@
 </span>
 @endif
 </div>
-</div>
+</div> -->
 
 
 <div class="form-group{{ $errors->has('brand_name') ? ' has-error' : '' }}">

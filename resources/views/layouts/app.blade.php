@@ -60,10 +60,8 @@
                     <!-- Left Side Of Navbar -->
                     @if (Auth::check())
                     <ul class="nav navbar-nav">
-                       <li><a href="{{ url('/home') }}">Home</a></li>
-                        @role(('Administrator'))
+                       <li><a href="{{ url('/home') }}">Home</a></li>                      
                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                       @endrole
                     </ul>
                     @endif
 

@@ -110,7 +110,7 @@ class UsersController extends Controller
         $companies = Company::pluck('name','id');
         $departments = Department::pluck('name','id'); 
         $roles = Role::pluck('display_name','id');
-        // $userRole = $user->roles->pluck('id','id')->toArray();
+        $userRole = $user->roles->pluck('id','id')->toArray();
 
         return view('users.edit',compact('user','roles','userRole','departments','companies'));
     }

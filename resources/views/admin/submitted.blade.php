@@ -60,7 +60,7 @@
                 @foreach($drdrformsown as $drdrform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-drdrform-{{$drdrform->id}}-modal-lg" href="">
+                        <a href="{{url('drdrforms/'.$drdrform->id)}}">
                         {{$drdrform->id}}
                         </a>
                         </td>
@@ -150,7 +150,7 @@
                 @foreach($ddrformsown as $ddrform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-ddrform-{{$ddrform->id}}-modal-lg" href="">
+                        <a href="{{url('ddrforms/'.$ddrform->id)}}">
                         {{$ddrform->id}}
                         </a>
                         </td>
@@ -230,7 +230,7 @@
                 @foreach($ncnformsown as $ncnform)
                     <tr>
                         <td>
-                        <a data-toggle="modal" data-target=".bs-show-ncnform-{{$ncnform->id}}-modal-lg" href="">
+                        <a href="{{url('ncnforms/'.$ncnform->id)}}"> 
                         {{$ncnform->id}}
                         </a>
                         </td>

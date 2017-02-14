@@ -82,6 +82,12 @@ class DdrformsController extends Controller
             'date_needed' => 'required|date',
             'department_list' => 'required',
             'user_list' => 'required',
+            'document_title[]' => 'required',
+            'control_code[]' => 'required',
+            'copy_no[]' => 'required',
+            'copy_holder[]' => 'required',
+            'recieved_by[]' => 'required',
+            'date_list[]' => 'required' 
         ]); 
 
 
@@ -94,7 +100,9 @@ class DdrformsController extends Controller
         $ddrform->departments()->attach($request->input('department_list'));
         $ddrform->users()->attach($request->input('user_list'));
 
-
+        /**
+         * ddrlist array request
+         */
         foreach($request->document_title as $key=>$value){
             $data[]=[
                 'document_title'=> $value, 
@@ -106,9 +114,12 @@ class DdrformsController extends Controller
             ];
         }
 
-        foreach($data as $row){
+       foreach($data as $row){
             $ddrlist = $ddrform->ddrlists()->create($row);
         }
+
+  
+
 
 
 

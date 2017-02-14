@@ -21,3 +21,5 @@
     </div>
 </div>
 @endsection
+
+@yield('ddrform_list')

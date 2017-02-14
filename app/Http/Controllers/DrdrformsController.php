@@ -136,7 +136,9 @@ class DrdrformsController extends Controller
             'remarks' => 'required',
             'status_list' => 'required',
             'user_list' => 'required',
-            'attach_file' => 'required'
+            'attach_file' => 'required',
+            'copy_no[]' => 'required',
+            'copyholder[]' => 'required'
         ]); 
 
         $drdrform = Drdrform::findOrFail($id);
@@ -159,11 +161,20 @@ class DrdrformsController extends Controller
         /**
          * Drdr copy holder reviwer section
          */
-        $drdrcopyholder = new Drdrcopyholder;
-        $drdrcopyholder->drdrreviewer()->associate($drdrreviewer);
-        $drdrcopyholder->copy_no = $request->input('copy_no');
-        $drdrcopyholder->copyholder = $request->input('copyholder');
-        $drdrcopyholder->save();
+        foreach($request->copy_no as $key=>$value){
+            $data[] =[
+                'copy_no' => $value,
+                'copyholder' => $request->copyholder[$key]
+            ];
+        }
+
+        foreach($data as $row){
+            $drdrcopyholder = $drdrreviewer->drdrcopyholders()->create($row);
+        }
+
+
+
+
 
         /**
          * Notify the approver via email

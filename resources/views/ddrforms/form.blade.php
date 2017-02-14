@@ -51,67 +51,76 @@
 </div>
 </div>
 
+<!-- sample -->
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-bordered table-hover" id="tab_logic">
+				<thead>
+					<tr >
+						<th class="text-center">
+							#
+						</th>
+						<th class="text-center">
+							Document Title
+						</th>
+						<th class="text-center">
+							Control Code
+						</th>
+						<th class="text-center">
+							Copy #
+						</th>
+						<th class="text-center">
+							Copy holder
+						</th>
+						<th class="text-center">
+							Received by
+						</th>
+						<th class="text-center">
+							Date
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id='addr0'>
+						<td>
+						1
+						</td>
 
-<table class="table table-striped table-bordered table-hover" width="100%">	
-		<thead>
-				<th width="20%">Docoument Title</th>
-				<th width="12%">Control Code</th>
-				<th>Copy #</th>
-				<th>Copy holder</th>
-				<th>Received by</th>
-				<th>Date</th>
-		</thead>
-		<tbody>
+						<td class="{{ $errors->has('document_title[]') ? ' has-error' : '' }}">
+						<input type="text" name='document_title[]'  placeholder='Document title' class="form-control" id='document_title_0' />
+						</td>
 
-			<tr>
-				<td>
-				{!! Form::text('document_title[]', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('control_code[]', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('copy_no[]', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('copy_holder[]', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('recieved_by[]', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::input('date', 'date_list[]', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
-				</td>
-			</tr>
+						<td class="{{ $errors->has('control_code[]') ? ' has-error' : '' }}">
+						<input type="text" name='control_code[]' placeholder='Control code' class="form-control" id='control_code_0' />
+						</td>
 
-						<tr>
-				<td>
-				{!! Form::text('document_title[]', null, ['class' => 'form-control', 'id' => 'document_title-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('control_code[]', null, ['class' => 'form-control', 'id' => 'control_code-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('copy_no[]', null, ['class' => 'form-control', 'id' => 'copy_no-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('copy_holder[]', null, ['class' => 'form-control', 'id' => 'copy_holder-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::text('recieved_by[]', null, ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
-				</td>
-				<td>
-					{!! Form::input('date', 'date_list[]', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control', 'id' => 'recieved_by-1'] ) !!}
-				</td>
-			</tr>
+						<td class="{{ $errors->has('copy_no[]') ? ' has-error' : '' }}">
+						<input type="text" name='copy_no[]' placeholder='Copy no' class="form-control" id='copy_no_0' />
+						</td>
 
-	
-		
-		
-		</tbody>
+						<td class="{{ $errors->has('copy_holder[]') ? ' has-error' : '' }}">
+						<input type="text" name='copy_holder[]' placeholder='Copy holder' class="form-control" id='copy_holder_0'/>
+						</td>
 
-</table>
+						<td class="{{ $errors->has('recieved_by[]') ? ' has-error' : '' }}">
+						<input type="text" name='recieved_by[]' placeholder='Recieved by' class="form-control" id='recieved_by_0' />
+						</td>
 
+						<td class="{{ $errors->has('date_list[]') ? ' has-error' : '' }}">
+						<input type="date" name='date_list[]' class="form-control" id='date_list_0' />
+						</td>
+
+					</tr>
+                    <tr id='addr1'></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+
+
+
+<!-- end sample -->
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
@@ -208,3 +217,24 @@
     </div>
   </div>
 </div>
+
+
+@section('ddrform_list')
+<script>
+	$(document).ready(function(){
+  var i=1;
+        $("#add_row").click(function(){
+        $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='document_title[]' type='text' placeholder='Document title' class='form-control input-md' id='document_title_"+i+"'  /></td><td><input name='control_code[]' type='text' placeholder='Control code' class='form-control input-md' id='control_code_"+i+"'  /></td><td><input name='copy_no[]' type='text' placeholder='Copy no' class='form-control input-md' id='copy_no_"+i+"'  /></td><td><input name='copy_holder[]' type='text' placeholder='Copy holder' class='form-control input-md' id='copy_holder_"+i+"'  /></td><td><input name='recieved_by[]' type='text' placeholder='Recieved by' class='form-control input-md' id='recieved_by_"+i+"'  /></td><td><input name='date_list[]' type='date' class='form-control input-md' id='date_list_"+i+"'  /></td>");
+        $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++; 
+  });
+     $("#delete_row").click(function(){
+         if(i>1){
+         $("#addr"+(i-1)).html('');
+         i--;
+         }
+     });
+
+});
+</script>
+@endsection

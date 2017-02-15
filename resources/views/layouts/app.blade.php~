@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'E-forms') }}</title>
+    <title>{{ config('app.name', 'Qmdforms') }}</title>
 
     <!-- Styles -->
     <link href="{{url('css/all.css')}}" rel="stylesheet">
@@ -60,12 +60,8 @@
                     <!-- Left Side Of Navbar -->
                     @if (Auth::check())
                     <ul class="nav navbar-nav">
-                       <li><a href="{{ url('/home') }}">Home</a></li>    
-                       @if(Auth::user()->hasRole('Administrator'))                  
+                       <li><a href="{{ url('/home') }}">Home</a></li>                      
                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                       @else
-                       <li><a href="{{ url('/submitted') }}">Dashboard</a></li>
-                       @endif
                     </ul>
                     @endif
 

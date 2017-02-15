@@ -2,6 +2,10 @@ $(function () {
 
 // datatables
 $('#table-data').DataTable();
+$('#table-data2').DataTable();
+$('#table-data3').DataTable();
+$('#table-data4').DataTable();
+
 $('#trashed-data').DataTable();
 $('#archive-data').DataTable();
 $("[data-mask]").inputmask();

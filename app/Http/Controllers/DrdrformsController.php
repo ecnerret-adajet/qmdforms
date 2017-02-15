@@ -136,9 +136,7 @@ class DrdrformsController extends Controller
             'remarks' => 'required',
             'status_list' => 'required',
             'user_list' => 'required',
-            'attach_file' => 'required',
-            'copy_no[]' => 'required',
-            'copyholder[]' => 'required'
+            'attach_file' => 'required'
         ]); 
 
         $drdrform = Drdrform::findOrFail($id);
@@ -316,6 +314,15 @@ class DrdrformsController extends Controller
         
         alert()->success('Success Message', 'Document is succefully trashed');
         return redirect('drdrforms');
+    }
+
+    /**
+     * Download attached file
+     */
+    public function download()
+    {
+       $file_download = Drdrform::table('attach_file')->get();
+       return response()->file($file_download);
     }
 
 }

@@ -43,9 +43,17 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#" style="background-color: #2c3e50; color: #ccc; border-bottom: 1px solid #34495e ">
+
+                @if(Auth::user()->hasRole('Administrator'))
+                    <a href="{{url('dashboard')}}" style="background-color: #2c3e50; color: #ccc; border-bottom: 1px solid #34495e ">
                         E-Forms
                     </a>
+                @else
+                    <a href="{{url('submitted')}}" style="background-color: #2c3e50; color: #ccc; border-bottom: 1px solid #34495e ">
+                        E-Forms
+                    </a>
+                @endif
+                
                 </li>
 
             @if(Auth::user()->hasRole('Administrator'))
@@ -75,15 +83,8 @@
                 </li>
 
             @else
-                           <li>
-                    <a href="{{url('/dashboard')}}">
-                    <i class="ion-ios-speedometer-outline"></i>
-                    Dashboard
-                    </a>
-                </li>
-
                 <li>
-                    <a href="#">
+                    <a href="{{ url('submitted') }}">
                     <i class="ion-ios-copy-outline"></i>
                     Submitted Forms
                     </a>
@@ -97,7 +98,7 @@
 
              <ul class="sidebar-nav-bottom">
              <li>
-                  <a href="{{url('users')}}" class="ion-ios-person-outline" > Account</a>
+                  <a href="{{url('users/'.Auth::user()->id.'/edit')}}" class="ion-ios-person-outline" > Account</a>
              </li>
 
                 <li>

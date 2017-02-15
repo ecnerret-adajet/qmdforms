@@ -210,23 +210,25 @@
 		</tr>
 	</thead>
 	<tbody>
+
+	@foreach($drdrform->drdrreviewers as $reviewer)
+		@foreach($reviewer->drdrcopyholders as $copyholder)
 		<tr>
 			<td>
-	
+				{{ $copyholder->copy_no }}
 			</td>
 			<td>
-				
+				{{ $copyholder->copyholder }}
 			</td>
 			<td>
 
 			</td>
 		</tr>
+		@endforeach
+	@endforeach
 
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+
+		
 
 		<tr>
 		<td></td>

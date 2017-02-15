@@ -64,7 +64,7 @@
                         </a>
                         </td>
                         <td>
-                        {{$drdrform->document_title}}
+                        {{   str_limit($drdrform->document_title, 10)   }}
                         </td>
                         <td>
                         {{$drdrform->reason_request}}

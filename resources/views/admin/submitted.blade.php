@@ -123,7 +123,7 @@
             
           <!-- table data -->
 
-            <table id="table-data" class="table nowrap display table-striped table-hover table_custom" width="100%">
+            <table id="table-data2" class="table nowrap display table-striped table-hover table_custom" width="100%">
                 <thead>
                 <tr>
                     <th>
@@ -202,7 +202,7 @@
 
             
           <!-- table data -->
-            <table id="table-data" class="table nowrap display table-striped table-hover table_custom" width="100%">
+            <table id="table-data3" class="table nowrap display table-striped table-hover table_custom" width="100%">
                 <thead>
                 <tr>
                     <th>
@@ -284,7 +284,7 @@
 
             
           <!-- table data -->
-          <table id="table-data" class="table nowrap display table-striped table-hover table_custom" width="100%">
+          <table id="table-data4" class="table nowrap display table-striped table-hover table_custom" width="100%">
                 <thead>
                 <tr>
                     <th>

@@ -105,6 +105,8 @@
                             </div>
                         </div>
 
+                        @role(('Administrator'))
+
                         <div class="form-group{{ $errors->has('roles_list') ? ' has-error' : '' }}">
                             <label for="roles" class="col-md-4 control-label">Roles</label>
 
@@ -119,6 +121,7 @@
                             </div>
                         </div>
                         
+                        @endrole
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

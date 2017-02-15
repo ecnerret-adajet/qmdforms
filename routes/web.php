@@ -36,6 +36,7 @@ Route::get('/drdrforms/approver/create/{id}','DrdrformsController@drdrApproverCr
 Route::post('/drdrforms/approver/{id}','DrdrformsController@drdrapprover');
 Route::post('/drdrforms/drdrmr/{id}', 'DrdrformsController@drdrmr');
 Route::post('/drdrforms/archive/{id}', 'DrdrformsController@archive');
+Route::get('/drdrforms/download', 'DrdrformsController@download');
 
 /**
  * ddrform setup route

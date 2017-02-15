@@ -81,13 +81,7 @@ class DdrformsController extends Controller
             'reason_distribution' => 'required',
             'date_needed' => 'required|date',
             'department_list' => 'required',
-            'user_list' => 'required',
-            'document_title[]' => 'required',
-            'control_code[]' => 'required',
-            'copy_no[]' => 'required',
-            'copy_holder[]' => 'required',
-            'recieved_by[]' => 'required',
-            'date_list[]' => 'required' 
+            'user_list' => 'required'
         ]); 
 
 

@@ -156,21 +156,6 @@ class DrdrformsController extends Controller
         $drdrreviewer->statuses()->attach($request->input('status_list'));
         $drdrreviewer->users()->attach($request->input('user_list'));
 
-        /**
-         * Drdr copy holder reviwer section
-         */
-        foreach($request->copy_no as $key=>$value){
-            $data[] =[
-                'copy_no' => $value,
-                'copyholder' => $request->copyholder[$key]
-            ];
-        }
-
-        foreach($data as $row){
-            $drdrcopyholder = $drdrreviewer->drdrcopyholders()->create($row);
-        }
-
-
 
 
 
@@ -202,19 +187,32 @@ class DrdrformsController extends Controller
 
         $drdrform = Drdrform::findOrFail($id);
 
-        $drdrapprover = Auth::user()->drdrapprovers()->create($request->all());
+
+        $drdrapprover = new Drdrapprover;
+        $drdrapprover->user()->associate(Auth::user());
         $drdrapprover->drdrform()->associate($drdrform);
+        $drdrapprover->remarks = $request->input('remarks');
+        $drdrapprover->attach_file = $request->input('attach_file');
         $drdrapprover->name = Auth::user()->name;
         $drdrapprover->position = Auth::user()->position;
         $drdrapprover->date_approved = Carbon::now();
-        if($request->hasFile('attach_file')){
         $drdrapprover->attach_file = $request->file('attach_file')->store('drdrapprover');
-        }
         $drdrapprover->save();
-
-
-        
         $drdrapprover->statuses()->attach($request->input('status_list'));
+
+        /**
+         * Drdr copy holder reviwer section
+         */
+        foreach($request->copy_no as $key=>$value){
+            $data[] =[
+                'copy_no' => $value,
+                'copyholder' => $request->copyholder[$key]
+            ];
+        }
+
+        foreach($data as $row){
+            $drdrcopyholder = $drdrapprover->drdrcopyholders()->create($row);
+        }
 
         /**
          * Notify the approver via email

@@ -2,7 +2,7 @@
 @section('content')
 
   <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$drdrform->attach_file)}}" class="btn btn-primary" download>  
-                                Download Attachement 
+                                Download Attachment 
       </a>  
 
       <hr/>
@@ -191,7 +191,7 @@
 <h4 style="margin-bottom: 20px;">
 	<strong>Step 3</strong> Approver defines copyholder and effective date. Requester submits this form to QM with the final draft  <small> (*required attachment: draft of new/ revised document with highlights on changes made).</small>
 </h4>
-</em>
+</em>1
 
 <!-- step 4 -->
 <em>
@@ -201,18 +201,18 @@
 </em>
 
 
+<div class="row">
+<div class="col-md-8" style="padding-right: 0 ! important; margin-right: 0 ! important">
 <table class="table table-bordered">
 	<thead>
 		<tr>
 			<td>Copy No.</td>
 			<td>Copyholder (Department)</td>
-			<td>Effective Date:</td>
 		</tr>
 	</thead>
 	<tbody>
-
-	@foreach($drdrform->drdrreviewers as $reviewer)
-		@foreach($reviewer->drdrcopyholders as $copyholder)
+	@foreach($drdrform->drdrapprovers as $approver)
+		@foreach($approver->drdrcopyholders as $copyholder)
 		<tr>
 			<td>
 				{{ $copyholder->copy_no }}
@@ -220,63 +220,54 @@
 			<td>
 				{{ $copyholder->copyholder }}
 			</td>
-			<td>
-
-			</td>
 		</tr>
 		@endforeach
 	@endforeach
 
-
-		
-
-		<tr>
-		<td></td>
-		<td></td>
-		<td>Drdr No:</td>
-		</tr>		
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-
-		<tr>
-			<td></td>
-			<td></td>
-			<td>Document Title </td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-
-		<tr>
-			<td></td>
-			<td></td>
-			<td>Document Code:</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-
-
-		<tr>
-			<td></td>
-			<td></td>
-			<td>Revision No:</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-
 	</tbody>
 </table>
+</div><!-- end col-md-8 -->
+
+<div class="col-md-4" style="padding-left: 0 ! important;">
+		<table class="table table-bordered" style="border-left: 0 ! important;">
+			<thead>
+				<tr>
+					<td style="border-left: 0 ! important;">
+					Effective Date:
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="border-left: 0 ! important;">
+				
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 0 ! important;">
+					DRDR NO:
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 0 ! important;">
+					Document Title:
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 0 ! important;">
+					Document Code:
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 0 ! important;">
+					Revision No:
+					</td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+</div>
+
 
 
 <!-- step 5 -->

@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypesTableSeeder::class);
         $this->call(NonconformitiesTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
+        $this->call(UserTableSeeder::class);
     }
 }

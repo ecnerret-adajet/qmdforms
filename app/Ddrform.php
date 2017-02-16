@@ -15,10 +15,12 @@ class Ddrform extends Model
 	
 	protected $fillable = [
 		'ddr_no',
-		'reason_distribution',
 		'name',
 		'position',
 		'date_needed',
+		'relevant_external',
+		'customer_request',
+		'others',
 		'date_requested',
 		'active',
 	];

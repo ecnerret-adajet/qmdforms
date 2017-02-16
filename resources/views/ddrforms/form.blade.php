@@ -16,22 +16,35 @@
 </div>
 
 
-<div class="form-group{{ $errors->has('reason_distribution') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('reason_distribution', 'Reason of distribution:') !!}
+Reason of distribution
 </label>
 </div>
 
+<div class="col-md-2">
+Relevant External:  
+{{ Form::checkbox('relevant_external', 1) }}
+</div>
+
+<div class="col-md-2">
+Customer Request:
+{{ Form::checkbox('customer_request', 1) }}
+</div>
+
+<div class="form-group">
 <div class="col-md-12">
-{!! Form::textarea('reason_distribution', null, ['class' => 'form-control','rows' => '3'] ) !!}
-@if ($errors->has('reason_distribution'))
-<span class="help-block">
-<strong>{{ $errors->first('reason_distribution') }}</strong>
-</span>
-@endif
+For others, please specify:  
+{!! Form::text('others', null, ['class' => 'form-control'] ) !!}
 </div>
 </div>
+
+
+
+
+
+
 
 
 <div class="form-group{{ $errors->has('date_needed') ? ' has-error' : '' }}">

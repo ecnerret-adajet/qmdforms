@@ -39,15 +39,6 @@ class Drdrreviewer extends Model
       return $this->belongsTo('App\Drdrform');
    }
 
-   /**
-    * get from drdr-copyholder
-    */
-   public function drdrcopyholders()
-   {
-      return $this->hasMany('App\Drdrcopyholder');
-   }
-
-
     /**
      * link users model
      */

@@ -72,48 +72,6 @@
 </div>
 
 
- <div class="row clearfix">
-    <div class="col-md-12 column">
-      <table class="table table-bordered table-hover" id="tab_logic">
-        <thead>
-          <tr>
-            <th class="text-center">
-              #
-            </th>
-            <th class="text-center">
-              Copy Number
-            </th>
-            <th class="text-center">
-              Copy holder
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id='addr0'>
-            <td>
-            1
-            </td>
-
-            <td class="{{ $errors->has('copy_no[]') ? ' has-error' : '' }}">
-            <input type="text" name='copy_no[]'  placeholder='Document title' class="form-control" id='copy_no_0' />
-            </td>
-
-            <td class="{{ $errors->has('copyholder[]') ? ' has-error' : '' }}">
-            <input type="text" name='copyholder[]' placeholder='Control code' class="form-control" id='copyholder_0' />
-            </td>
-          </tr>
-                    <tr id='addr1'></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
-
-
-
-
-
-
 
 
 <!-- submit or cancel button section -->
@@ -158,23 +116,3 @@
   </div>
 </div>
 
-@section('drdrcopyholder')
-<script>
-  $(document).ready(function(){
-  var i=1;
-        $("#add_row").click(function(){
-        $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='copy_no[]' type='text' placeholder='Document title' class='form-control input-md' id='copy_no_"+i+"'  /></td><td><input name='copyholder[]' type='text' placeholder='Control code' class='form-control input-md' id='copyholder_"+i+"'  />");
-        $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-      i++; 
-  });
-     $("#delete_row").click(function(){
-         if(i>1){
-         $("#addr"+(i-1)).html('');
-         i--;
-         }
-     });
-
-});
-</script>
-
-@endsection

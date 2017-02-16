@@ -15,6 +15,7 @@ class Drdrapprover extends Model
     	'remarks',
     	'date_approved',
     	'attach_file',
+      'consider_document',
     	'date_effective',
       'name',
       'position'
@@ -76,6 +77,14 @@ class Drdrapprover extends Model
    public function getStatusListAttribute()
    {
    		return $this->statuses->pluck('id')->all();
+   }
+
+      /**
+    * get from drdr-copyholder
+    */
+   public function drdrcopyholders()
+   {
+      return $this->hasMany('App\Drdrcopyholder');
    }
 
 }

@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
           /* Users table */
         $usersData = array(
             array(
-              "id" => "1",  "name" => "admin", "password" => Hash::make("password"), "email" => "admin@trucking.com"
+              "id" => "1",  "name" => "admin", "password" => Hash::make("password"), "email" => "admin@lafilgroup.com"
             )
         );
 

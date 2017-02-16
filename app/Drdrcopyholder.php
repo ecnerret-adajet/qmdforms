@@ -11,8 +11,8 @@ class Drdrcopyholder extends Model
     	'copyholder'
     ];
 
-    public function drdrreviewer()
+    public function drdrapprover()
     {
-    	return $this->belongsTo('App\Drdrreviewer');
+    	return $this->belongsTo('App\Drdrapprover');
     }
 }

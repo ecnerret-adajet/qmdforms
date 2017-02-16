@@ -19,8 +19,12 @@ class CreateDdrformsTable extends Migration
             $table->string('ddr_no');
             $table->string('name');
             $table->string('position');
-            $table->text('reason_distribution');
             $table->timestamp('date_needed');
+
+            $table->boolean('relevant_external')->default(0);
+            $table->boolean('customer_request')->default(0);
+            $table->string('others');
+
             $table->timestamp('date_requested');
             $table->boolean('active')->default(1);
             $table->foreign('user_id')->references('id')

@@ -102,6 +102,7 @@ class DdrformsController extends Controller
                 'document_title'=> $value, 
                 'control_code'=> $request->control_code[$key], 
                 'copy_no'=> $request->copy_no[$key], 
+                'rev_no'=> $request->rev_no[$key], 
                 'copy_holder'=> $request->copy_holder[$key], 
                 'recieved_by'=> $request->recieved_by[$key], 
                 'date_list'=> $request->date_list[$key], 

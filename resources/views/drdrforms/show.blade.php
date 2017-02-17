@@ -25,7 +25,7 @@
 			Effective Date
 			</td>
 			<td>
-		
+			
 			</td>
 		</tr>
 		<tr>
@@ -49,8 +49,15 @@
 <tr>
 	<td>
 	<strong>
-	Proposed / Existing Document Title: 
+		@foreach($drdrform->types as $type)
+		{{$type->name}}
+		@endforeach
 	</strong>
+	</td>
+	<td>
+	<strong>
+		Document Title:
+		</strong>
 	</td>
 	<td>  {{$drdrform->document_title}} </td>
 	<td>
@@ -65,21 +72,21 @@
 
 <!-- second set -->
 <tr>
-	<td colspan="5">
+	<td colspan="6">
 	<strong>
 	Reason for proposal / change / cancellation:
 	</strong>
 	</td>
 </tr>
 <tr>
-	<td colspan="6">
+	<td colspan="7">
 		{{$drdrform->reason_request}}
 	</td>
 </tr>
 
 <!-- third set -->
 <tr>
-	<td><strong>Requester:</strong></td>
+	<td><strong>Requested By:</strong></td>
 	<td>
 		{{$drdrform->name}}
 	</td>
@@ -169,7 +176,7 @@
 		</td>
 		<td>
 		@foreach($drdrform->drdrapprovers as $approver)
-			{{$approver->date_approved}}
+			{{ date('F d, Y', strtotime($approver->date_approved)) }}
 		@endforeach
 		</td>
 	</tr>	
@@ -181,7 +188,11 @@
 		<td>Considered Docments in reviewing:</td>
 	</tr>
 	<tr>
-	<td></td>
+	<td>
+		@foreach($drdrform->drdrreviewers as $reviewer)
+		{{$reviewer->consider_document}}
+		@endforeach
+	</td>
 	</tr>
 </table>
 
@@ -191,7 +202,7 @@
 <h4 style="margin-bottom: 20px;">
 	<strong>Step 3</strong> Approver defines copyholder and effective date. Requester submits this form to QM with the final draft  <small> (*required attachment: draft of new/ revised document with highlights on changes made).</small>
 </h4>
-</em>1
+</em>
 
 <!-- step 4 -->
 <em>
@@ -240,27 +251,41 @@
 			<tbody>
 				<tr>
 					<td style="border-left: 0 ! important;">
-				
+					@foreach($drdrform->drdrapprovers as $approver)
+							{{ date('F d, Y', strtotime($approver->date_effective)) }}
+					@endforeach
 					</td>
 				</tr>
 				<tr>
 					<td style="border-left: 0 ! important;">
 					DRDR NO:
+					@foreach($drdrform->drdrmrs as $drdrmr)
+						{{$drdrmr->drdr_no}}
+					@endforeach
 					</td>
 				</tr>
 				<tr>
 					<td style="border-left: 0 ! important;">
 					Document Title:
+					@foreach($drdrform->drdrmrs as $drdrmr)
+						{{$drdrmr->document_title}}
+					@endforeach
 					</td>
 				</tr>
 				<tr>
 					<td style="border-left: 0 ! important;">
 					Document Code:
+					@foreach($drdrform->drdrmrs as $drdrmr)
+						{{$drdrmr->document_code}}
+					@endforeach
 					</td>
 				</tr>
 				<tr>
 					<td style="border-left: 0 ! important;">
 					Revision No:
+					@foreach($drdrform->drdrmrs as $drdrmr)
+						{{$drdrmr->revision_number}}
+					@endforeach
 					</td>
 				</tr>
 			</tbody>
@@ -284,12 +309,18 @@ Yellow stamp with "Obsolete" and use as reference
 <table>
 	
 <table width="100%" style="margin-bottom: 100px;">
+@foreach($drdrform->drdrmrs as $drdrmr)
 	<tr>
 		<td>Verified by:</td>
-		<td></td>
+		<td>
+			{{$drdrmr->verified_by}}
+		</td>
 		<td>Date:</td>
-		<td></td>
+		<td>
+			{{ date('F d, Y', strtotime($drdrmr->verified_date)) }}
+		</td>
 	</tr>
+@endforeach
 </table>
 
 

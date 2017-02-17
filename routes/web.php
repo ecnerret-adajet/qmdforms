@@ -53,7 +53,10 @@ Route::post('/ddrforms/archive/{id}', 'DdrformsController@archive');
 Route::resource('/ncnforms','NcnformsController');
 Route::get('/ncnforms/approver/create/{id}','NcnformsController@ncnapproverCreate');
 Route::post('/ncnforms/approver/{id}','NcnformsController@ncnapprover');
+Route::get('/ncnforms/notified/create/{id}','NcnformsController@ncnnotifiedCreate');
+Route::post('/ncnforms/notified/{id}','NcnformsController@ncnnotified');
 Route::post('/ncnforms/archive/{id}', 'NcnformsController@archive');
+
 
 /**
  * Ccir form setup routes

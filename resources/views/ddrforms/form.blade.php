@@ -17,34 +17,43 @@
 
 
 <div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
+<div class="col-md-4 ">
 <label class="control-label">
 Reason of distribution
 </label>
 </div>
 
-<div class="col-md-2">
-Relevant External:  
-{{ Form::checkbox('relevant_external', 1) }}
-</div>
 
-<div class="col-md-2">
-Customer Request:
-{{ Form::checkbox('customer_request', 1) }}
-</div>
+<div class="col-md-8">
 
-<div class="form-group">
+<div class="row">
 <div class="col-md-12">
+<div style="padding-top: 7px;">
+{{ Form::checkbox('relevant_external', 1) }} Relevant external doc. (controlled copy)
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div style="padding-top: 7px;">
+{{ Form::checkbox('customer_request', 1) }} Customer request (uncontrolled copy)
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div style="padding-top: 7px;">
 For others, please specify:  
 {!! Form::text('others', null, ['class' => 'form-control'] ) !!}
 </div>
 </div>
+</div>
 
-
-
-
-
-
+</div>
+</div>
 
 
 <div class="form-group{{ $errors->has('date_needed') ? ' has-error' : '' }}">
@@ -80,6 +89,9 @@ For others, please specify:
 							Control Code
 						</th>
 						<th class="text-center">
+							Rev No.
+						</th>
+						<th class="text-center">
 							Copy #
 						</th>
 						<th class="text-center">
@@ -105,6 +117,10 @@ For others, please specify:
 
 						<td class="{{ $errors->has('control_code[]') ? ' has-error' : '' }}">
 						<input type="text" name='control_code[]' placeholder='Control code' class="form-control" id='control_code_0' />
+						</td>
+
+						<td class="{{ $errors->has('rev_no[]') ? ' has-error' : '' }}">
+						<input type="text" name='rev_no[]' placeholder='Control code' class="form-control" id='rev_no_0' />
 						</td>
 
 						<td class="{{ $errors->has('copy_no[]') ? ' has-error' : '' }}">
@@ -237,7 +253,7 @@ For others, please specify:
 	$(document).ready(function(){
   var i=1;
         $("#add_row").click(function(){
-        $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='document_title[]' type='text' placeholder='Document title' class='form-control input-md' id='document_title_"+i+"'  /></td><td><input name='control_code[]' type='text' placeholder='Control code' class='form-control input-md' id='control_code_"+i+"'  /></td><td><input name='copy_no[]' type='text' placeholder='Copy no' class='form-control input-md' id='copy_no_"+i+"'  /></td><td><input name='copy_holder[]' type='text' placeholder='Copy holder' class='form-control input-md' id='copy_holder_"+i+"'  /></td><td><input name='recieved_by[]' type='text' placeholder='Recieved by' class='form-control input-md' id='recieved_by_"+i+"'  /></td><td><input name='date_list[]' type='date' class='form-control input-md' id='date_list_"+i+"'  /></td>");
+        $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='document_title[]' type='text' placeholder='Document title' class='form-control input-md' id='document_title_"+i+"'  /></td><td><input name='control_code[]' type='text' placeholder='Control code' class='form-control input-md' id='control_code_"+i+"'  /></td><td><input name='rev_no[]' type='text' placeholder='Rev No.' class='form-control input-md' id='rev_no_"+i+"'  /></td><td><input name='copy_no[]' type='text' placeholder='Copy no' class='form-control input-md' id='copy_no_"+i+"'  /></td><td><input name='copy_holder[]' type='text' placeholder='Copy holder' class='form-control input-md' id='copy_holder_"+i+"'  /></td><td><input name='recieved_by[]' type='text' placeholder='Recieved by' class='form-control input-md' id='recieved_by_"+i+"'  /></td><td><input name='date_list[]' type='date' class='form-control input-md' id='date_list_"+i+"'  /></td>");
         $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       i++; 
   });

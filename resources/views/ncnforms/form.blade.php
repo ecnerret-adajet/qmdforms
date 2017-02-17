@@ -69,22 +69,49 @@
 </div>
 </div>
 
-<div class="form-group{{ $errors->has('nonconformity_list') ? ' has-error' : '' }}">
+
+
+
+
+<div class="form-group">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('nonconformity_list', 'Type of Non-conformity:') !!}
+TYPE OF NON CONFORMITY:
 </label>
 </div>
+</div>
 
-<div class="col-md-12">
-{!! Form::select('nonconformity_list', $nonconformities, null, ['class' => 'form-control', 'placeholder' => '--- Select Company ---'] ) !!}
-@if ($errors->has('nonconformity_list'))
-<span class="help-block">
-<strong>{{ $errors->first('nonconformity_list') }}</strong>
-</span>
-@endif
+<div class="form-group">
+<div class="col-md-4">
+{{ Form::checkbox('customer_returns', 1) }}
+Customer Returns
+</div>
+<div class="col-md-4">
+{{ Form::checkbox('process_related', 1) }}
+Process Related:
+</div>
+<div class="col-md-4">
+  {{ Form::checkbox('contracted_services', 1) }}
+Contracted Service:
 </div>
 </div>
+
+
+<div class="form-group">
+<div class="col-md-4">
+{{ Form::checkbox('objective_not_met', 1) }}
+Objective not met:
+</div>
+<div class="col-md-4">
+{{ Form::checkbox('vendor', 1) }}
+Vendor:
+</div>
+<div class="col-md-4">
+{!! Form::text('others', null, ['class' => 'form-control', 'placeholder' => 'Others:'] ) !!}
+</div>
+</div>
+
+
 
 
 <div class="form-group{{ $errors->has('notif_number') ? ' has-error' : '' }}">
@@ -145,7 +172,7 @@
 <div class="form-group{{ $errors->has('user_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('user_list', 'Notified Person:') !!}
+{!! Form::label('user_list', 'Approver:') !!}
 </label>
 </div>
 

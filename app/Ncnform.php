@@ -21,6 +21,14 @@ class Ncnform extends Model
     	'date_issuance',
     	'issued_by',
     	'issued_position',
+
+        'customer_returns',
+        'process_related',
+        'contracted_services',
+        'objective_not_met',
+        'vendor',
+        'others',
+        
     	'details_non_conformity',
     	'attach_file',
         'active',
@@ -104,18 +112,18 @@ class Ncnform extends Model
     }
 
 
-    /**
-     * nonconformity model
-     */
-    public function nonconformities()
-    {
-    	return $this->belongsToMany('App\Nonconformity')->withTimestamps();
-    }
+    // /**
+    //  * nonconformity model
+    //  */
+    // public function nonconformities()
+    // {
+    // 	return $this->belongsToMany('App\Nonconformity')->withTimestamps();
+    // }
 
-    public function getNonconformityListAttribute()
-    {
-    	return $this->nonconformities->pluck('id')->all();
-    }
+    // public function getNonconformityListAttribute()
+    // {
+    // 	return $this->nonconformities->pluck('id')->all();
+    // }
 
     /**
      * Date configuration
@@ -131,6 +139,12 @@ class Ncnform extends Model
     }
 
 
-    
+    /**
+     * For notified person's data
+     */
+    public function ncnnotifieds()
+    {
+        return $this->hasMany('App\Ncnnotified');
+    }    
 
 }

@@ -42,7 +42,9 @@
 		</strong>
 	</td>
 	<td colspan="2">
-
+			@foreach($ncnform->companies as $company)
+				{{$company->name}}
+			@endforeach
 	</td>
 </tr>
 
@@ -53,7 +55,9 @@
 		</strong>
 	</td>
 	<td colspan="2">
-
+			@foreach($ncnform->departments as $department)
+				{{$department->name}}
+			@endforeach
 	</td>
 </tr>
 
@@ -66,36 +70,101 @@
 </tr>
 
 <tr>
-	<td>Customer returns</td>
-	<td>Process-related</td>
-	<td>Contracted Service</td>
+	<td>
+	
+			@if($ncnform->customer_returns == 1)
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Customer returns
+			@else
+				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i>  Customer returns
+			@endif
+
+	</td>
+	<td>
+			@if($ncnform->process_related == 1)
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Process-related
+			@else
+				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Process-related
+			@endif
+
+	</td>
+	<td>
+			@if($ncnform->contracted_services == 1)
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Contracted Service
+			@else
+				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Contracted Service
+			@endif
+
+	</td>
 </tr>
 
 <tr>
-	<td>Objectives not met</td>
-	<td>Vendor</td>
-	<td>Others:</td>
+	<td>
+			@if($ncnform->objective_not_met == 1)
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Objectives not met
+			@else
+				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Objectives not met
+			@endif
+	</td>
+
+
+	<td>
+			@if($ncnform->vendor == 1)
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  	Vendor
+			@else
+				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> 	Vendor
+			@endif
+	</td>
+	<td>
+	Others:
+	<strong>
+	{{ $ncnform->others }}
+	</strong>
+	</td>
 </tr>
 </table>
 
 <table class="table table-bordered">
 <tr>
-	<td>Notification NO:.</td>
-	<td></td>
+	<td>Notification No:</td>
+	<td>
+		<strong>
+			{{$ncnform->notif_number}}
+		</strong>
+	</td>
 	<td>Issued by:</td>
-	<td></td>
+	<td>
+		<strong>
+			{{$ncnform->name}}
+		</strong>
+	</td>
 </tr>
 <tr>
-	<td>Recurrence No:.</td>
-	<td></td>
+	<td>Recurrence No:</td>
+	<td>
+		<strong>
+			{{$ncnform->recurrence_no}}
+		</strong>
+	</td>
 	<td>Position:</td>
-	<td></td>
+	<td>
+		<strong>
+			{{$ncnform->position}}
+		</strong>
+	</td>
 </tr>
 <tr>
 	<td>Date of Issuance:</td>
-	<td></td>
+	<td>
+		<strong>
+			{{ date('F d, Y', strtotime($ncnform->date_issuance)) }}			
+		</strong>
+	</td>
 	<td>Notified Person:</td>
-	<td></td>
+	<td>
+		<strong>
+		{{ $ncnform->user->name }}
+		</strong>
+	</td>
 </tr>
 </table>
 
@@ -109,6 +178,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
+						{{ $ncnform->details_non_conformity }}
 				</td>
 		</tr>
 
@@ -121,14 +191,25 @@
 		</tr>
 		<tr>
 			<td colspan="4">
+				@foreach($ncnform->ncnnotifieds as $notified)
+					{{$notified->action_taken}}
+				@endforeach
 			</td>
 		</tr>
 
 		<tr>
 			<td>Responsible:</td>
-			<td></td>
+			<td>
+				@foreach($ncnform->ncnnotifieds as $notified)
+					{{$notified->responsible}}
+				@endforeach
+			</td>
 			<td>Execution Date:</td>
-			<td></td>
+			<td>
+				@foreach($ncnform->ncnnotifieds as $notified)
+				{{ date('F d, Y', strtotime($notified->execution_date)) }}		
+				@endforeach	
+			</td>
 		</tr>
 
 

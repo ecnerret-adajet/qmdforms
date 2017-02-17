@@ -54,6 +54,9 @@
                     <th>
                     Approver Status
                     </th>
+                    <th>
+                    Notified Status
+                    </th>
 
                      <th>
                     Option
@@ -79,7 +82,7 @@
                         {{$ncnform->notif_number}}
                         </td>
                         <td>
-                        {{$ncnform->date_issuance}}
+                        {{ date('M d, Y', strtotime($ncnform->date_issuance)) }}  
                         </td>
                         <td>
                         @forelse($ncnform->ncnapprovers as $ncnapprover)
@@ -97,6 +100,22 @@
                         @endforelse
 
                         </td>
+
+                      <td>
+                        @forelse($ncnform->ncnnotifieds->take(1) as $notified)
+                                @if(!empty($notified))
+                              <button class="btn btn-primary btn-block disabled">  Done </button>       
+                                @else
+                              <button class="btn btn-danger  btn-block disabled"> Disapproved </button> 
+                              @endif   
+
+                        @empty
+                           <button class="btn btn-block btn-default">
+                            Pending
+                        </button>
+                        @endforelse
+
+                      </td>
 
                         <td>
                         <div class="btn-group">

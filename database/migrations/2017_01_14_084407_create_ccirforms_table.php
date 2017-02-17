@@ -25,10 +25,7 @@ class CreateCcirformsTable extends Migration
             $table->string('product_no');
             $table->string('quantity_received');
             $table->timestamp('date_delivery');
-            $table->timestamp('retrun_date');
-            // $table->string('conduct_traceability');
-            // $table->string('suspected_counterfeit');
-            // $table->string('verification');
+            $table->timestamp('return_date');
             $table->boolean('wet_lumpy')->default(0);
             $table->boolean('busted_bag')->default(0);
             $table->boolean('under_over_weight')->default(0);

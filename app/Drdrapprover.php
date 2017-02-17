@@ -15,7 +15,6 @@ class Drdrapprover extends Model
     	'remarks',
     	'date_approved',
     	'attach_file',
-      'consider_document',
     	'date_effective',
       'name',
       'position'

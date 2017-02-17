@@ -48,7 +48,7 @@
                     Reviewer Status
                     </th>
                     <th>
-                    Approved Status
+                    Approver Status
                     </th>
                     <th>
                     Option

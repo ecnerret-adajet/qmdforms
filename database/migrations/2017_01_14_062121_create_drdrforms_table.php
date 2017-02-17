@@ -16,7 +16,6 @@ class CreateDrdrformsTable extends Migration
         Schema::create('drdrforms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('drdr_no');
             $table->string('name');
             $table->string('position');
             $table->string('document_title');

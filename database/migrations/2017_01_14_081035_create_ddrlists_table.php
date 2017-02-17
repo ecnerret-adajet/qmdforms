@@ -16,12 +16,16 @@ class CreateDdrlistsTable extends Migration
         Schema::create('ddrlists', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ddrform_id')->unsigned();
+
             $table->string('document_title');
             $table->string('control_code');
+            $table->string('rev_no');
             $table->string('copy_no');
             $table->string('copy_holder');
             $table->string('recieved_by');
             $table->timestamp('date_list');
+
+
             $table->foreign('ddrform_id')->references('id')
                    ->on('ddrforms')->onDelete('cascade');
             $table->timestamps();

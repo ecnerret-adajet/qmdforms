@@ -241,6 +241,7 @@ class DrdrformsController extends Controller
         // attach file here
         $drdrmr->drdrform()->associate($drdrform);
         $drdrmr->verified_date = Carbon::now();
+        $drdrmr->verified_by = Auth::user()->name;
         $drdrmr->save();
 
         alert()->success('Success Message', 'Submitted Succesfully');

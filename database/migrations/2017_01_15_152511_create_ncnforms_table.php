@@ -18,6 +18,14 @@ class CreateNcnformsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('position');
+
+            $table->boolean('customer_returns')->default(0);
+            $table->boolean('process_related')->default(0);
+            $table->boolean('contracted_services')->default(0);
+            $table->boolean('objective_not_met')->default(0);
+            $table->boolean('vendor')->default(0);
+            $table->string('others');
+
             $table->string('notif_number');
             $table->string('recurrence_no');
             $table->timestamp('date_issuance');

@@ -20,6 +20,7 @@ class CreateDrdrreviewersTable extends Migration
 
             $table->string('name');
             $table->string('position');
+            $table->text('consider_document');
             
             $table->text('remarks');
             $table->string('attach_file');

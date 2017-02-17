@@ -8,11 +8,11 @@ use Carbon\Carbon;
 class Drdrmr extends Model
 {
     protected $fillable = [
+        'drdr_no',
     	'document_title',
-    	'effective_date',
     	'document_code',
     	'revision_number',
-    	'attach_file',
+        'verified_by',
     	'verified_date',
     ];
 

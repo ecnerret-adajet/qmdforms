@@ -15,7 +15,8 @@ class Ncnapprover extends Model
     protected $fillable = [
         'name',
         'position',
-    	'remarks',
+    	'action_taken',
+        'remarks',
     	'date_approval'
     ];
 

@@ -11,6 +11,7 @@ class Ddrlist extends Model
     	'document_title',
     	'control_code',
     	'copy_no',
+        'rev_no',
     	'copy_holder',
     	'recieved_by',
     	'date_list',
@@ -31,14 +32,14 @@ class Ddrlist extends Model
     /**
      * date configuration
      */
-    // public function setDateListAttribute($date)
-    // {
-    // 	$this->attributes['date_list'] = Carbon::parse($date);
-    // }
+    public function setDateListAttribute($date)
+    {
+    	$this->attributes['date_list'] = Carbon::parse($date);
+    }
 
-    // public function getDateListAttribute($date)
-    // {
-    // 	return Carbon::parse($date);
-    // }
+    public function getDateListAttribute($date)
+    {
+    	return Carbon::parse($date);
+    }
 
 }

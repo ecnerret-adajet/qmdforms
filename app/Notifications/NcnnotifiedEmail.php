@@ -2,26 +2,26 @@
 
 namespace App\Notifications;
 
-use App\Ncnapprover;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Ncnnotified;
 
-class NcnapproverToNotifiedSuccessNotification extends Notification
+class NcnnotifiedEmail extends Notification
 {
     use Queueable;
 
-    protected $ncnapprover;
+    protected $ncnnotified;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Ncnapprover $ncnapprover)
+    public function __construct(Ncnnotified $ncnnotified)
     {
-        $this->ncnapprover = $ncnapprover;
+        $this->ncnnotified = $ncnnotified;
     }
 
     /**
@@ -45,10 +45,9 @@ class NcnapproverToNotifiedSuccessNotification extends Notification
     {
         return (new MailMessage)
                     ->success()
-                    ->subject('Non-conformance Notification')
+                    ->subject('Non-conformance Notification: Approved')
                     ->greeting('Good day!')
-                    ->line($this->ncnapprover->name.' has approved a document. However, The requested file needs your input to complete the process')
-                     ->action('Visit the portal now',  url('/ncnforms/notified/create/'.$this->ncnapprover->id))
+                    ->line('Your Document Request is succefully approved by'.$this->ncnnotified->name)
                     ->line('Thank you, have a nice day!');
     }
 

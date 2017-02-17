@@ -1,3 +1,21 @@
+<div class="row {{ $errors->has('drdr_no') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('drdr_no', 'Drdr No:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::text('drdr_no', null, ['class' => 'form-control'] ) !!}
+@if ($errors->has('drdr_no'))
+<span class="help-block">
+<strong>{{ $errors->first('drdr_no') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+
 <div class="row {{ $errors->has('document_title') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
@@ -15,23 +33,6 @@
 </div>
 </div>
 
-
-<div class="row {{ $errors->has('effective_date') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
-<label class="control-label">
-{!! Form::label('effective_date', 'Effective Date:') !!}
-</label>
-</div>
-
-<div class="col-md-12">
-{!! Form::input('date', 'effective_date', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control'] ) !!}
-@if ($errors->has('effective_date'))
-<span class="help-block">
-<strong>{{ $errors->first('effective_date') }}</strong>
-</span>
-@endif
-</div>
-</div>
 
 
 <div class="row {{ $errors->has('document_code') ? ' has-error' : '' }}">
@@ -64,24 +65,6 @@
 @if ($errors->has('revision_number'))
 <span class="help-block">
 <strong>{{ $errors->first('revision_number') }}</strong>
-</span>
-@endif
-</div>
-</div>
-
-
-<div class="row {{ $errors->has('attach_file') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
-<label class="control-label">
-  Attach file
-</label>
-</div>
-
-<div class="col-md-12">
-  <input name="attach_file" type="file" class="filestyle" data-size="sm" data-buttonName="btn-primary" data-buttonBefore="true">
-@if ($errors->has('attach_file'))
-<span class="help-block">
-<strong>{{ $errors->first('attach_file') }}</strong>
 </span>
 @endif
 </div>

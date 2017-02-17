@@ -14,7 +14,6 @@ class Drdrform extends Model
      use SoftDeletes;
 
     protected $fillable = [
-    	'drdr_no',
     	'document_title',
         'reason_request',
     	'revision_number',

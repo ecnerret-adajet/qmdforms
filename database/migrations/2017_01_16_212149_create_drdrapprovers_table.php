@@ -21,7 +21,7 @@ class CreateDrdrapproversTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->string('remarks');
-            $table->text('consider_document');
+            
             $table->timestamp('date_approved');
             $table->string('attach_file');
             $table->timestamp('date_effective');

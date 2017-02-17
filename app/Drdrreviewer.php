@@ -15,6 +15,7 @@ class Drdrreviewer extends Model
     	'attach_file', // draft for approval
     	'date_review',
       'remarks',
+      'consider_document',
       'name',
       'position'
     ];

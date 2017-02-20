@@ -171,6 +171,7 @@ return [
          Zizaco\Entrust\EntrustServiceProvider::class,
          UxWeb\SweetAlert\SweetAlertServiceProvider::class,
          Maatwebsite\Excel\ExcelServiceProvider::class,
+         Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -234,6 +235,7 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

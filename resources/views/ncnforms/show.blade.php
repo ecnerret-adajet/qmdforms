@@ -4,6 +4,10 @@
        <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$ncnform->attach_file)}}" class="btn btn-primary" download>  
                                 Download Attachement
                             </a> 
+
+   <a href="{{url('ncnforms/pdf/'.$ncnform->id)}}" target="_blank" class="btn btn-primary">  
+       Print as PDF
+  </a> 
                             <hr/>
 
 <table class="table table-bordered">

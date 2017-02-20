@@ -8,6 +8,10 @@
         Download Attachement
   </a> 
 
+   <a href="{{url('ccirforms/pdf/'.$ccirform->id)}}" target="_blank" class="btn btn-primary">  
+       Print as PDF
+  </a> 
+
 <hr/>
 
 
@@ -56,7 +60,7 @@
 	<tr>
 		<td>Issuer:</td>
 		<td colspan="6">
-		{{$ccirform->name}}
+		{{$ccirform->company}}
 		</td>
 	</tr>
 
@@ -165,12 +169,7 @@
 <table class="table table-bordered">
 	<tr>
 		<td width="50%">Prepared By:</td>
-		<td></td>
-	</tr>
-
-	<tr>
-		<td width="50%">Approved by:</td>
-		<td></td>
+		<td>	{{$ccirform->name}} </td>
 	</tr>
 </table>
 

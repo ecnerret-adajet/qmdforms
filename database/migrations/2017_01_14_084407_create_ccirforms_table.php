@@ -18,6 +18,7 @@ class CreateCcirformsTable extends Migration
             $table->integer('user_id')->unsigned();
             
             $table->string('name');
+            $table->string('company');
             $table->timestamp('date_issuance');
             // $table->string('customer_reference');
             $table->string('brand_name');
@@ -40,15 +41,6 @@ class CreateCcirformsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::create('ccirform_company', function (Blueprint $table) {
-            $table->integer('ccirform_id')->unsigned();
-            $table->foreign('ccirform_id')->references('id')->on('ccirforms')->onDelete('cascade');
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->timestamps();
-        });
-
     }
 
     /**

@@ -12,6 +12,7 @@ use Alert;
 use App\Ccirform;
 use App\Company;
 use App\User;
+use PDF;
 
 
 
@@ -40,8 +41,7 @@ class CcirformsController extends Controller
      */
     public function create()
     {
-        $companies = Company::pluck('name','id');
-        return view('ccirforms.create', compact('companies'));
+        return view('ccirforms.create');
     }
 
     /**
@@ -61,8 +61,6 @@ class CcirformsController extends Controller
         }
         $ccirform->save();
 
-        $ccirform->companies()->attach($request->input('company_list'));
-
         //send email to approver
         Notification::send(User::first(), new CcirformToMrNotification($ccirform));
 
@@ -79,6 +77,14 @@ class CcirformsController extends Controller
     public function show(Ccirform $ccirform)
     {
         return view('ccirforms.show',compact('ccirform'));
+    }
+
+    /**
+     * download to pdf
+     */
+    public function pdf(Ccirform $ccirform){
+        $pdf = PDF::loadView('ccirforms.pdf', compact('ccirform'));
+        return $pdf->stream('ccirform.pdf');
     }
 
     /**
@@ -135,4 +141,6 @@ class CcirformsController extends Controller
         alert()->success('Success Message', 'Document is succefully trashed');
         return redirect('ccirforms');
     }
+
+
 }

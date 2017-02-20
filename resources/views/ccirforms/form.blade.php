@@ -16,43 +16,28 @@
 </div>
 
 
-<div class="form-group{{ $errors->has('company_list') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('company_list', 'Company:') !!}
+{!! Form::label('company', 'Company:') !!}
 </label>
 </div>
 
 <div class="col-md-12">
-{!! Form::select('company_list', $companies, null, ['class' => 'form-control', 'placeholder' => '--- Select Company ---'] ) !!}
-@if ($errors->has('company_list'))
+{!! Form::text('company', null, ['class' => 'form-control'] ) !!}
+@if ($errors->has('company'))
 <span class="help-block">
-<strong>{{ $errors->first('company_list') }}</strong>
+<strong>{{ $errors->first('company') }}</strong>
 </span>
 @endif
 </div>
 </div>
+
+
 
 <hr/>
 <h4><strong>A. Initial Assesment</strong></h4>
 <hr/>
-
-<!-- <div class="form-group{{ $errors->has('customer_reference') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
-<label class="control-label">
-{!! Form::label('customer_reference', 'Customer Complaint Reference No:') !!}
-</label>
-</div>
-
-<div class="col-md-12">
-{!! Form::text('customer_reference', null, ['class' => 'form-control'] ) !!}
-@if ($errors->has('customer_reference'))
-<span class="help-block">
-<strong>{{ $errors->first('customer_reference') }}</strong>
-</span>
-@endif
-</div>
-</div> -->
 
 
 <div class="form-group{{ $errors->has('brand_name') ? ' has-error' : '' }}">

@@ -15,11 +15,6 @@ class Company extends Model
     	return $this->belongsToMany('App\Drdrforms');
     }
 
-    public function ccirforms()
-    {
-    	return $this->belongsToMany('App\Ccirform');
-    }
-
     public function ncnforms()
     {
     	return $this->belongsToMany('App\Ncnform');

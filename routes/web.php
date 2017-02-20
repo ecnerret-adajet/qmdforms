@@ -45,6 +45,7 @@ Route::resource('/ddrforms','DdrformsController');
 Route::get('/ddrforms/approver/create/{id}', 'DdrformsController@ddrApproverCreate');
 Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
 Route::post('/ddrforms/archive/{id}', 'DdrformsController@archive');
+Route::get('/ddrforms/pdf/{ddrform}', 'DdrformsController@pdf');
 
 
 /**
@@ -56,6 +57,7 @@ Route::post('/ncnforms/approver/{id}','NcnformsController@ncnapprover');
 Route::get('/ncnforms/notified/create/{id}','NcnformsController@ncnnotifiedCreate');
 Route::post('/ncnforms/notified/{id}','NcnformsController@ncnnotified');
 Route::post('/ncnforms/archive/{id}', 'NcnformsController@archive');
+Route::get('/ncnforms/pdf/{ncnform}', 'NcnformsController@pdf');
 
 
 /**
@@ -63,6 +65,7 @@ Route::post('/ncnforms/archive/{id}', 'NcnformsController@archive');
  */
 Route::resource('/ccirforms', 'CcirformsController');
 Route::post('/ccirforms/archive/{id}', 'CcirformsController@archive');
+Route::get('/ccirforms/pdf/{ccirform}', 'CcirformsController@pdf');
 
 /**
  * admin page route setup

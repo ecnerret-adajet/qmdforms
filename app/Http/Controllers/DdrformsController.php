@@ -21,6 +21,7 @@ use App\Ddrapprover;
 use App\User;
 use DB;
 use Illuminate\Support\Facades\Input;
+use PDF;
 
 class DdrformsController extends Controller
 {
@@ -78,7 +79,6 @@ class DdrformsController extends Controller
     {
 
         $this->validate($request, [
-            'reason_distribution' => 'required',
             'date_needed' => 'required|date',
             'department_list' => 'required',
             'user_list' => 'required'
@@ -175,6 +175,14 @@ class DdrformsController extends Controller
     public function show(Ddrform $ddrform)
     {
         return view('ddrforms.show', compact('ddrform'));
+    }
+
+    /**
+     * download to pdf
+     */
+    public function pdf(Ddrform $ddrform){
+        $pdf = PDF::loadView('ddrforms.pdf', compact('ddrform'));
+        return $pdf->stream('ddrform.pdf');
     }
 
     /**

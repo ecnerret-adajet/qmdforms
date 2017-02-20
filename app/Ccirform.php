@@ -14,7 +14,8 @@ class Ccirform extends Model
      use SoftDeletes;
 
     protected $fillable = [
-    	'name',
+        'name',
+    	'company',
     	'date_issuance', // date
     	// 'customer_reference',
     	'brand_name',
@@ -49,19 +50,6 @@ class Ccirform extends Model
     public function user()
     {
     	return $this->belongsTo('App\User');
-    }
-
-    /**
-     * Link company model
-     */
-    public function companies()
-    {
-    	return $this->belongsToMany('App\Company')->withTimestamps();
-    }
-
-    public function getCompanyListAttribute()
-    {
-    	return $this->companies->pluck('id')->all();
     }
 
     /**

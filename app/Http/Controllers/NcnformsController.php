@@ -20,6 +20,7 @@ use App\Nonconformity;
 use App\Status;
 use App\Ncnapprover;
 use App\User;
+use PDF;
 
 
 class NcnformsController extends Controller
@@ -182,6 +183,14 @@ class NcnformsController extends Controller
     public function show(Ncnform $ncnform)
     {
         return view('ncnforms.show', compact('ncnform'));
+    }
+
+    /**
+     * download to pdf
+     */
+    public function pdf(Ncnform $ncnform){
+        $pdf = PDF::loadView('ncnforms.pdf', compact('ncnform'));
+        return $pdf->stream('ncnform.pdf');
     }
 
     /**

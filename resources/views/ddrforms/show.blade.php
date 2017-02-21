@@ -1,6 +1,12 @@
 @extends('layouts.admin-layout')
 @section('content')
 
+   <a href="{{url('ddrforms/pdf/'.$ddrform->id)}}" target="_blank" class="btn btn-primary">  
+       Print as PDF
+  </a> 
+
+<hr/>
+
 <table class="table table-bordered">
 		<tr>
 			<td rowspan="3" width="10%">

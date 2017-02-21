@@ -25,6 +25,7 @@ use App\Drdrapprover;
 use App\Drdrcopyholder;
 use App\Drdrmr;
 use App\User;
+use PDF;
 
 
 class DrdrformsController extends Controller
@@ -193,6 +194,7 @@ class DrdrformsController extends Controller
         $drdrapprover->drdrform()->associate($drdrform);
         $drdrapprover->remarks = $request->input('remarks');
         $drdrapprover->attach_file = $request->input('attach_file');
+        $drdrapprover->date_effective = $request->input('date_effective');
         $drdrapprover->name = Auth::user()->name;
         $drdrapprover->position = Auth::user()->position;
         $drdrapprover->date_approved = Carbon::now();
@@ -259,6 +261,15 @@ class DrdrformsController extends Controller
     public function show(Drdrform $drdrform)
     {
         return view('drdrforms.show', compact('drdrform'));
+    }
+
+    /**
+     * download to pdf
+     */
+    public function pdf(Drdrform $drdrform){
+        $row = 0;
+        $pdf = PDF::loadView('drdrforms.pdf', compact('drdrform','row'));
+        return $pdf->stream('drdrform.pdf');
     }
 
     /**

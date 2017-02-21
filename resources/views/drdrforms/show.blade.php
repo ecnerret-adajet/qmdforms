@@ -5,6 +5,10 @@
                                 Download Attachment 
       </a>  
 
+  <a href="{{url('drdrforms/pdf/'.$drdrform->id)}}" target="_blank" class="btn btn-primary">  
+       Print as PDF
+  </a> 
+
       <hr/>
 
 <table class="table table-bordered">
@@ -234,6 +238,8 @@
 		</tr>
 		@endforeach
 	@endforeach
+
+
 
 	</tbody>
 </table>

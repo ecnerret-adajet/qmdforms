@@ -137,7 +137,8 @@ class DrdrformsController extends Controller
             'remarks' => 'required',
             'status_list' => 'required',
             'user_list' => 'required',
-            'attach_file' => 'required'
+            'attach_file' => 'required',
+            'consider_document' => 'required'
         ]); 
 
         $drdrform = Drdrform::findOrFail($id);
@@ -273,6 +274,16 @@ class DrdrformsController extends Controller
     }
 
     /**
+     * download attached file
+     */
+    public function downloadFile(Drdrform $drdrform)
+    {
+        $myFile = Storage::disk()->url($drdrform->attach_file);
+        return response()->download(storage_path("app/storage/app/{$myFile}"));
+    }
+
+    /**
+
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -324,15 +335,6 @@ class DrdrformsController extends Controller
         
         alert()->success('Success Message', 'Document is succefully trashed');
         return redirect('drdrforms');
-    }
-
-    /**
-     * Download attached file
-     */
-    public function download()
-    {
-       $file_download = Drdrform::table('attach_file')->get();
-       return response()->file($file_download);
     }
 
 }

@@ -1,9 +1,10 @@
 @extends('layouts.admin-layout')
 @section('content')
 
-  <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$drdrform->attach_file)}}" class="btn btn-primary" download>  
-                                Download Attachment 
-      </a>  
+  <a href="{{ url('http://localhost/qmdforms/storage/app/'.$drdrform->attach_file) }}" class="btn btn-primary" download>  
+        Download Attachement
+  </a>
+
 
   <a href="{{url('drdrforms/pdf/'.$drdrform->id)}}" target="_blank" class="btn btn-primary">  
        Print as PDF

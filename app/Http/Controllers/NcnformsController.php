@@ -103,7 +103,8 @@ class NcnformsController extends Controller
             'company_list' => 'required',
             'department_list' => 'required',
             'user_list'  => 'required',
-            'attach_file' => 'required'
+            'attach_file' => 'required',
+            'date_issuance' => 'required|date'
         ]);
 
         $ncnform = Auth::user()->ncnforms()->create($request->all());
@@ -163,6 +164,7 @@ class NcnformsController extends Controller
             $ncnnotified = $ncnform->ncnnotifieds()->create($request->all());
             $ncnnotified->execution_date = Carbon::now();
             $ncnnotified->name = Auth::user()->name;
+            $ncnnotified->position = Auth::user()->position;
             $ncnnotified->save();
 
             Notification::send($ncnform->user, new NcnnotifiedEmail($ncnnotified));

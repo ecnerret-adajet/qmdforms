@@ -108,9 +108,9 @@
 
                         <tr>
                             <td colspan="2">
-                            <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$ncnform->attach_file)}}" class="btn btn-primary btn-block" download>  
-                                Download Attachment
-                            </a>  
+                           <a href="{{ url('http://172.17.2.88/e-forms-test/storage/app/'.$ncnform->attach_file) }}" class="btn btn-primary" download>  
+                                    Download Attachement
+                              </a>
 
                             </td>
                         </tr> 

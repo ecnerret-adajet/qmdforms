@@ -234,13 +234,13 @@
 </table>
 
 <table class="table table-bordered">
-		<tr>
+<!-- 		<tr>
 				<td colspan="4" class="info">
 			<strong>
 				Step 1: Provide details of non-conformity:
 			</strong>
 			</td>	
-		</tr>
+		</tr> -->
 		<tr>
 				<td colspan="4" style="height:100px; ">
 						{{ $ncnform->details_non_conformity }}
@@ -268,9 +268,23 @@
 			Responsible:
 			</strong>
 			</td>
+
+			<td colspan="3">
+				@foreach($ncnform->ncnnotifieds as $notified)
+					{{$notified->action_taken}}
+				@endforeach
+			</td>
+		</tr>
+
+		<tr>
+			<td class="info">
+			<strong>
+			Position:
+			</strong>
+			</td>
 			<td>
 				@foreach($ncnform->ncnnotifieds as $notified)
-					{{$notified->responsible}}
+					{{$notified->position}}
 				@endforeach
 			</td>
 			<td class="info">

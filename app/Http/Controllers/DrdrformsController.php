@@ -184,6 +184,7 @@ class DrdrformsController extends Controller
             'remarks' => 'required',
             'attach_file' => 'required',
             'status_list' => 'required',
+            'date_effective' => 'required|date'
         ]); 
 
 
@@ -245,6 +246,7 @@ class DrdrformsController extends Controller
         $drdrmr->drdrform()->associate($drdrform);
         $drdrmr->verified_date = Carbon::now();
         $drdrmr->verified_by = Auth::user()->name;
+        $drdrmr->position = Auth::user()->position;
         $drdrmr->save();
 
         alert()->success('Success Message', 'Submitted Succesfully');
@@ -276,10 +278,12 @@ class DrdrformsController extends Controller
     /**
      * download attached file
      */
-    public function downloadFile(Drdrform $drdrform)
+    public function downloadFile($id)
     {
-        $myFile = Storage::disk()->url($drdrform->attach_file);
-        return response()->download(storage_path("app/storage/app/{$myFile}"));
+        $drdrform = Drdrform::findOrFail($id);
+        $myFile = public_path().$drdrform->attach_file;
+        $newName = 'drdrforms'.time();
+        return response()->download($myFile, $newName);
     }
 
     /**

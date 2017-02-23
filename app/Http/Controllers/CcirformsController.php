@@ -56,6 +56,7 @@ class CcirformsController extends Controller
         $ccirform = Auth::user()->ccirforms()->create($request->all());
         $ccirform->date_issuance = Carbon::now();
         $ccirform->name = Auth::user()->name;
+        $ccirform->position = Auth::user()->position;
         if($request->hasFile('attach_file')){
         $ccirform->attach_file = $request->file('attach_file')->store('ccirforms');
         }

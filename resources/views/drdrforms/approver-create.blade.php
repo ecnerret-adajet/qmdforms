@@ -73,10 +73,11 @@
 
                         <tr>
                             <td colspan="2">
-                            <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$drdrform->attach_file)}}" class="btn btn-primary btn-block" download>  
-                                Download Attachement
-                            </a>  
-
+                            @foreach($drdrform->drdrapprovers->take(1) as $approver)
+                            <a href="{{ url('http://172.17.2.88/e-forms-test/storage/app/'.$approver->attach_file) }}" class="btn btn-primary" download>  
+                                    Download Attachement
+                              </a> 
+                            @endforeach
                             </td>
                         </tr> 
 

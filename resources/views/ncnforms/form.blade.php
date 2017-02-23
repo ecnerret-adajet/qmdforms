@@ -158,7 +158,7 @@ Vendor:
 </div>
 
 <div class="col-md-12">
-{!! Form::input('date','date_issuance', $ncnform->date_issuance->format('Y-m-d'), ['class' => 'form-control'] ) !!}
+{!! Form::input('date','date_issuance', null, ['class' => 'form-control'] ) !!}
 @if ($errors->has('date_issuance'))
 <span class="help-block">
 <strong>{{ $errors->first('date_issuance') }}</strong>

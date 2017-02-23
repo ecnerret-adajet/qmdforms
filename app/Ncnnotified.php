@@ -9,6 +9,7 @@ class Ncnnotified extends Model
 {
     protected $fillable = [
     	'name', // notified person's name
+    	'position', 
     	'action_taken',
     	'responsible',
     	'execution_date'

@@ -252,6 +252,13 @@
 		</strong>
 		</td>
 		<td>	{{$ccirform->name}} </td>
+ 
+		<td class="info">
+		<strong>
+		Position:
+		</strong>
+		</td>
+		<td>	{{$ccirform->position}} </td>
 	</tr>
 </table>
 

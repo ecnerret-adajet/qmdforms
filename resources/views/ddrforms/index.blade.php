@@ -105,6 +105,11 @@
                           </a>
                           <ul class="dropdown-menu">
                             <li>
+                            <a data-toggle="modal" data-target=".bs-ddrmr{{$ddrform->id}}-modal-lg" href="">
+                               Mark as approved
+                            </a>
+                            </li>
+                            <li>
                             <a data-toggle="modal" data-target=".bs-delete{{$ddrform->id}}-modal-lg" href="">
                                Move to trash
                             </a>
@@ -388,6 +393,43 @@
                    
               </div>
              {!! Form::close() !!}
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->      
+
+
+
+
+      <div class="modal fade bs-ddrmr{{$ddrform->id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Mark as approve</h4>
+              </div>
+              <div class="modal-body">
+                      <div class="row">
+                <div class="col-md-12">
+                <div class="panel-body text-center"> 
+            
+                <h4>  
+                    Are you sure you want to approve this document ?
+                </h4>
+    
+               <form class="form-horizontal" method="POST" action="{{url('ddrforms/ddrmr/'.$ddrform->id)}}" enctype="multipart\form-data">
+              {!! csrf_field() !!}
+                                                
+            </div>
+                </div>
+            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                  
+                   
+              </div>
+             </form>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->      

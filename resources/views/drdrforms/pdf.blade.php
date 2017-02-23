@@ -67,16 +67,15 @@
 <!-- table start -->
 <table class="table borderless">
 <!-- first set -->
-<tr>
+<!-- <tr>
 <td colspan="7">
-<!-- step 1 -->
 <em>
 <span style="margin-bottom: 20px;">
 	<strong>Step 1</strong> Request fills out necessary details.
 </span>
 </em>
 </td>
-</tr>
+</tr> -->
 <tr>
 	<td>
 	<em>
@@ -147,16 +146,15 @@
 <!-- table end -->
 
 <table class="table borderless" width="100%">
-<tr>
+<!-- <tr>
 <td colspan="6">
-	<!-- step 2 -->
 <em>
 <span style="margin-bottom: 20px;">
 	<strong>Step 2</strong> Requester obtains approval from reviewer and approver. If requester is also the reviewer or approver, disregard this step and proceed to step 3. 
 </span>
 </em>
 </td>
-</tr>
+</tr> -->
 
 	<tr>
 		<td width="15%">
@@ -250,10 +248,9 @@
 
 
 <table class="table table-bordered">
-<tr>
+<!-- <tr>
 <td class="info" colspan="3">
 
-<!-- step 3 -->
 <em>
 <span style="margin-bottom: 10px;">
 	<strong>Step 3</strong> Approver defines copyholder and effective date. Requester submits this form to QM with the final draft  (*required attachment: draft of new/ revised document with highlights on changes made).
@@ -264,14 +261,13 @@
 
 <tr>
 	<td class="info" colspan="3">
-		<!-- step 4 -->
 <em>
 <span style="margin-bottom: 10px;">
 	<strong>Step 4</strong> QM to compare to previous distribution (if any), fill out required data and distribute prior effective date acknowledged by the area document controller, dept. head or supervisor.
 </span>
 </em>
 	</td>
-</tr>
+</tr> -->
 
 	<thead>
 		<tr>
@@ -342,11 +338,11 @@
 </table>
 
 <!-- step 5 -->
-<em>
+<!-- <em>
 <p style="margin-bottom: 20px;">
 	<strong>Step 5</strong> (if applicable) QM marks disposition on obsolete copies.
 </p>
-</em>
+</em> -->
 
 <p>
 Yellow stamp with "Obsolete" and use as reference
@@ -356,11 +352,22 @@ Yellow stamp with "Obsolete" and use as reference
 	
 <table class="table">
 
+
 	<tr>
-		<td width="80px">Verified by:</td>
-		<td>
+		<td width="80px">Verified by::</td>
+		<td colspan="3">
 		@foreach($drdrform->drdrmrs as $drdrmr)
 			{{$drdrmr->verified_by}}
+		@endforeach
+		</td>
+	</tr>
+
+
+	<tr>
+		<td width="80px">Position:</td>
+		<td>
+		@foreach($drdrform->drdrmrs as $drdrmr)
+			{{$drdrmr->position}}
 		@endforeach
 		</td>
 		<td width="80px">Date:</td>
@@ -370,6 +377,8 @@ Yellow stamp with "Obsolete" and use as reference
 			@endforeach
 		</td>
 	</tr>
+
+
 
 </table>
 

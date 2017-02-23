@@ -17,6 +17,7 @@ class CreateNcnnotifiedsTable extends Migration
             $table->increments('id');
             $table->integer('ncnform_id')->unsigned();
             $table->string('name'); // notified person who put and immediate action fields.
+            $table->string('position'); 
             $table->text('action_taken');
             $table->string('responsible');
             $table->timestamp('execution_date');

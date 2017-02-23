@@ -37,7 +37,7 @@ Route::post('/drdrforms/approver/{id}','DrdrformsController@drdrapprover');
 Route::post('/drdrforms/drdrmr/{id}', 'DrdrformsController@drdrmr');
 Route::post('/drdrforms/archive/{id}', 'DrdrformsController@archive');
 Route::get('/drdrforms/pdf/{drdrform}', 'DrdrformsController@pdf');
-Route::get('/drdrforms/download/{drdrform}', 'DrdrformsController@downloadFile');
+Route::get('/drdrforms/download/{id}', 'DrdrformsController@downloadFile');
 
 /**
  * ddrform setup route
@@ -46,6 +46,7 @@ Route::resource('/ddrforms','DdrformsController');
 Route::get('/ddrforms/approver/create/{id}', 'DdrformsController@ddrApproverCreate');
 Route::post('/ddrforms/approver/{id}','DdrformsController@ddrapprover');
 Route::post('/ddrforms/archive/{id}', 'DdrformsController@archive');
+Route::post('/ddrforms/ddrmr/{id}', 'DdrformsController@ddrmr');
 Route::get('/ddrforms/pdf/{ddrform}', 'DdrformsController@pdf');
 
 

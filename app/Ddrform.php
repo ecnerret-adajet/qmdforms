@@ -120,6 +120,12 @@ class Ddrform extends Model
 	}
 
 
+	//Allow management representative to approve a form
+	public function ddrmrs()
+	{
+		return $this->hasMany('App\Ddrmr');
+	}
+
 
 
 

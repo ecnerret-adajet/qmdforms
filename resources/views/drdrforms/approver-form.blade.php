@@ -43,7 +43,7 @@
 </div>
 
 <div class="col-md-12">
-{!! Form::input('date', 'date_effective', $drdrapprover->date_effective->format('Y-m-d'), ['class' => 'form-control', 'rows' => '3'] ) !!}
+{!! Form::input('date', 'date_effective', null, ['class' => 'form-control', 'rows' => '3'] ) !!}
 @if ($errors->has('date_effective'))
 <span class="help-block">
 <strong>{{ $errors->first('date_effective') }}</strong>

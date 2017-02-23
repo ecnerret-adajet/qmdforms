@@ -19,6 +19,7 @@ use App\Department;
 use App\Ddrlist;
 use App\Ddrapprover;
 use App\User;
+use App\Ddrmr;
 use DB;
 use Illuminate\Support\Facades\Input;
 use PDF;
@@ -163,6 +164,28 @@ class DdrformsController extends Controller
 
         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('submitted');
+
+    }
+
+    /**
+     * for management representative approver
+     */
+
+    public function ddrmr($id, Request $request)
+    {
+        //find the associate ddrform
+        $ddrform = Ddrform::findOrFail($id);
+        //create a model for ddrform
+        $ddrmr = new Ddrmr;
+        $ddrmr->ddrform()->associate($ddrform);
+        $ddrmr->name = Auth::user()->name;
+        $ddrmr->position = Auth::user()->position;
+        $ddrmr->verified_date = Carbon::now();
+        $ddrmr->save();
+
+
+         alert()->success('Success Message', 'Succesfully updated a form');
+        return redirect('ddrforms');
 
     }
 

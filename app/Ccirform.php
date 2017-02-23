@@ -15,6 +15,7 @@ class Ccirform extends Model
 
     protected $fillable = [
         'name',
+        'position',
     	'company',
     	'date_issuance', // date
     	// 'customer_reference',

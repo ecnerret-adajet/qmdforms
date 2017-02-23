@@ -64,13 +64,13 @@
 
 
 <!-- step 1 -->
-<em>
+<!-- <em>
 <h5>
 	<strong>Step 1:</strong>
 	Requester defines reason for distribution and required date of distribution.
 </h5>
 </em>
-
+ -->
 <table class="table borderless">
 	<tr>
 		<td rowspan="3">
@@ -136,7 +136,7 @@
 
 <table class="table table-bordered">
 	<thead>
-		<tr>
+<!-- 		<tr>
 		<td class="info" colspan="7">
 		<em>
 		<h5>
@@ -146,8 +146,8 @@
 		</h5>
 		</em>
 		</td>
-		</tr>
-		<tr>
+		</tr> -->
+<!-- 		<tr>
 		<td class="info" colspan="7">
 		<em>
 		<h5>
@@ -156,15 +156,15 @@
 		</h5>
 		</em>
 		</td>
-		</tr>
+		</tr> -->
 		<tr>
-			<th>Document Title</th>
-			<th>Control Code</th>
-			<th>Rev No.</th>
-			<th>Copy No.</th>
-			<th>Copy holder</th>
-			<th>Received by:</th>
-			<th>Date</th>
+			<th  class="info">Document Title</th>
+			<th  class="info">Control Code</th>
+			<th  class="info">Rev No.</th>
+			<th  class="info">Copy No.</th>
+			<th  class="info">Copy holder</th>
+			<th  class="info">Received by:</th>
+			<th  class="info">Date</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -230,15 +230,39 @@
 		Distbuted by:
 		</strong>
 		</td>
-		<td></td>
+		<td>
+		@foreach($ddrform->ddrmrs as $mr)
+				{{$mr->name}}
+			@endforeach
+		</td>
 	</tr>
 	<tr>
-		<td>Date</td>
-		<td></td>
-		<td>Date</td>
-		<td></td>
-		<td>Date</td>
-		<td></td>
+		<td>
+		<strong>
+		Date
+		</strong>
+		</td>
+		<td>{{ date('F d, Y', strtotime($ddrform->date_requested)) }}</td>
+		<td>
+		<strong>
+		Date
+		</strong>
+		</td>
+		<td>
+		@foreach($ddrform->ddrapprovers as $approver)
+			{{ date('F d, Y', strtotime($approver->date_approved)) }}
+			@endforeach
+		</td>
+		<td>
+		<strong>
+		Date
+		</strong>
+		</td>
+		<td>
+			@foreach($ddrform->ddrmrs as $mr)
+			{{ date('F d, Y', strtotime($mr->verified_date)) }}
+			@endforeach
+		</td>
 	</tr>
 </table>
 

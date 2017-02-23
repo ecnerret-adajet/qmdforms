@@ -4,9 +4,9 @@
 
 
 
- <a href="{{asset('http://172.17.2.88/qmdforms/storage/app/'.$ccirform->attach_file)}}" class="btn btn-primary" download>  
+  <a href="{{ url('http://172.17.2.88/e-forms-test/storage/app/'.$ccirform->attach_file) }}" class="btn btn-primary" download>  
         Download Attachement
-  </a> 
+  </a>
 
    <a href="{{url('ccirforms/pdf/'.$ccirform->id)}}" target="_blank" class="btn btn-primary">  
        Print as PDF

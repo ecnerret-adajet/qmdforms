@@ -21,6 +21,7 @@ class CreateDrdrmrsTable extends Migration
             $table->string('document_code');
             $table->string('revision_number');
             $table->string('verified_by');
+            $table->string('position');
             $table->timestamp('verified_date');
             $table->foreign('drdrform_id')->references('id')->on('drdrforms')
                 ->onDelete('cascade');

@@ -13,6 +13,7 @@ class Drdrmr extends Model
     	'document_code',
     	'revision_number',
         'verified_by',
+        'position',
     	'verified_date',
     ];
 

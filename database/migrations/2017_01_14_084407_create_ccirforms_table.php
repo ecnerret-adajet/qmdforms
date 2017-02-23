@@ -18,6 +18,7 @@ class CreateCcirformsTable extends Migration
             $table->integer('user_id')->unsigned();
             
             $table->string('name');
+            $table->string('position');
             $table->string('company');
             $table->timestamp('date_issuance');
             // $table->string('customer_reference');

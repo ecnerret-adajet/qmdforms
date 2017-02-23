@@ -73,9 +73,9 @@
 
                         <tr>
                             <td colspan="2">
-                            <a href="{{ url('http://172.17.2.88/e-forms-test/storage/app/'.$drdrform->attach_file) }}" class="btn btn-primary" download>  
-                                    Download Attachement
-                              </a>
+                                  <a href="{{  str_replace('public/','storage/app/',asset($drdrform->attach_file)) }}" class="btn btn-block btn-primary" download> 
+                                        Download Attachement 
+                                  </a>
 
                             </td>
                         </tr> 

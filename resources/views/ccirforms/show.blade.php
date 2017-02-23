@@ -2,10 +2,8 @@
 @extends('layouts.admin-layout')
 @section('content')
 
-
-
-  <a href="{{ url('http://172.17.2.88/e-forms-test/storage/app/'.$ccirform->attach_file) }}" class="btn btn-primary" download>  
-        Download Attachement
+  <a href="{{  str_replace('public/','storage/app/',asset($ccirform->attach_file)) }}" class="btn btn-primary" download> 
+        Download Attachement 
   </a>
 
    <a href="{{url('ccirforms/pdf/'.$ccirform->id)}}" target="_blank" class="btn btn-primary">  

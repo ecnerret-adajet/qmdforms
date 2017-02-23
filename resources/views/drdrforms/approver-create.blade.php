@@ -74,9 +74,9 @@
                         <tr>
                             <td colspan="2">
                             @foreach($drdrform->drdrapprovers->take(1) as $approver)
-                            <a href="{{ url('http://172.17.2.88/e-forms-test/storage/app/'.$approver->attach_file) }}" class="btn btn-primary" download>  
-                                    Download Attachement
-                              </a> 
+                            <a href="{{  str_replace('public/','storage/app/',asset($approver->attach_file)) }}" class="btn btn-block btn-primary" download> 
+                                Download Attachement 
+                             </a>
                             @endforeach
                             </td>
                         </tr> 

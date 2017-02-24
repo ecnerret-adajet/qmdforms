@@ -52,11 +52,11 @@ class NcnformsController extends Controller
         $departments = Department::pluck('name','id');
         // $nonconformities = Nonconformity::pluck('name','id');
 
-        // $users = User::whereHas('roles', function($q){
-        //     $q->where('id',2); // to approver
-        // })->pluck('name','id');
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',2); // to approver
+        })->pluck('name','id');
 
-        $users = User::pluck('name','id');
+        // $users = User::pluck('name','id');
 
 
         return view('ncnforms.create', compact('companies',
@@ -71,11 +71,11 @@ class NcnformsController extends Controller
         $ncnform = Ncnform::findOrFail($id);
         $statuses = Status::pluck('name','id');
         
-        // $users = User::whereHas('roles', function($q){
-        //     $q->where('id',5); // to notified
-        // })->pluck('name','id');
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',5); // to notified
+        })->pluck('name','id');
 
-         $users = User::pluck('name','id');
+         // $users = User::pluck('name','id');
 
 
         return view('ncnforms.approver-create',compact('statuses',

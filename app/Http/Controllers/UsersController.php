@@ -44,7 +44,7 @@ class UsersController extends Controller
     {
         $roles = Role::pluck('display_name','id');
         $companies = Company::pluck('name','id');
-        $departments = Department::pluck('name','id');        
+        $departments = Department::pluck('name','id');     
         return view('users.create',compact(
             'companies',
         	'departments',
@@ -124,6 +124,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {       
+        $this->validate($request, [
+            'company_list' => 'required',
+            'department_list' => 'required',
+        ]);
 
         $input = $request->all();
         if(!empty($input['password'])){ 

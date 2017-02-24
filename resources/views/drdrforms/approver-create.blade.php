@@ -73,8 +73,8 @@
 
                         <tr>
                             <td colspan="2">
-                            @foreach($drdrform->drdrapprovers->take(1) as $approver)
-                            <a href="{{  str_replace('public/','storage/app/',asset($approver->attach_file)) }}" class="btn btn-block btn-primary" download> 
+                            @foreach($drdrform->drdrreviewers->take(1) as $reviewer)
+                            <a href="{{  str_replace('public/','storage/app/',asset($reviewer->attach_file)) }}" class="btn btn-block btn-primary" download> 
                                 Download Attachement 
                              </a>
                             @endforeach

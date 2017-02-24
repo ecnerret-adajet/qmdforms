@@ -58,7 +58,7 @@
                             <label for="department_list" class="col-md-4 control-label">Department</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('department_list[]',  $departments, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
+                                {!! Form::select('department_list',  $departments, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
 
                                 @if ($errors->has('department_list'))
                                     <span class="help-block">
@@ -72,7 +72,7 @@
                             <label for="company_list" class="col-md-4 control-label">Company</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('company_list[]',  $companies, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
+                                {!! Form::select('company_list',  $companies, null,  ['class' => 'form-control', 'placeholder' => '--Select Department --']) !!}  
 
                                 @if ($errors->has('company_list'))
                                     <span class="help-block">
@@ -111,7 +111,12 @@
                             <label for="roles" class="col-md-4 control-label">Roles</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('roles_list[]',  $roles,$userRole,  ['class' => 'form-control', 'multiple']) !!}  
+                            @if(str_contains(Request::path(), 'create'))
+                                {!! Form::select('roles_list[]',  $roles, null,  ['class' => 'form-control', 'multiple']) !!}
+                            @else
+                                {!! Form::select('roles_list[]',  $roles,$userRole,  ['class' => 'form-control', 'multiple']) !!}
+                            @endif
+                                  
 
                                 @if ($errors->has('roles_list'))
                                     <span class="help-block">
@@ -126,7 +131,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Submit
                                 </button>
                             </div>
                         </div>

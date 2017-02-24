@@ -55,11 +55,11 @@ class DrdrformsController extends Controller
         $companies = Company::pluck('name','id');
         $types = Type::pluck('name','id');
 
-        // $users = User::whereHas('roles', function($q){
-        //     $q->where('id',3); // to revierwer
-        // })->pluck('name','id');
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',3); // to revierwer
+        })->pluck('name','id');
 
-        $users = User::pluck('name','id');
+        // $users = User::pluck('name','id');
 
         return view('drdrforms.create', compact('companies','types','users'));
     }
@@ -70,11 +70,11 @@ class DrdrformsController extends Controller
 
         $statuses = Status::pluck('name','id');
 
-        // $users = User::whereHas('roles', function($q){
-        //     $q->where('id',2); // to approver
-        // })->pluck('name','id');
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',2); // to approver
+        })->pluck('name','id');
 
-        $users = User::pluck('name','id');
+        // $users = User::pluck('name','id');
 
         
         return view('drdrforms.reviewer-create', compact('statuses',

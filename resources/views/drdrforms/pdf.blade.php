@@ -163,7 +163,7 @@
 		</strong>
 		</td>
 		<td>
-		@foreach($drdrform->drdrreviewers as $reviewer)
+		@foreach($drdrform->drdrreviewers->take(1) as $reviewer)
 			{{$reviewer->name}}
 		@endforeach
 		</td>
@@ -173,7 +173,7 @@
 		</strong>
 		</td>
 		<td>
-		@foreach($drdrform->drdrreviewers as $reviewer)
+		@foreach($drdrform->drdrreviewers->take(1) as $reviewer)
 			{{$reviewer->position}}
 		@endforeach
 		</td>
@@ -183,7 +183,7 @@
 		</strong>
 		</td>
 		<td>
-		@foreach($drdrform->drdrreviewers as $reviewer)
+		@foreach($drdrform->drdrreviewers->take(1) as $reviewer)
 			{{ date('F d, Y', strtotime($reviewer->date_review)) }}
 		@endforeach
 		</td>
@@ -196,7 +196,7 @@
 		</strong>
 		</td>
 		<td>
-		@foreach($drdrform->drdrapprovers as $approver)
+		@foreach($drdrform->drdrapprovers->take(1) as $approver)
 			{{$approver->name}}
 		@endforeach
 		</td>
@@ -206,7 +206,7 @@
 		</strong>
 		</td>
 		<td>
-		@foreach($drdrform->drdrapprovers as $approver)
+		@foreach($drdrform->drdrapprovers->take(1) as $approver)
 			{{$approver->position}}
 		@endforeach
 		</td>
@@ -216,7 +216,7 @@
 		</strong>
 		</td>
 		<td>
-		@foreach($drdrform->drdrapprovers as $approver)
+		@foreach($drdrform->drdrapprovers->take(1) as $approver)
 			{{ date('F d, Y', strtotime($approver->date_approved)) }}
 		@endforeach
 		</td>
@@ -234,7 +234,7 @@
 	</tr>
 	<tr>
 	<td style="height: 50px;">
-		@foreach($drdrform->drdrreviewers as $reviewer)
+		@foreach($drdrform->drdrreviewers->take(1) as $reviewer)
 		{{$reviewer->consider_document}}
 		@endforeach
 	</td>
@@ -273,7 +273,7 @@
 		<tr>
 			<td class="info">Copy No.</td>
 			<td class="info">Copyholder (Department)</td>
-			<td rowspan="{{   $row = $approver->drdrcopyholders->count() + 1   }}"> 
+			<td rowspan="{{   $row =  (  $approver->drdrcopyholders->count() == 0 ? 0 :  $approver->drdrcopyholders->count() + 1  )  }}"> 
 			<strong>Effective date: </strong> 
 			@foreach($drdrform->drdrapprovers as $approver)
 			{{ date('Y-m-d', strtotime($approver->date_effective)) }}

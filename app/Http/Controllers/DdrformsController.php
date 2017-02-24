@@ -52,7 +52,9 @@ class DdrformsController extends Controller
     public function create()
     {     
         $departments = Department::pluck('name','id');
-        $users = User::pluck('name','id');
+           $users = User::whereHas('roles', function($q){
+            $q->where('id',2); // to approver
+        })->pluck('name','id');
 
 
         return view('ddrforms.create',compact('departments','users'));

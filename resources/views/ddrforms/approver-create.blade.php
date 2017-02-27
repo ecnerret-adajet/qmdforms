@@ -76,6 +76,7 @@
                         <tr>
                             <th>Document Title</th>
                             <th>Control Code</th>
+                            <th>Rev #</th>
                             <th>Copy #</th>
                             <th>Copy holder</th>
                             <th>Received by</th>
@@ -90,6 +91,9 @@
                         </td>
                         <td>
                             {{$ddrlist->control_code}}
+                        </td>
+                        <td>
+                            {{$ddrlist->rev_no}}
                         </td>
                         <td>
                             {{$ddrlist->copy_no}}

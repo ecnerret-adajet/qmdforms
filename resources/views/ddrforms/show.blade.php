@@ -135,7 +135,7 @@
 				{{$ddrlist->control_code}}
 			</td>
 			<td>
-		
+				{{$ddrlist->rev_no}}
 			</td>
 			<td>
 				{{$ddrlist->control_code}}

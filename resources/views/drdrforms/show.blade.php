@@ -1,10 +1,11 @@
 @extends('layouts.admin-layout')
 @section('content')
 
-  <a href="{{  str_replace('public/','storage/app/',asset($drdrform->attach_file)) }}" class="btn btn-primary" download> 
-        Download Attachement 
-  </a>
-
+@foreach($drdrform->drdrreviewers->take(1) as $reviewer)
+<a href="{{  str_replace('public/','storage/app/',asset($reviewer->attach_file)) }}" class="btn btn-primary" download> 
+    Download Attachement 
+ </a>
+@endforeach
 
 
   <a href="{{url('drdrforms/pdf/'.$drdrform->id)}}" target="_blank" class="btn btn-primary">  

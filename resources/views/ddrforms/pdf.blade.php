@@ -180,7 +180,7 @@
 				{{$ddrlist->rev_no}}
 			</td>
 			<td>
-				{{$ddrlist->control_code}}
+				{{$ddrlist->copy_no}}
 			</td>
 			<td>
 				{{$ddrlist->copy_holder}}

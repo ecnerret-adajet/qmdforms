@@ -77,11 +77,53 @@
 <div class="col-md-12 ">
 <label class="control-label">
 TYPE OF NON CONFORMITY:
+
+@if ($errors->has('nonconformity_list'))
+<em>
+<strong style="color: red">{{ $errors->first('nonconformity_list') }}</strong>
+</em>
+@endif
+
+
+
 </label>
 </div>
 </div>
 
+
+
+
+ @foreach($nonconformities->chunk(3) as $items)
 <div class="form-group">
+    @foreach($items as $item)
+      @if($item->name != 'Others')
+        <div class="col-md-4">
+            {{ Form::checkbox('nonconformity_list', $item->id, false) }}
+            {{ $item->name }}
+        </div>
+      @else
+        <div class="col-md-4">
+            {!! Form::text('others', null, ['class' => 'form-control', 'placeholder' => 'Others:'] ) !!}
+         </div>
+      @endif
+
+
+    @endforeach
+
+
+
+</div>
+@endforeach
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-group">
 <div class="col-md-4">
 {{ Form::checkbox('customer_returns', 1) }}
 Customer Returns
@@ -97,6 +139,9 @@ Contracted Service:
 </div>
 
 
+
+
+
 <div class="form-group">
 <div class="col-md-4">
 {{ Form::checkbox('objective_not_met', 1) }}
@@ -110,7 +155,7 @@ Vendor:
 {!! Form::text('others', null, ['class' => 'form-control', 'placeholder' => 'Others:'] ) !!}
 </div>
 </div>
-
+ -->
 
 
 

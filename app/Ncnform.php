@@ -112,18 +112,18 @@ class Ncnform extends Model
     }
 
 
-    // /**
-    //  * nonconformity model
-    //  */
-    // public function nonconformities()
-    // {
-    // 	return $this->belongsToMany('App\Nonconformity')->withTimestamps();
-    // }
+    /**
+     * nonconformity model
+     */
+    public function nonconformities()
+    {
+    	return $this->belongsToMany('App\Nonconformity')->withTimestamps();
+    }
 
-    // public function getNonconformityListAttribute()
-    // {
-    // 	return $this->nonconformities->pluck('id')->all();
-    // }
+    public function getNonconformityListAttribute()
+    {
+    	return $this->nonconformities->pluck('id')->all();
+    }
 
     /**
      * Date configuration

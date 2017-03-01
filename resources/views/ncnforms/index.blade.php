@@ -37,7 +37,7 @@
                 <thead>
                 <tr>
                     <th>
-                    Ncn No
+                    #
                     </th>
                     <th>
                     Requester
@@ -73,10 +73,10 @@
                         </a>
                         </td>
                         <td>
-                        {{$ncnform->name}}
+                        {{   str_limit($ncnform->name, 10)}}
                         </td>
                         <td>
-                        {{$ncnform->position}}
+                        {{   str_limit($ncnform->position, 15)}}
                         </td>                       
                         <td>
                         {{$ncnform->notif_number}}
@@ -85,7 +85,7 @@
                         {{ date('M d, Y', strtotime($ncnform->date_issuance)) }}  
                         </td>
                         <td>
-                        @forelse($ncnform->ncnapprovers as $ncnapprover)
+                        @forelse($ncnform->ncnapprovers->take(1) as $ncnapprover)
                             @foreach($ncnapprover->statuses as $status)
                                 @if($status->id == 1)
                               <button class="btn btn-primary btn-block disabled"> Approved </button>       

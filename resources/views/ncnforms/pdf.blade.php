@@ -105,75 +105,33 @@
 	</td>
 </tr>
 
+
+@foreach($nonconformities->chunk(3) as $noncormity)
 <tr>
-	<td>	
-			
-			@if($ncnform->customer_returns == 1)
-			<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@else
-				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@endif
-			<strong>
-			Customer returns
-			</strong>
-
-
-	</td>
+	@foreach($noncormity as $item)	
 	<td>
-			@if($ncnform->process_related == 1)
-			<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@else
-				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@endif
-			<strong>
-			 Process-related
-			 </strong>
-
-	</td>
-	<td>
-			@if($ncnform->contracted_services == 1)
-				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@else
-				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@endif
-			<strong>
-			Contracted Service
-			</strong>
-
-	</td>
+		@foreach($ncnform->nonconformities as $x)
+				@if($x->name == $item->name)
+				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">  {{$item->name}}
+				@elseif($item->name == 'Others')
+					@if(!empty($ncnform->others))
+				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">  
+				Others:  {{ $ncnform->others }}
+					@else
+					<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;"> Others:
+					@endif		
+				@else
+				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">  {{$item->name}} 
+				@endif
+		@endforeach	
+		</td>
+	@endforeach	
 </tr>
-
-<tr>
-	<td>
-			@if($ncnform->objective_not_met == 1)
-				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@else
-				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@endif
-			<strong>
-			Objectives not met
-			</strong>
-	</td>
+@endforeach
 
 
-	<td>
-			@if($ncnform->vendor == 1)
-				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@else
-				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
-			@endif
-			<strong>
-			Vendor
-			</strong>
-	</td>
-	<td>
-	<strong>
-	Others:
-	</strong>
-	{{ $ncnform->others }}
-	
-	</td>
-</tr>
+
+
 </table>
 
 <table class="table table-bordered">

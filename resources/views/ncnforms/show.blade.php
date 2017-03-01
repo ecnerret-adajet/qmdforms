@@ -73,58 +73,40 @@
 	</td>
 </tr>
 
+
+@foreach($nonconformities->chunk(3) as $noncormity)
 <tr>
+	@foreach($noncormity as $item)	
 	<td>
-	
-			@if($ncnform->customer_returns == 1)
-				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Customer returns
-			@else
-				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i>  Customer returns
-			@endif
-
-	</td>
-	<td>
-			@if($ncnform->process_related == 1)
-				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Process-related
-			@else
-				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Process-related
-			@endif
-
-	</td>
-	<td>
-			@if($ncnform->contracted_services == 1)
-				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Contracted Service
-			@else
-				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Contracted Service
-			@endif
-
-	</td>
+		@foreach($ncnform->nonconformities as $x)
+				@if($x->name == $item->name)
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  {{$item->name}}
+				@elseif($item->name == 'Others')
+					@if(!empty($ncnform->others))
+				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  
+				Others:  {{ $ncnform->others }}
+					@else
+					<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Others:
+					@endif		
+				@else
+				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i>  {{$item->name}} 
+				@endif
+		@endforeach	
+		</td>
+	@endforeach	
 </tr>
-
-<tr>
-	<td>
-			@if($ncnform->objective_not_met == 1)
-				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  Objectives not met
-			@else
-				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> Objectives not met
-			@endif
-	</td>
+@endforeach
 
 
-	<td>
-			@if($ncnform->vendor == 1)
-				<i class="ion-android-checkbox-outline" style="font-weight: bold; font-size: 20px;"></i>  	Vendor
-			@else
-				<i class="ion-android-checkbox-outline-blank" style="font-weight: bold; font-size: 20px;"></i> 	Vendor
-			@endif
-	</td>
-	<td>
-	Others:
-	<strong>
-	{{ $ncnform->others }}
-	</strong>
-	</td>
-</tr>
+
+
+
+
+
+
+
+
+
 </table>
 
 <table class="table table-bordered">

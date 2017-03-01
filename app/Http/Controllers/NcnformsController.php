@@ -51,6 +51,7 @@ class NcnformsController extends Controller
         $companies = Company::pluck('name','id');
         $departments = Department::pluck('name','id');
         // $nonconformities = Nonconformity::pluck('name','id');
+        $nonconformities = Nonconformity::get();
 
         $users = User::whereHas('roles', function($q){
             $q->where('id',2); // to approver
@@ -104,7 +105,10 @@ class NcnformsController extends Controller
             'department_list' => 'required',
             'user_list'  => 'required',
             'attach_file' => 'required',
-            'date_issuance' => 'required|date'
+            'date_issuance' => 'required|date',
+            'nonconformity_list' => 'required'
+        ],[
+            'nonconformity_list.required' => 'Type of non-conformity is required'
         ]);
 
         $ncnform = Auth::user()->ncnforms()->create($request->all());
@@ -115,7 +119,7 @@ class NcnformsController extends Controller
 
         $ncnform->companies()->attach($request->input('company_list'));
         $ncnform->departments()->attach($request->input('department_list'));
-        // $ncnform->nonconformities()->attach($request->input('nonconformity_list'));
+        $ncnform->nonconformities()->attach($request->input('nonconformity_list'));
         $ncnform->users()->attach($request->input('user_list'));
 
                 //send email to approver
@@ -159,6 +163,13 @@ class NcnformsController extends Controller
 
 
     public function ncnnotified($id, Request $request){
+
+            $this->validate($request, [
+                'action_taken' => 'required',
+                'responsible' => 'required',
+            ]);
+
+
             $ncnform = Ncnform::findOrFail($id);
 
             $ncnnotified = $ncnform->ncnnotifieds()->create($request->all());
@@ -184,14 +195,17 @@ class NcnformsController extends Controller
      */
     public function show(Ncnform $ncnform)
     {
-        return view('ncnforms.show', compact('ncnform'));
+
+        $nonconformities = Nonconformity::all();
+        return view('ncnforms.show', compact('ncnform','nonconformities'));
     }
 
     /**
      * download to pdf
      */
     public function pdf(Ncnform $ncnform){
-        $pdf = PDF::loadView('ncnforms.pdf', compact('ncnform'));
+         $nonconformities = Nonconformity::all();
+        $pdf = PDF::loadView('ncnforms.pdf', compact('ncnform','nonconformities'));
         return $pdf->stream('ncnform.pdf');
     }
 

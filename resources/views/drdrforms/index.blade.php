@@ -29,7 +29,7 @@
 
                               <!-- table data -->
 
-                 <table id="table-data" class="table nowrap display table-striped table-hover table_custom" width="100%">
+                 <table id="table-data" class="table nowrap display table-striped table-hover table_custom">
                 <thead>
                 <tr>
                     <th>
@@ -39,7 +39,7 @@
                     Document Title
                     </th>
                     <th>
-                    Reason of Request
+                    Company
                     </th>
                     <th>
                     Revision #
@@ -67,13 +67,15 @@
                         {{   str_limit($drdrform->document_title, 10)   }}
                         </td>
                         <td>
-                        {{$drdrform->reason_request}}
+                        @foreach($drdrform->companies as $company)
+                          {{$company->name}}
+                        @endforeach
                         </td>                       
                         <td>
                         {{$drdrform->revision_number}}
                         </td>
                         <td>
-                        @forelse($drdrform->drdrreviewers as $drdrreviewer)
+                        @forelse($drdrform->drdrreviewers->take(1) as $drdrreviewer)
                             @foreach($drdrreviewer->statuses as $status)
                                 @if($status->id == 1)
                              <button class="btn btn-primary btn-block disabled"> <i class="ion-checkmark-circled"></i> Approved </button>   
@@ -89,7 +91,7 @@
 
                         </td>
                         <td>
-                        @forelse($drdrform->drdrapprovers as $drdrapprover)
+                        @forelse($drdrform->drdrapprovers->take(1) as $drdrapprover)
                             @foreach($drdrapprover->statuses as $status)
                                 @if($status->id == 1)
                               <button class="btn btn-primary btn-block disabled"> <i class="ion-checkmark-circled"></i> Approved </button>       

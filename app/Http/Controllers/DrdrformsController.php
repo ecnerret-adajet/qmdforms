@@ -184,7 +184,9 @@ class DrdrformsController extends Controller
             'remarks' => 'required',
             'attach_file' => 'required',
             'status_list' => 'required',
-            'date_effective' => 'required|date'
+            'date_effective' => 'required|date',
+            'copyholder.*' => 'required',
+            'copy_no.*' => 'required'
         ]); 
 
 

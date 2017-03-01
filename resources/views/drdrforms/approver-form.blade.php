@@ -76,11 +76,11 @@
             1
             </td>
 
-            <td class="{{ $errors->has('copy_no[]') ? ' has-error' : '' }}">
+            <td class="{{ $errors->has('copy_no.0') ? ' has-error' : '' }}">
             <input type="text" name='copy_no[]'  placeholder='Document title' class="form-control" id='copy_no_0' />
             </td>
 
-            <td class="{{ $errors->has('copyholder[]') ? ' has-error' : '' }}">
+            <td class="{{ $errors->has('copyholder.0') ? ' has-error' : '' }}">
             <input type="text" name='copyholder[]' placeholder='Control code' class="form-control" id='copyholder_0' />
             </td>
           </tr>

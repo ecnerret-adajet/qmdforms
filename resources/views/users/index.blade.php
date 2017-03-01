@@ -63,12 +63,12 @@
                         </td>
                         <td>
                         @foreach($user->departments as $department)
-                            {{$department->name}}
+                            {{ str_limit($department->name, 10)}}
                         @endforeach
                         </td>
                         <td>
                         @foreach($user->roles as $role)
-                            {{$role->name}}
+                            {{$role->name}}<br/>
                         @endforeach
                         </td>
                     </tr>

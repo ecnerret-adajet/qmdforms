@@ -186,10 +186,8 @@
 				{{$ddrlist->copy_holder}}
 			</td>
 			<td>
-				{{$ddrlist->recieved_by}}
 			</td>
 			<td>
-					{{ date('F d, Y', strtotime($ddrlist->date_list)) }}
 			</td>
 		</tr>
 	@endforeach
@@ -236,6 +234,38 @@
 			@endforeach
 		</td>
 	</tr>
+
+	<tr>
+		<td>
+		<strong>
+		Position: 
+		<strong>
+		</td>
+		<td> {{$ddrform->position}} </td>
+		<td>
+		<strong>
+		Position:
+		</strong>
+		</td>
+		<td>
+			@foreach($ddrform->ddrapprovers as $approver)
+				{{$approver->position}}
+			@endforeach
+		</td>
+		<td>
+		<strong>
+		Position:
+		</strong>
+		</td>
+		<td>
+		@foreach($ddrform->ddrmrs as $mr)
+				{{$mr->position}}
+			@endforeach
+		</td>
+	</tr>
+
+
+
 	<tr>
 		<td>
 		<strong>

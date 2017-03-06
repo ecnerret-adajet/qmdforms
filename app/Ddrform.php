@@ -18,8 +18,8 @@ class Ddrform extends Model
 		'name',
 		'position',
 		'date_needed',
-		'relevant_external',
-		'customer_request',
+		// 'relevant_external',
+		// 'customer_request',
 		'others',
 		'date_requested',
 		'active',
@@ -50,6 +50,19 @@ class Ddrform extends Model
     public function getUserListAttribute()
     {
         return $this->users->pluck('id')->all();
+    }
+
+    /**
+     * Ddr form has a company
+     */
+    public function companies()
+    {
+    	return $this->belongsToMany('App\Company')->withTimestamps();
+    }
+
+    public function getCompanyListAttribute()
+    {
+    	return $this->companies->pluck('id')->all();
     }
 
     
@@ -119,12 +132,27 @@ class Ddrform extends Model
 		return $this->statuses->pluck('id')->all();
 	}
 
+		/**
+	 * Ddr form reason of distribution checkbox
+	 */
+	public function ddrdistributions()
+	{
+		return $this->belongsToMany('App\Ddrdistribution')->withTimestamps();
+	}
+
+	public function getDdrdistributionListAttribute()
+	{
+		return $this->ddrdistributions->pluck('id')->all();
+	}
+
+
 
 	//Allow management representative to approve a form
 	public function ddrmrs()
 	{
 		return $this->hasMany('App\Ddrmr');
 	}
+
 
 
 

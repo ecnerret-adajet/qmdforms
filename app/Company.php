@@ -20,6 +20,11 @@ class Company extends Model
     	return $this->belongsToMany('App\Ncnform');
     }
 
+    public function ddrforms()
+    {
+        return $this->belongsToMany('App\Ddrform');
+    }
+
     /**
      * user list model
      */

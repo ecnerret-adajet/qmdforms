@@ -21,8 +21,8 @@ class CreateDdrformsTable extends Migration
             $table->string('position');
             $table->timestamp('date_needed');
 
-            $table->boolean('relevant_external')->default(0);
-            $table->boolean('customer_request')->default(0);
+            // $table->boolean('relevant_external')->default(0);
+            // $table->boolean('customer_request')->default(0);
             $table->string('others');
 
             $table->timestamp('date_requested');
@@ -56,6 +56,14 @@ class CreateDdrformsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('company_ddrform', function (Blueprint $table){
+                $table->integer('ddrform_id')->unsigned();
+                $table->foreign('ddrform_id')->references('id')->on('ddrforms')->onDelete('cascade');
+                $table->integer('company_id')->unsigned();
+                $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+                $table->timestamps();
+        });
     }
 
     /**
@@ -65,6 +73,7 @@ class CreateDdrformsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('company_ddrform');
         Schema::dropIfExists('ddrform_user');
         Schema::dropIfExists('ddrform_status');
         Schema::dropIfExists('ddrform_department');

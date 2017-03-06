@@ -19,10 +19,10 @@ class CreateNcnformsTable extends Migration
             $table->string('name');
             $table->string('position');
 
-            $table->boolean('customer_returns')->default(0);
-            $table->boolean('process_related')->default(0);
-            $table->boolean('contracted_services')->default(0);
-            $table->boolean('objective_not_met')->default(0);
+            // $table->boolean('customer_returns')->default(0);
+            // $table->boolean('process_related')->default(0);
+            // $table->boolean('contracted_services')->default(0);
+            // $table->boolean('objective_not_met')->default(0);
             $table->boolean('vendor')->default(0);
             $table->string('others');
 

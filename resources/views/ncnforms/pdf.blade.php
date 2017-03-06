@@ -186,19 +186,23 @@
 	</strong>
 	</td>
 	<td>
-		{{ $ncnform->user->name }}
+		@foreach($ncnform->ncnapprovers->take(1) as $approver)
+			@foreach($approver->users as $user)
+				{{ $user->name }}
+			@endforeach
+		@endforeach
 	</td>
 </tr>
 </table>
 
 <table class="table table-bordered">
-<!-- 		<tr>
+		<tr>
 				<td colspan="4" class="info">
 			<strong>
-				Step 1: Provide details of non-conformity:
+				Details of Non-conformity:
 			</strong>
 			</td>	
-		</tr> -->
+		</tr>
 		<tr>
 				<td colspan="4" style="height:100px; ">
 						{{ $ncnform->details_non_conformity }}
@@ -208,7 +212,7 @@
 		<tr>
 			<td colspan="4" class="info">
 			<strong>
-				Step 2: Immediate Action Taken:
+				Immediate Action Taken:
 			</strong>
 			</td>	
 		</tr>

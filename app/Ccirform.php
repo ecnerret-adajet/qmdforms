@@ -19,6 +19,7 @@ class Ccirform extends Model
     	'company',
     	'date_issuance', // date
     	// 'customer_reference',
+        'complaint_name',
     	'brand_name',
         'affected_quantities',
     	'quantity_received',

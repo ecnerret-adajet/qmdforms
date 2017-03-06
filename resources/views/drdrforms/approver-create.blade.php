@@ -54,7 +54,7 @@
 
                         <tr>
                             <td>    
-                               Requester
+                               Requested By:
                             </td>
                             <td>
                                 {{$drdrform->name}}
@@ -67,15 +67,43 @@
                                Date of request
                             </td>
                             <td>
-                                {{$drdrform->date_request}}
+                                {{ date('F d, Y', strtotime($drdrform->date_request))}}
                             </td>
                         </tr> 
+
+                        <tr>
+                            <td>    
+                         Reviewed By:
+                            </td>
+
+                            <td>
+                            @foreach($drdrform->drdrreviewers as $reviewer)
+                                {{$reviewer->name}}
+                            @endforeach
+                            </td>   
+
+                        </tr>   
+
+                         <tr>
+                            <td>    
+                         Reviewed Date:
+                            </td>
+
+                            <td>
+                            @foreach($drdrform->drdrreviewers as $reviewer)
+                                {{ date('F d, Y', strtotime($reviewer->date_review)) }}
+                            @endforeach
+                            </td>   
+
+                        </tr>   
+
+
 
                         <tr>
                             <td colspan="2">
                             @foreach($drdrform->drdrreviewers->take(1) as $reviewer)
                             <a href="{{  str_replace('public/','storage/app/',asset($reviewer->attach_file)) }}" class="btn btn-block btn-primary" download> 
-                                Download Attachement 
+                                Download Attachment 
                              </a>
                             @endforeach
                             </td>

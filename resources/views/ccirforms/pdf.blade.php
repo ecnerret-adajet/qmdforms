@@ -63,7 +63,7 @@
 	<tr>
 		<td class="info">
 		<strong>
-		Issuer:
+		Company:
 		</strong>
 		</td>
 		<td colspan="6">
@@ -81,6 +81,17 @@
 		{{ date('F m Y', strtotime($ccirform->date_issuance)) }}
 		</td>
 	</tr>
+
+	<tr>
+		<td class="info">
+		<strong>
+		Complainant's Name:
+		</strong>
+		</td>
+		<td colspan="6">
+			{{$ccirform->complaint_name}}
+		</td>
+	</tr
 
 	<tr>
 		<td class="info">
@@ -251,14 +262,27 @@
 		Prepared By:
 		</strong>
 		</td>
-		<td>	{{$ccirform->name}} </td>
- 
-		<td class="info">
-		<strong>
-		Position:
-		</strong>
+		<td colspan="3">	
+		{{$ccirform->name}} 
 		</td>
-		<td>	{{$ccirform->position}} </td>
+	</tr>
+	<tr>
+		<td class="info">
+			<strong>
+			Position:
+			</strong>
+			</td>
+			<td>
+			{{$ccirform->position}} 
+			</td>
+			<td class="info">
+			<strong>
+			Date:
+			</strong>
+			</td>
+			<td>
+				{{ date('F d, Y', strtotime($ccirform->created_at)) }}		
+			</td>
 	</tr>
 </table>
 

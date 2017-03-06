@@ -16,8 +16,10 @@ use Alert;
 use App\Ddrform;
 use App\Status;
 use App\Department;
+use App\Company;
 use App\Ddrlist;
 use App\Ddrapprover;
+use App\Ddrdistribution;
 use App\User;
 use App\Ddrmr;
 use DB;
@@ -52,12 +54,15 @@ class DdrformsController extends Controller
     public function create()
     {     
         $departments = Department::pluck('name','id');
-           $users = User::whereHas('roles', function($q){
+        $companies = Company::pluck('name','id');
+        $ddrdistributions = Ddrdistribution::get();
+        
+        $users = User::whereHas('roles', function($q){
             $q->where('id',2); // to approver
         })->pluck('name','id');
 
 
-        return view('ddrforms.create',compact('departments','users'));
+        return view('ddrforms.create',compact('departments','users','companies','ddrdistributions'));
     }    
 
 
@@ -84,7 +89,13 @@ class DdrformsController extends Controller
         $this->validate($request, [
             'date_needed' => 'required|date',
             'department_list' => 'required',
-            'user_list' => 'required'
+            'company_list' => 'required',
+            'user_list' => 'required',
+            'date_needed' => 'required|date',
+            'ddrdistribution_list' => 'required'
+        ], [
+            'ddrdistribution_list.required' => 'Reason of Distribution is required'
+
         ]); 
 
 
@@ -95,6 +106,8 @@ class DdrformsController extends Controller
         $ddrform->save();
 
         $ddrform->departments()->attach($request->input('department_list'));
+        $ddrform->companies()->attach($request->input('company_list'));
+        $ddrform->ddrdistributions()->attach($request->input('ddrdistribution_list'));
         $ddrform->users()->attach($request->input('user_list'));
 
         /**
@@ -107,8 +120,8 @@ class DdrformsController extends Controller
                 'copy_no'=> $request->copy_no[$key], 
                 'rev_no'=> $request->rev_no[$key], 
                 'copy_holder'=> $request->copy_holder[$key], 
-                'recieved_by'=> $request->recieved_by[$key], 
-                'date_list'=> $request->date_list[$key], 
+                // 'recieved_by'=> $request->recieved_by[$key], 
+                // 'date_list'=> $request->date_list[$key], 
             ];
         }
 

@@ -1,3 +1,22 @@
+<div class="form-group{{ $errors->has('company_list') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('company_list', 'Company:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::select('company_list', $companies, null, ['class' => 'form-control', 'placeholder' => '--- Select Company ---'] ) !!}
+@if ($errors->has('company_list'))
+<span class="help-block">
+<strong>{{ $errors->first('company_list') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+
+
 <div class="form-group{{ $errors->has('department_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
@@ -20,37 +39,39 @@
 <div class="col-md-4 ">
 <label class="control-label">
 Reason of distribution
+@if ($errors->has('ddrdistribution_list'))
+<em>
+<strong style="color: red">{{ $errors->first('ddrdistribution_list') }}</strong>
+</em>
+@endif
 </label>
 </div>
 
 
 <div class="col-md-8">
 
+
+@foreach($ddrdistributions as $reason_distribution)
+@if($reason_distribution->name != 'Others')
 <div class="row">
 <div class="col-md-12">
 <div style="padding-top: 7px;">
-{{ Form::checkbox('relevant_external', 1) }} Relevant external doc. (controlled copy)
+    {{ Form::checkbox('ddrdistribution_list', $reason_distribution->id, false) }}
+    {{ $reason_distribution->name }}
 </div>
 </div>
 </div>
-
-
+@else
 <div class="row">
 <div class="col-md-12">
 <div style="padding-top: 7px;">
-{{ Form::checkbox('customer_request', 1) }} Customer request (uncontrolled copy)
+For others, please specify: 
+{!! Form::text('others', null, [ 'placeholder' => 'Others' ,'class' => 'form-control'] ) !!}
 </div>
 </div>
 </div>
-
-<div class="row">
-<div class="col-md-12">
-<div style="padding-top: 7px;">
-For others, please specify:  
-{!! Form::text('others', null, ['class' => 'form-control'] ) !!}
-</div>
-</div>
-</div>
+@endif
+@endforeach
 
 </div>
 </div>
@@ -64,7 +85,7 @@ For others, please specify:
 </div>
 
 <div class="col-md-12">
-{!! Form::input('date', 'date_needed', $ddrform->date_needed->format('Y-m-d'), ['class' => 'form-control'] ) !!}
+{!! Form::input('date', 'date_needed', null, ['class' => 'form-control'] ) !!}
 @if ($errors->has('date_needed'))
 <span class="help-block">
 <strong>{{ $errors->first('date_needed') }}</strong>
@@ -97,12 +118,12 @@ For others, please specify:
 						<th class="text-center">
 							Copy holder
 						</th>
-						<th class="text-center">
+<!-- 						<th class="text-center">
 							Received by
 						</th>
 						<th class="text-center">
 							Date
-						</th>
+						</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -120,7 +141,7 @@ For others, please specify:
 						</td>
 
 						<td class="{{ $errors->has('rev_no[]') ? ' has-error' : '' }}">
-						<input type="text" name='rev_no[]' placeholder='Control code' class="form-control" id='rev_no_0' />
+						<input type="text" name='rev_no[]' placeholder='Rev No.' class="form-control" id='rev_no_0' />
 						</td>
 
 						<td class="{{ $errors->has('copy_no[]') ? ' has-error' : '' }}">
@@ -131,13 +152,13 @@ For others, please specify:
 						<input type="text" name='copy_holder[]' placeholder='Copy holder' class="form-control" id='copy_holder_0'/>
 						</td>
 
-						<td class="{{ $errors->has('recieved_by[]') ? ' has-error' : '' }}">
+<!-- 						<td class="{{ $errors->has('recieved_by[]') ? ' has-error' : '' }}">
 						<input type="text" name='recieved_by[]' placeholder='Recieved by' class="form-control" id='recieved_by_0' />
 						</td>
 
 						<td class="{{ $errors->has('date_list[]') ? ' has-error' : '' }}">
 						<input type="date" name='date_list[]' class="form-control" id='date_list_0' />
-						</td>
+						</td> -->
 
 					</tr>
                     <tr id='addr1'></tr>
@@ -253,7 +274,7 @@ For others, please specify:
 	$(document).ready(function(){
   var i=1;
         $("#add_row").click(function(){
-        $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='document_title[]' type='text' placeholder='Document title' class='form-control input-md' id='document_title_"+i+"'  /></td><td><input name='control_code[]' type='text' placeholder='Control code' class='form-control input-md' id='control_code_"+i+"'  /></td><td><input name='rev_no[]' type='text' placeholder='Rev No.' class='form-control input-md' id='rev_no_"+i+"'  /></td><td><input name='copy_no[]' type='text' placeholder='Copy no' class='form-control input-md' id='copy_no_"+i+"'  /></td><td><input name='copy_holder[]' type='text' placeholder='Copy holder' class='form-control input-md' id='copy_holder_"+i+"'  /></td><td><input name='recieved_by[]' type='text' placeholder='Recieved by' class='form-control input-md' id='recieved_by_"+i+"'  /></td><td><input name='date_list[]' type='date' class='form-control input-md' id='date_list_"+i+"'  /></td>");
+        $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='document_title[]' type='text' placeholder='Document title' class='form-control input-md' id='document_title_"+i+"'  /></td><td><input name='control_code[]' type='text' placeholder='Rev No.' class='form-control input-md' id='control_code_"+i+"'  /></td><td><input name='rev_no[]' type='text' placeholder='Rev No.' class='form-control input-md' id='rev_no_"+i+"'  /></td><td><input name='copy_no[]' type='text' placeholder='Copy no' class='form-control input-md' id='copy_no_"+i+"'  /></td><td><input name='copy_holder[]' type='text' placeholder='Copy holder' class='form-control input-md' id='copy_holder_"+i+"'  /></td>");
         $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       i++; 
   });

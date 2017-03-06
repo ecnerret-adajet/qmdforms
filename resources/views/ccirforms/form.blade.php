@@ -39,6 +39,23 @@
 <h4><strong>A. Initial Assesment</strong></h4>
 <hr/>
 
+<div class="form-group{{ $errors->has('complaint_name') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('complaint_name', 'Complainant Name:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::text('complaint_name', null, ['class' => 'form-control'] ) !!}
+@if ($errors->has('complaint_name'))
+<span class="help-block">
+<strong>{{ $errors->first('complaint_name') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
 
 <div class="form-group{{ $errors->has('brand_name') ? ' has-error' : '' }}">
 <div class="col-md-12 ">

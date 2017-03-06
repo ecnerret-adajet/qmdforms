@@ -102,10 +102,8 @@
                             {{$ddrlist->copy_holder}}
                         </td>
                         <td>
-                            {{$ddrlist->recieved_by}}
                         </td>
                         <td>
-                            {{$ddrlist->date_list}}
                         </td>                        
                         </tr>
                         @endforeach

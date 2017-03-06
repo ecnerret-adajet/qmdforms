@@ -22,6 +22,7 @@ class CreateCcirformsTable extends Migration
             $table->string('company');
             $table->timestamp('date_issuance');
             // $table->string('customer_reference');
+            $table->string('complaint_name'); //new additional field
             $table->string('brand_name');
             $table->string('affected_quantities');
             $table->string('product_no');

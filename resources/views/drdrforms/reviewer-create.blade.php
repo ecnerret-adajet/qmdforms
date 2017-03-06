@@ -54,7 +54,7 @@
 
                         <tr>
                             <td>    
-                               Requester
+                               Requested By:
                             </td>
                             <td>
                                 {{$drdrform->name}}
@@ -74,7 +74,7 @@
                         <tr>
                             <td colspan="2">
                                   <a href="{{  str_replace('public/','storage/app/',asset($drdrform->attach_file)) }}" class="btn btn-block btn-primary" download> 
-                                        Download Attachement 
+                                        Download Attachment 
                                   </a>
 
                             </td>

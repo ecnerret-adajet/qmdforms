@@ -152,9 +152,9 @@ class NcnformsController extends Controller
          */
         foreach($ncnapprover->statuses as $status){
             if($status->id == 1){
-            Notification::send($ncnform->users, new NcnapproverToNotifiedSuccessNotification($ncnapprover));
+            Notification::send($ncnapprover->users, new NcnapproverToNotifiedSuccessNotification($ncnapprover));
             }else{
-            Notification::send($ncnform->user, new NcnapproverToNotifiedFailNotification($ncnapprover));               
+            Notification::send($ncnapprover->user, new NcnapproverToNotifiedFailNotification($ncnapprover));               
             }
         }
          alert()->success('Success Message', 'Submitted Succesfully');

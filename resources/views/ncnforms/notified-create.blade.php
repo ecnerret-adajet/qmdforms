@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Non-conformance notification : Approver</div>
+                <div class="panel-heading">Non-conformance notification : Notified Person</div>
                 <div class="panel-body">
 
 
@@ -53,6 +53,17 @@
 
                         <tr>
                             <td>    
+                           Type of Non-conformity:
+                            </td>
+                            <td>
+                                @foreach($ncnform->nonconformities as $nonconformity)
+                                    {{$nonconformity->name}}
+                                @endforeach
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td>    
                                Notification Number:
                             </td>
                             <td>
@@ -69,30 +80,12 @@
                             </td>
                         </tr> 
 
-                        <tr>
+                            <tr>
                             <td>    
-                               Recurrence No:
+                               Date of issuance:
                             </td>
                             <td>
-                                {{$ncnform->date_issuance}}
-                            </td>
-                        </tr> 
-
-                        <tr>
-                            <td>    
-                               Issued By:
-                            </td>
-                            <td>
-                                {{$ncnform->issued_by}}
-                            </td>
-                        </tr> 
-
-                       <tr>
-                            <td>    
-                               Issued position:
-                            </td>
-                            <td>
-                                {{$ncnform->issued_position}}
+                                {{ date('F d, Y', strtotime($ncnform->date_issuance))    }}
                             </td>
                         </tr> 
 
@@ -108,7 +101,7 @@
                         <tr>
                             <td colspan="2">
                             <a href="{{  str_replace('public/','storage/app/',asset($ncnform->attach_file)) }}" class="btn btn-block btn-primary" download> 
-                                Download Attachement 
+                                Download Attachment 
                              </a>
 
                             </td>

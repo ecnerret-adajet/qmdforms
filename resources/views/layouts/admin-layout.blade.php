@@ -81,7 +81,6 @@
                     Users
                     </a>
                 </li>
-
             @else
                 <li>
                     <a href="{{ url('submitted') }}">

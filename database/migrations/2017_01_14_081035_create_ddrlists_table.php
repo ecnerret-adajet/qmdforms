@@ -22,8 +22,8 @@ class CreateDdrlistsTable extends Migration
             $table->string('rev_no');
             $table->string('copy_no');
             $table->string('copy_holder');
-            $table->string('recieved_by');
-            $table->timestamp('date_list');
+            // $table->string('recieved_by');
+            // $table->timestamp('date_list');
 
 
             $table->foreign('ddrform_id')->references('id')

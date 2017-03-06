@@ -22,11 +22,11 @@ class Ncnform extends Model
     	'issued_by',
     	'issued_position',
 
-        'customer_returns',
-        'process_related',
-        'contracted_services',
-        'objective_not_met',
-        'vendor',
+        // 'customer_returns',
+        // 'process_related',
+        // 'contracted_services',
+        // 'objective_not_met',
+        // 'vendor',
         'others',
         
     	'details_non_conformity',

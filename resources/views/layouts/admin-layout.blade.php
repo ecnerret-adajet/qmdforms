@@ -81,15 +81,24 @@
                     Users
                     </a>
                 </li>
-            @else
+              @else
+
                 <li>
                     <a href="{{ url('submitted') }}">
                     <i class="ion-ios-copy-outline"></i>
                     Submitted Forms
                     </a>
                 </li>
-
                @endif
+
+               @role(('Notified'))
+                <li>
+                    <a href="{{ url('/ncnforms/notified-form') }}">
+                    <i class="ion-ios-copy-outline"></i>
+                    Notified Forms
+                    </a>
+                </li>
+               @endrole
 
 
         

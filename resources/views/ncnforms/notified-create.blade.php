@@ -153,7 +153,24 @@
             @endif
             </div>
             </div>
-                	   
+
+
+            <div class="form-group{{ $errors->has('execution_date') ? ' has-error' : '' }}">
+            <div class="col-md-12 ">
+            <label class="control-label">
+            {!! Form::label('execution_date', 'Execution Date:') !!}
+            </label>
+            </div>
+
+            <div class="col-md-12">
+            {!! Form::input('date',  'execution_date', null, ['class' => 'form-control'] ) !!}
+            @if ($errors->has('execution_date'))
+            <span class="help-block">
+            <strong>{{ $errors->first('execution_date') }}</strong>
+            </span>
+            @endif
+            </div>
+            </div>                	   
 
 
 

@@ -81,7 +81,7 @@
 	<em>
 	<strong>
 		@foreach($drdrform->types as $type)
-		{{$type->name}}:
+		{{$type->name}}
 		@endforeach
 	</strong>
 	</em>
@@ -228,7 +228,7 @@
 	<tr>
 		<td class="info">
 		<strong>
-		Considered Docments in reviewing:
+		Considered Documents in reviewing:
 		</strong>
 		</td>
 	</tr>
@@ -289,7 +289,7 @@
 			{{$drdrmr->document_title}}
 			@endforeach
 			<br/>
-			<strong style="margin-top: 10px;">ocument Code:</strong>
+			<strong style="margin-top: 10px;">Document Code:</strong>
 			@foreach($drdrform->drdrmrs as $drdrmr)
 			{{$drdrmr->document_code}}
 			@endforeach
@@ -350,7 +350,7 @@ Yellow stamp with "Obsolete" and use as reference
 
 <table>
 	
-<table class="table">
+<!-- <table class="table">
 
 
 	<tr>
@@ -381,7 +381,7 @@ Yellow stamp with "Obsolete" and use as reference
 
 
 </table>
-
+ -->
 
 
 

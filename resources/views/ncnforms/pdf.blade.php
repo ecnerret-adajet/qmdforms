@@ -233,7 +233,7 @@
 
 			<td colspan="3">
 				@foreach($ncnform->ncnnotifieds as $notified)
-					{{$notified->action_taken}}
+					{{$notified->name}}
 				@endforeach
 			</td>
 		</tr>

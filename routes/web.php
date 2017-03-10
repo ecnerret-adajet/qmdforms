@@ -53,13 +53,16 @@ Route::get('/ddrforms/pdf/{ddrform}', 'DdrformsController@pdf');
 /**
  * Ncn form setup route
  */
+Route::get('/ncnforms/notified','NcnformsController@forNotified');
 Route::resource('/ncnforms','NcnformsController');
+
 Route::get('/ncnforms/approver/create/{id}','NcnformsController@ncnapproverCreate');
 Route::post('/ncnforms/approver/{id}','NcnformsController@ncnapprover');
 Route::get('/ncnforms/notified/create/{id}','NcnformsController@ncnnotifiedCreate');
 Route::post('/ncnforms/notified/{id}','NcnformsController@ncnnotified');
 Route::post('/ncnforms/archive/{id}', 'NcnformsController@archive');
 Route::get('/ncnforms/pdf/{ncnform}', 'NcnformsController@pdf');
+
 
 
 /**

@@ -19,6 +19,7 @@ use App\Department;
 use App\Nonconformity;
 use App\Status;
 use App\Ncnapprover;
+use App\Ncnnotified;
 use App\User;
 use PDF;
 
@@ -40,6 +41,18 @@ class NcnformsController extends Controller
             'ncnarchive',
             'ncnforms'));
     }
+
+    /**
+     * Display a list of documents
+     * for Notified Roles users
+     */
+    public function forNotified(){
+        $ncnnotifieds = Ncnnotified::whereHas('ncnform', function($q){
+                $q->where('id',Auth::user()->id);
+        })->get();
+        return view('ncnforms.notified_forms', compact('ncnnotifieds'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -167,13 +180,14 @@ class NcnformsController extends Controller
             $this->validate($request, [
                 'action_taken' => 'required',
                 'responsible' => 'required',
+                'execution_date' => 'required',
             ]);
 
 
             $ncnform = Ncnform::findOrFail($id);
 
             $ncnnotified = $ncnform->ncnnotifieds()->create($request->all());
-            $ncnnotified->execution_date = Carbon::now();
+            // $ncnnotified->execution_date = Carbon::now();
             $ncnnotified->name = Auth::user()->name;
             $ncnnotified->position = Auth::user()->position;
             $ncnnotified->save();

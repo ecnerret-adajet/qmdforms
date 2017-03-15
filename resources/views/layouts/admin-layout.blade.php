@@ -93,9 +93,19 @@
 
                @role(('Notified'))
                 <li>
-                    <a href="{{ url('/ncnforms/notified-form') }}">
+                    <a href="{{ url('/ncnforms/notified') }}">
                     <i class="ion-ios-copy-outline"></i>
                     Notified Forms
+                    </a>
+                </li>
+               @endrole
+
+
+               @role(('Moderator'))
+                <li>
+                    <a href="{{url('/dashboard')}}">
+                    <i class="ion-ios-speedometer-outline"></i>
+                    Dashboard
                     </a>
                 </li>
                @endrole

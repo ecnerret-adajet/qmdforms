@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'tqmmnl-ilogroup@lafilgroup.com',
-        'name' => 'CQA',
+        'name' => 'CQA-QM',
     ],
 
     /*

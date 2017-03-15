@@ -106,7 +106,7 @@
 	</tr>
 
 	<tr>
-		<td rowspan="3">Naturn of Compalaint</td>
+		<td rowspan="3">Nature of Compalaint</td>
 		<td>Wet/Lumpy</td>
 		<td>
 			@if($ccirform->wet_lumpy == 1)

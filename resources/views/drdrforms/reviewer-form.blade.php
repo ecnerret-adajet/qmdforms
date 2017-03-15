@@ -1,3 +1,23 @@
+<div class="form-group{{ $errors->has('consider_document') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('consider_document', 'Consider Documents in reviewing:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::textarea('consider_document', null, ['class' => 'form-control', 'rows' => '3'] ) !!}
+@if ($errors->has('consider_document'))
+<span class="help-block">
+<strong>{{ $errors->first('consider_document') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+
+
+
 <div class="form-group{{ $errors->has('status_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
@@ -16,22 +36,7 @@
 </div>
 
 
-<div class="form-group{{ $errors->has('consider_document') ? ' has-error' : '' }}">
-<div class="col-md-12 ">
-<label class="control-label">
-{!! Form::label('consider_document', 'Consider Documents in reviewing:') !!}
-</label>
-</div>
 
-<div class="col-md-12">
-{!! Form::textarea('consider_document', null, ['class' => 'form-control', 'rows' => '3'] ) !!}
-@if ($errors->has('consider_document'))
-<span class="help-block">
-<strong>{{ $errors->first('consider_document') }}</strong>
-</span>
-@endif
-</div>
-</div>
 
 
 <div class="form-group{{ $errors->has('remarks') ? ' has-error' : '' }}">

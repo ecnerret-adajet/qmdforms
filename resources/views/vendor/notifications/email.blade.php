@@ -140,7 +140,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Regards,<br>TQM
+                                            Regards,<br>COA-QM 
                                         </p>
 
                                         <!-- Sub Copy -->

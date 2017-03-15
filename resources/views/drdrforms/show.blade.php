@@ -8,9 +8,12 @@
 @endforeach
 
 
-  <a href="{{url('drdrforms/pdf/'.$drdrform->id)}}" target="_blank" class="btn btn-primary">  
-       Print as PDF
-  </a> 
+@forelse($drdrform->drdrapprovers as $approver)
+<a href="{{url('drdrforms/pdf/'.$drdrform->id)}}" target="_blank" class="btn btn-primary">Print as PDF</a>
+@empty
+<a class="btn btn-primary" href="#" disabled>No Copyholder yet</a>
+@endforelse
+
 
       <hr/>
 

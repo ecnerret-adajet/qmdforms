@@ -37,6 +37,7 @@ class Ccirform extends Model
         'others',
     	'attach_file',
         'active',
+        'mark_verified'
     ];
 
     protected $dates = [
@@ -95,6 +96,19 @@ class Ccirform extends Model
     public function getReturnDateAttribute($date)
     {
         return Carbon::parse($date);
+    }
+
+    /**
+     * CCIR Form can select a company
+     */
+    public function companies()
+    {
+       return $this->belongsToMany('App\Company')->withTimestamps();
+    }
+
+    public function getCompanyListAttribute()
+    {
+       return $this->companies->pluck('id')->all();
     }
 
 }

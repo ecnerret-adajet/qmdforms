@@ -186,9 +186,11 @@
 		<tr>
 			<td>Responsible:</td>
 			<td>
-				@foreach($ncnform->ncnnotifieds as $notified)
-					{{$notified->responsible}}
-				@endforeach
+		@foreach($ncnform->ncnapprovers->take(1) as $approver)
+			@foreach($approver->users as $user)
+				{{ $user->position }}
+			@endforeach
+		@endforeach
 			</td>
 			<td>Execution Date:</td>
 			<td>

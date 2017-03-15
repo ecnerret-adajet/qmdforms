@@ -63,9 +63,8 @@ class UsersController extends Controller
     	$this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required',
-            'avatar' => 'required'
+            'password' => 'required|confirmed',
+            'roles_list' => 'required',
         ]);
 
         $user = new User;
@@ -73,15 +72,16 @@ class UsersController extends Controller
         $user->email = $request->input('email');
         $user->position = $request->input('position');
         $user->password = Hash::make($request->input('password'));
+        if($request->hasFile('avatar')){
         $user->avatar = $request->file('avatar')->store('users');
+        }
         $user->save();
 
         $user->companies()->attach($request->input('company_id'));
         $user->departments()->attach($request->input('department_id'));
+         $user->roles()->sync( (array) $request->input('roles_list') );
 
-        foreach ($request->input('roles') as $key => $value) {
-            $user->attachRole($value);
-        }
+          alert()->success('Success Message', 'Create account successful');
 
         return redirect('users');
     }
@@ -127,6 +127,7 @@ class UsersController extends Controller
         $this->validate($request, [
             'company_list' => 'required',
             'department_list' => 'required',
+            'roles_list' => 'required',
         ]);
 
         $input = $request->all();

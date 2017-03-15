@@ -16,18 +16,18 @@
 </div>
 
 
-<div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('company_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('company', 'Company:') !!}
+{!! Form::label('company_list', 'Company:') !!}
 </label>
 </div>
 
 <div class="col-md-12">
-{!! Form::text('company', null, ['class' => 'form-control'] ) !!}
-@if ($errors->has('company'))
+{!! Form::select('company_list', $companies, null, ['class' => 'form-control', 'placeholder' => '--- Select Company ---'] ) !!}
+@if ($errors->has('company_list'))
 <span class="help-block">
-<strong>{{ $errors->first('company') }}</strong>
+<strong>{{ $errors->first('company_list') }}</strong>
 </span>
 @endif
 </div>

@@ -158,7 +158,7 @@
 	<tr>
 		<td rowspan="3" class="info">
 		<strong>
-		Naturn of Compalaint:
+		Nature of Compalaint:
 		</strong>
 		</td>
 		<td class="info">

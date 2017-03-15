@@ -35,6 +35,9 @@
 </div>
 
 
+
+
+
 <div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
 <div class="col-md-4 ">
 <label class="control-label">
@@ -51,6 +54,8 @@ Reason of distribution
 <div class="col-md-8">
 
 
+
+
 @foreach($ddrdistributions as $reason_distribution)
 @if($reason_distribution->name != 'Others')
 <div class="row">
@@ -65,7 +70,9 @@ Reason of distribution
 <div class="row">
 <div class="col-md-12">
 <div style="padding-top: 7px;">
+{{ Form::checkbox('ddrdistribution_list', $reason_distribution->id, false) }}
 For others, please specify: 
+
 {!! Form::text('others', null, [ 'placeholder' => 'Others' ,'class' => 'form-control'] ) !!}
 </div>
 </div>
@@ -73,8 +80,19 @@ For others, please specify:
 @endif
 @endforeach
 
+
+
+
+
 </div>
 </div>
+
+
+
+
+
+
+
 
 
 <div class="form-group{{ $errors->has('date_needed') ? ' has-error' : '' }}">

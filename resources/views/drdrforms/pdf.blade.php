@@ -344,17 +344,17 @@
 </p>
 </em> -->
 
-<p>
+<!-- <p>
 Yellow stamp with "Obsolete" and use as reference
-</p>
+</p> -->
 
 <table>
 	
-<!-- <table class="table">
+<table class="table" border="0">
 
 
 	<tr>
-		<td width="80px">Verified by::</td>
+		<td width="80px">Verified by:</td>
 		<td colspan="3">
 		@foreach($drdrform->drdrmrs as $drdrmr)
 			{{$drdrmr->verified_by}}
@@ -381,7 +381,7 @@ Yellow stamp with "Obsolete" and use as reference
 
 
 </table>
- -->
+
 
 
 

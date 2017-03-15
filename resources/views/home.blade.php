@@ -27,7 +27,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                     is the process of control in proposal, revision or cancellation of documents.
+                                   Is a process of requesting for propose, revise and cancel of internal documents.
                                 </span>
                             </div>
 
@@ -41,7 +41,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                   pertains to the process of requesting up to distribution of controlled and/or uncontrolled copy of documents to both internal.
+                                   Is a process of requesting of control and uncontrol copy of internal or external document
                                 </span>
                             </div>
 
@@ -56,7 +56,7 @@
                                 </a>
                                 </p>
                                 <span>
-                                    is the process of verifying a non-conformance (either valid or invalid) up to implementation of applicable correction and corrective action.
+                                    Is the process of providing initial investigation for customer complaint
                                 </span>
                             </div>
 

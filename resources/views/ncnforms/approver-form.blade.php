@@ -6,7 +6,7 @@
 </div>
 
 <div class="col-md-12">
-{!! Form::select('user_list', $users, null, ['class' => 'form-control', 'placeholder' => '--- Select Type of request ---'] ) !!}
+{!! Form::select('user_list', $users, null, ['class' => 'form-control', 'placeholder' => '--- Select Notified Person ---'] ) !!}
 @if ($errors->has('user_list'))
 <span class="help-block">
 <strong>{{ $errors->first('user_list') }}</strong>
@@ -19,12 +19,12 @@
 <div class="form-group{{ $errors->has('status_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('status_list', 'Status:') !!}
+{!! Form::label('status_list', 'Approver Status:') !!}
 </label>
 </div>
 
 <div class="col-md-12">
-{!! Form::select('status_list', $statuses, null, ['class' => 'form-control', 'placeholder' => '--- Select Type of request ---'] ) !!}
+{!! Form::select('status_list', $statuses, null, ['class' => 'form-control', 'placeholder' => '--- Select Status ---'] ) !!}
 @if ($errors->has('status_list'))
 <span class="help-block">
 <strong>{{ $errors->first('status_list') }}</strong>

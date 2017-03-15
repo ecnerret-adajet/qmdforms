@@ -44,9 +44,9 @@ class DdrformApprovedFailedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Document Distribution Request: Deny!')
+                    ->subject('Document Distribution Request: Disapproved!')
                     ->greeting('Good day!')
-                    ->line($this->ddrapprover->name.' has denied your document request form.')
+                    ->line('Your request was disapproved by '.$this->ddrapprover->name)
                     ->line('Remarks: '.$this->ddrapprover->remarks)
                     ->line('Thank you, have a nice day!');
     }

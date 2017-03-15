@@ -44,9 +44,9 @@ class DrdrreviewerToApproverFailedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Document Review & Document Request: Deny!')
+                    ->subject('Document Review & Document Request: Disapproved!')
                     ->greeting('Good day!')
-                    ->line($this->drdrreviewer->name.' has denied your document request.')
+                    ->line($this->drdrreviewer->name.' has disapproved your request.')
                     ->line('Remarks: '.$this->drdrreviewer->remarks)
                     ->line('Thank you, have a nice day!');
     }

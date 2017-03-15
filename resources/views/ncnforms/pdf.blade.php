@@ -232,9 +232,11 @@
 			</td>
 
 			<td colspan="3">
-				@foreach($ncnform->ncnnotifieds as $notified)
-					{{$notified->name}}
-				@endforeach
+		@foreach($ncnform->ncnapprovers->take(1) as $approver)
+			@foreach($approver->users as $user)
+				{{ $user->name }}
+			@endforeach
+		@endforeach
 			</td>
 		</tr>
 
@@ -245,9 +247,11 @@
 			</strong>
 			</td>
 			<td>
-				@foreach($ncnform->ncnnotifieds as $notified)
-					{{$notified->position}}
-				@endforeach
+		@foreach($ncnform->ncnapprovers->take(1) as $approver)
+			@foreach($approver->users as $user)
+				{{ $user->position }}
+			@endforeach
+		@endforeach
 			</td>
 			<td class="info">
 			<strong>

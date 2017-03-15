@@ -80,20 +80,79 @@
 		</td>
 
 		<td colspan="2">
+		@foreach($ddrdistributions->slice(0,1) as $distribution)
 
-			@if($ddrform->relevant_external == 1)
+
+		@foreach($ddrform->ddrdistributions->slice(0,1)  as $x)
+
+		@if($x->id != 1)
+						<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+		Relevant external doc. (controll copy)
+
+		@else
+				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+				{{$x->name}}
+		@endif		
+	
+		@endforeach 
+
+		@endforeach 
+
+<!-- 			@if($ddrform->relevant_external == 1)
 				<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
 			@else
 				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
 			@endif
-
-			Relevant external doc. (controll copy)
-
-		
+			Relevant external doc. (controll copy) -->
 		</td>
 	</tr>
 
-	<tr>
+	@foreach($ddrdistributions->chunk(1)->slice(0,1) as $distribution)
+			<tr>
+			@foreach($distribution->slice(0,1) as $item)
+				<td colspan="3">
+				@foreach($ddrform->ddrdistributions->slice(0,1) as $y)
+						@if($x->id != 2)
+										<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+						Customer request (uncontroll copy)
+
+						@else
+								<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+								{{$x->name}}
+						@endif		
+				@endforeach
+				</td>
+			@endforeach
+			</tr>
+	@endforeach	
+
+
+		@foreach($ddrdistributions->chunk(1)->slice(0,1) as $distribution)
+			<tr>
+			@foreach($distribution->slice(0,1) as $item)
+				<td colspan="3">
+				@foreach($ddrform->ddrdistributions->slice(0,1) as $y)
+						@if($x->id != 3)
+						<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+						Others:
+
+						@else
+						<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+						Others: {{$ddrform->others}}
+						@endif		
+				@endforeach
+				</td>
+			@endforeach
+			</tr>
+	@endforeach	
+
+
+
+
+
+
+
+<!-- 	<tr>
 		<td colspan="3">
 			@if($ddrform->customer_request == 1)
 			<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
@@ -120,7 +179,12 @@
 		<td colspan="2">
 		{{$ddrform->others}} 	
 		</td>
-	</tr>
+	</tr> -->
+
+
+
+
+
 	<tr>
 		<td>
 		<strong>
@@ -132,6 +196,16 @@
 		</td>
 	</tr>
 </table>
+
+
+
+
+
+
+
+
+
+
 
 
 <table class="table table-bordered">
@@ -225,7 +299,7 @@
 		</td>
 		<td>
 		<strong>
-		Distbuted by:
+		Distributed by:
 		</strong>
 		</td>
 		<td>

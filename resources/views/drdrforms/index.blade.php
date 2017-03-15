@@ -57,7 +57,7 @@
                 </thead>
                 <tbody>
                 @foreach($drdrforms as $drdrform)
-                    <tr>
+                    <tr class="@foreach($drdrform->drdrmrs as $drdrmr){{ is_null($drdrmr->id) ? '' : 'danger'  }}@endforeach">
                         <td>
                         <a href="{{url('drdrforms/'.$drdrform->id)}}">
                         {{$drdrform->id}}

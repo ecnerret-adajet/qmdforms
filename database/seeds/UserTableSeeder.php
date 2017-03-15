@@ -35,6 +35,7 @@ class UserTableSeeder extends Seeder
             array("name" => "Reviewer", "display_name" => "Reviewer", "description" => "Reviewer"),
             array("name" => "Requester", "display_name" => "Requester", "description" => "Requester"),
             array("name" => "Notified", "display_name" => "Notified", "description" => "Notified Person"),
+            array("name" => "Moderator", "display_name" => "Moderator", "description" => "Moderator Person"),
            
         );
         foreach ($roles as $role) {

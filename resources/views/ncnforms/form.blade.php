@@ -60,7 +60,7 @@
 </div>
 
 <div class="col-md-12">
-{!! Form::select('department_list', $departments, null, ['class' => 'form-control', 'placeholder' => '--- Select Company ---'] ) !!}
+{!! Form::select('department_list', $departments, null, ['class' => 'form-control', 'placeholder' => '--- Select Department ---'] ) !!}
 @if ($errors->has('department_list'))
 <span class="help-block">
 <strong>{{ $errors->first('department_list') }}</strong>
@@ -222,7 +222,7 @@ Vendor:
 </div>
 
 <div class="col-md-12">
-{!! Form::select('user_list', $users, null, ['class' => 'form-control', 'placeholder' => '--- Select Company ---'] ) !!}
+{!! Form::select('user_list', $users, null, ['class' => 'form-control', 'placeholder' => '--- Select Approver ---'] ) !!}
 @if ($errors->has('user_list'))
 <span class="help-block">
 <strong>{{ $errors->first('user_list') }}</strong>

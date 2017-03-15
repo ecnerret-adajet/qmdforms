@@ -41,7 +41,8 @@ class CcirformsController extends Controller
      */
     public function create()
     {
-        return view('ccirforms.create');
+        $companies = Company::pluck('name','id');
+        return view('ccirforms.create', compact('companies'));
     }
 
     /**
@@ -52,7 +53,16 @@ class CcirformsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'company_list' => 'required',
+            'complaint_name' => 'required',
+            'brand_name' => 'required',
+            'affected_quantities' => 'required',
+            'product_no' => 'required',
+            'quantity_received' => 'required',
+            'attach_file' => 'required'
+        ]);
+
         $ccirform = Auth::user()->ccirforms()->create($request->all());
         $ccirform->date_issuance = Carbon::now();
         $ccirform->name = Auth::user()->name;
@@ -61,6 +71,9 @@ class CcirformsController extends Controller
         $ccirform->attach_file = $request->file('attach_file')->store('ccirforms');
         }
         $ccirform->save();
+
+        //associate with user selected comapny
+        $ccirform->companies()->attach($request->input('company_list'));
 
         //send email to approver
         Notification::send(User::first(), new CcirformToMrNotification($ccirform));
@@ -109,6 +122,20 @@ class CcirformsController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    /**
+     * Mark a form as verified
+     */
+    public function verified(Request $request, $id)
+    {
+        $ccirform = Ccirform::findOrFail($id);
+        $ccirform->mark_verified = 1;
+        $ccirform->save();
+
+        alert()->success('Success Message', 'Updated Succesfully');
+        return redirect('ccirforms');
     }
 
 

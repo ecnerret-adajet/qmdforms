@@ -57,7 +57,7 @@
                 </thead>
                 <tbody>
                 @foreach($ccirforms as $ccirform)
-                    <tr>
+                    <tr class="{{ $ccirform->mark_verified == 1 ? 'danger' : '' }}">
                         <td>
                          <a href="{{url('ccirforms/'.$ccirform->id)}}">
                         {{$ccirform->id}}
@@ -95,6 +95,11 @@
                             <li>
                             <a data-toggle="modal" data-target=".bs-archive{{$ccirform->id}}-modal-lg" href="">
                               Mark as archive
+                            </a>
+                            </li>
+                            <li>
+                            <a data-toggle="modal" data-target=".bs-verified{{$ccirform->id}}-modal-lg" href="">
+                              Mark as Verified
                             </a>
                             </li>
                             <li><a href="#">Cancel Document</a></li>
@@ -356,6 +361,45 @@
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->   
 
+
+
+
+
+ <!-- archive a company modal -->
+        <div class="modal fade bs-verified{{$ccirform->id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Marked as verified</h4>
+              </div>
+              <div class="modal-body">
+                      <div class="row">
+                <div class="col-md-12">
+                <div class="panel-body text-center"> 
+            
+                <h4>  
+                    Are you sure you want to verify this Document ?
+                </h4>
+    
+                        
+             <form method="POST" action="{{ url('/ccirforms/verified/'.$ccirform->id) }}">
+              {!! csrf_field() !!}
+                                                
+            </div>
+                </div>
+            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                  
+                   
+              </div>
+              </form> 
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal --> 
 
 @endforeach
 

@@ -71,6 +71,7 @@ Route::get('/ncnforms/pdf/{ncnform}', 'NcnformsController@pdf');
 Route::resource('/ccirforms', 'CcirformsController');
 Route::post('/ccirforms/archive/{id}', 'CcirformsController@archive');
 Route::get('/ccirforms/pdf/{ccirform}', 'CcirformsController@pdf');
+Route::post('/ccirforms/verified/{id}', 'CcirformsController@verified');
 
 /**
  * admin page route setup

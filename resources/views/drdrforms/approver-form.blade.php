@@ -6,7 +6,7 @@
 </div>
 
 <div class="col-md-12">
-{!! Form::select('status_list', $statuses, null, ['class' => 'form-control', 'placeholder' => '--- Select Type of request ---'] ) !!}
+{!! Form::select('status_list', $statuses, null, ['class' => 'form-control', 'placeholder' => '--- Select Status ---'] ) !!}
 @if ($errors->has('status_list'))
 <span class="help-block">
 <strong>{{ $errors->first('status_list') }}</strong>

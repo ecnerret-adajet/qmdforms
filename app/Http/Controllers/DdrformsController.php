@@ -219,7 +219,8 @@ class DdrformsController extends Controller
      * download to pdf
      */
     public function pdf(Ddrform $ddrform){
-        $pdf = PDF::loadView('ddrforms.pdf', compact('ddrform'));
+         $ddrdistributions = Ddrdistribution::get();
+        $pdf = PDF::loadView('ddrforms.pdf', compact('ddrform','ddrdistributions'));
         return $pdf->stream('ddrform.pdf');
     }
 

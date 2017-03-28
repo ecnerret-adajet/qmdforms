@@ -47,7 +47,8 @@ class NcnnotifiedEmail extends Notification
                     ->success()
                     ->subject('Non-conformance Notification: Approved')
                     ->greeting('Good day!')
-                    ->line('Your Document Request is succefully approved by'.$this->ncnnotified->name)
+                    ->line('Your requested NCN have immediate action.')
+                    // ->line('Immediate Action: '.$this->ncnnotified->name)
                     ->line('Thank you, have a nice day!');
     }
 

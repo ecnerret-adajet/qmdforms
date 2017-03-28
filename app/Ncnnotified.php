@@ -12,6 +12,7 @@ class Ncnnotified extends Model
     	'position', 
     	'action_taken',
     	'responsible',
+    	'attach_file',
     	'execution_date'
     ];
 

@@ -137,7 +137,26 @@
             </div>
             </div>
 
-            <div class="form-group{{ $errors->has('responsible') ? ' has-error' : '' }}">
+
+              <div class="form-group{{ $errors->has('attach_file') ? ' has-error' : '' }}">
+              <div class="col-md-12">
+              <label class="control-label">
+              Attach file
+              </label>
+              </div>
+               <div class="col-md-12">                                
+               <input name="attach_file" type="file" class="filestyle" data-size="sm" data-buttonName="btn-primary" data-buttonBefore="true">
+
+              @if ($errors->has('attach_file'))
+            <span class="help-block">
+            <strong>{{ $errors->first('attach_file') }}</strong>
+            </span>
+            @endif
+            </div>
+            </div>
+
+
+<!--             <div class="form-group{{ $errors->has('responsible') ? ' has-error' : '' }}">
             <div class="col-md-12 ">
             <label class="control-label">
             {!! Form::label('responsible', 'Responsible:') !!}
@@ -152,7 +171,7 @@
             </span>
             @endif
             </div>
-            </div>
+            </div> -->
 
 
             <div class="form-group{{ $errors->has('execution_date') ? ' has-error' : '' }}">

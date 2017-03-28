@@ -47,7 +47,7 @@ class DdrformApprovedSuccessNotification extends Notification
                     ->success()
                     ->subject('Document Distribution Request: Approved')
                     ->greeting('Good day!')
-                    ->line('Your form is successfully approved by'.$this->ddrapprover->name)
+                    ->line('Your request is successfully approved by'.$this->ddrapprover->name)
                     ->line('Thank you, have a nice day!');
     }
 

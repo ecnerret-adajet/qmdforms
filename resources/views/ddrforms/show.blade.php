@@ -1,9 +1,15 @@
 @extends('layouts.admin-layout')
 @section('content')
 
+
+
+@role((['Administrator','Notified','Moderator']))
    <a href="{{url('ddrforms/pdf/'.$ddrform->id)}}" target="_blank" class="btn btn-primary">  
        Print as PDF
   </a> 
+@endrole
+
+
 
 <hr/>
 
@@ -154,11 +160,16 @@
 	</tbody>
 </table>
 
+<table class="table table-bordered">
+	<tr>
+	<td class="info" colspan="6">
+	<em>
 <strong>
 	Total number of obsolete copy retrieved: 
 </strong>
-
-<table class="table table-bordered">
+	</em>
+	</td>
+	</tr>
 	<tr>
 		<td>
 		<strong>
@@ -178,18 +189,74 @@
 		</td>
 		<td>
 		<strong>
-		Distbuted by:
+		Distributed by:
 		</strong>
 		</td>
-		<td></td>
+		<td>
+		@foreach($ddrform->ddrmrs as $mr)
+				{{$mr->name}}
+			@endforeach
+		</td>
 	</tr>
+
 	<tr>
-		<td>Date</td>
-		<td></td>
-		<td>Date</td>
-		<td></td>
-		<td>Date</td>
-		<td></td>
+		<td>
+		<strong>
+		Position: 
+		<strong>
+		</td>
+		<td> {{$ddrform->position}} </td>
+		<td>
+		<strong>
+		Position:
+		</strong>
+		</td>
+		<td>
+			@foreach($ddrform->ddrapprovers as $approver)
+				{{$approver->position}}
+			@endforeach
+		</td>
+		<td>
+		<strong>
+		Position:
+		</strong>
+		</td>
+		<td>
+		@foreach($ddrform->ddrmrs as $mr)
+				{{$mr->position}}
+			@endforeach
+		</td>
+	</tr>
+
+
+
+	<tr>
+		<td>
+		<strong>
+		Date
+		</strong>
+		</td>
+		<td>{{ date('F d, Y', strtotime($ddrform->date_requested)) }}</td>
+		<td>
+		<strong>
+		Date
+		</strong>
+		</td>
+		<td>
+		@foreach($ddrform->ddrapprovers as $approver)
+			{{ date('F d, Y', strtotime($approver->date_approved)) }}
+			@endforeach
+		</td>
+		<td>
+		<strong>
+		Date
+		</strong>
+		</td>
+		<td>
+			@foreach($ddrform->ddrmrs as $mr)
+			{{ date('F d, Y', strtotime($mr->verified_date)) }}
+			@endforeach
+		</td>
 	</tr>
 </table>
 

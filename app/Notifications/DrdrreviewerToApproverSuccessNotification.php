@@ -47,7 +47,7 @@ class DrdrreviewerToApproverSuccessNotification extends Notification
                 ->success()
                     ->subject('Document Review and Ristribution Request: Approver')
                     ->greeting('Good day!')
-                    ->line($this->drdrreviewer->name.' has submitted a request under your approval')
+                    ->line($this->drdrreviewer->name.' has submited a request under your review and approval. Please confirm within 24 hours.')
                     ->action('Visit the portal now',  url('/drdrforms/approver/create/'.$this->drdrreviewer->drdrform->id))
                     ->line('Thank you, have a nice day!');
     }

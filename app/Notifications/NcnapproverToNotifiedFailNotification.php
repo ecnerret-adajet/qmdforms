@@ -44,9 +44,9 @@ class NcnapproverToNotifiedFailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-               ->subject('Non-conformance Notificatoin: Deny!')
+               ->subject('Non-conformance Notificatoin: Disapproved')
                     ->greeting('Good day!')
-                    ->line($this->ncnapprover->name.' has denied your document request form.')
+                    ->line($this->ncnapprover->name.' has disapproved your request.')
                     ->line('Remarks: '.$this->ncnapprover->remarks)
                     ->line('Thank you, have a nice day!');
     }

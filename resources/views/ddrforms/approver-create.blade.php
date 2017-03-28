@@ -79,8 +79,7 @@
                             <th>Rev #</th>
                             <th>Copy #</th>
                             <th>Copy holder</th>
-                            <th>Received by</th>
-                            <th>date</th>
+            
                         </tr>
                     </thead>
                     <tbody>
@@ -101,10 +100,7 @@
                         <td>
                             {{$ddrlist->copy_holder}}
                         </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>                        
+                               
                         </tr>
                         @endforeach
                     </tbody>

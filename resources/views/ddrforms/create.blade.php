@@ -8,6 +8,13 @@
                 <div class="panel-heading">Document Distribution Request</div>
                 <div class="panel-body">
 
+@if (count($errors) > 0)
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oh snap!</strong> Please check for empty fields and submit again.
+</div>
+@endif
+
        {!! Form::model($ddrform = new \App\Ddrform, ['class' => 'form-horizontal', 'url' => 'ddrforms', 'files' => 'true', 'enctype' => 'multipart\form-data']) !!}
 				{!! csrf_field() !!}
 

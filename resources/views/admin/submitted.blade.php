@@ -223,6 +223,9 @@
                     <th>
                     Approver Status
                     </th>
+                    <th>
+                    Notified Status
+                    </th>
 
                 </tr>
                 </thead>
@@ -261,6 +264,20 @@
                         </button>
                         @endforelse
 
+                        </td>
+                        <td>
+                        @forelse($ncnform->ncnnotifieds->take(1) as $notified)
+                                @if(!empty($notified))
+                              <button class="btn btn-primary btn-block disabled">  Done </button>       
+                                @else
+                              <button class="btn btn-danger  btn-block disabled"> Disapproved </button> 
+                              @endif   
+
+                        @empty
+                           <button class="btn btn-block btn-default">
+                            Pending
+                        </button>
+                        @endforelse
                         </td>
                     </tr>
                 @endforeach

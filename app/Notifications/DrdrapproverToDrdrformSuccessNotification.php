@@ -47,7 +47,7 @@ class DrdrapproverToDrdrformSuccessNotification extends Notification
                     ->success()
                     ->subject('Document review and distribution: Approved')
                     ->greeting('Good day!')
-                    ->line('Your form is succefully approved by'.$this->drdrapprover->name)
+                    ->line('Your request is successfully approved by '.$this->drdrapprover->name. '. This will be posted in the portal within 2 working days. Please cascade revision(s) made to all concerned personnel.')
                     ->line('Thank you, have a nice day!');
     }
 

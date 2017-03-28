@@ -47,7 +47,7 @@ class NcnapproverToNotifiedSuccessNotification extends Notification
                     ->success()
                     ->subject('Non-conformance Notification')
                     ->greeting('Good day!')
-                    ->line($this->ncnapprover->name.' has approved a request. However, The requested file needs your input to complete the process')
+                    ->line($this->ncnapprover->name.' has submitted a Non-conformance notification. Please provide necessary immediate action.')
                      ->action('Visit the portal now',  url('/ncnforms/notified/create/'.$this->ncnapprover->ncnform->id))
                     ->line('Thank you, have a nice day!');
     }

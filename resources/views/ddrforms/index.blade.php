@@ -61,7 +61,7 @@
                 </thead>
                 <tbody>
                 @foreach($ddrforms as $ddrform)
-                    <tr>
+                    <tr class="{{  $ddrform->ddrmrs->first() == '' ? '' : 'danger' }}">
                         <td>
                          <a href="{{url('ddrforms/'.$ddrform->id)}}">
                         {{$ddrform->id}}
@@ -80,7 +80,7 @@
                         {{$ddrform->date_requested}}
                         </td>
                         <td>
-                        @forelse($ddrform->ddrapprovers as $ddrapprover)
+                        @forelse($ddrform->ddrapprovers->take(1) as $ddrapprover)
                             @foreach($ddrapprover->statuses as $status)
                                 @if($status->id == 1)
                               <button class="btn btn-primary btn-block disabled"> Approved </button>       
@@ -106,7 +106,7 @@
                           <ul class="dropdown-menu">
                             <li>
                             <a data-toggle="modal" data-target=".bs-ddrmr{{$ddrform->id}}-modal-lg" href="">
-                               Mark as approved
+                               Mark as Distributed
                             </a>
                             </li>
                             <li>

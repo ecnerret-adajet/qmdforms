@@ -59,6 +59,8 @@ class CcirformsController extends Controller
             'brand_name' => 'required',
             'affected_quantities' => 'required',
             'product_no' => 'required',
+            'date_delivery' => 'required|date',
+            'return_date' => 'required|date',
             'quantity_received' => 'required',
             'attach_file' => 'required'
         ]);
@@ -76,7 +78,7 @@ class CcirformsController extends Controller
         $ccirform->companies()->attach($request->input('company_list'));
 
         //send email to approver
-        Notification::send(User::first(), new CcirformToMrNotification($ccirform));
+        Notification::send(User::where('email','tqmmnl-ilogroup@lafilgroup.com')->get(), new CcirformToMrNotification($ccirform));
 
         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('submitted');

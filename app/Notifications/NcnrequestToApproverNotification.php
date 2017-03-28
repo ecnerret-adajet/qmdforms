@@ -47,9 +47,9 @@ class NcnrequestToApproverNotification extends Notification
                     ->success()
                     ->subject('Non-conformance notification.')
                     ->greeting('Good day!')
-                    ->line($this->ncnform->name.' has submitted a Non-conformance notification under your approval')
+                    ->line($this->ncnform->name.' has submitted a request under your approval')
                     ->action('Visit the portal now',  url('/ncnforms/approver/create/'.$this->ncnform->id))
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you, have a nice day!');
     }
 
     /**

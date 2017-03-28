@@ -270,9 +270,9 @@
 
 
 
-<table class="table table-bordered">
+<table class="table" style="border: 0 ! important;">
 	<tr>
-	<td class="info" colspan="6">
+	<td class="info" colspan="6" style="border: 0 ! important;">
 	<em>
 <strong>
 	Total number of obsolete copy retrieved: 
@@ -281,28 +281,28 @@
 	</td>
 	</tr>
 	<tr>
-		<td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Requested by: 
 		<strong>
 		</td>
-		<td> {{$ddrform->name}} </td>
-		<td>
+		<td style="border: 0 ! important;"> {{$ddrform->name}} </td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Approved by:
 		</strong>
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 			@foreach($ddrform->ddrapprovers as $approver)
 				{{$approver->name}}
 			@endforeach
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Distributed by:
 		</strong>
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 		@foreach($ddrform->ddrmrs as $mr)
 				{{$mr->name}}
 			@endforeach
@@ -310,28 +310,28 @@
 	</tr>
 
 	<tr>
-		<td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Position: 
 		<strong>
 		</td>
-		<td> {{$ddrform->position}} </td>
-		<td>
+		<td style="border: 0 ! important;"> {{$ddrform->position}} </td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Position:
 		</strong>
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 			@foreach($ddrform->ddrapprovers as $approver)
 				{{$approver->position}}
 			@endforeach
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Position:
 		</strong>
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 		@foreach($ddrform->ddrmrs as $mr)
 				{{$mr->position}}
 			@endforeach
@@ -341,28 +341,28 @@
 
 
 	<tr>
-		<td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Date
 		</strong>
 		</td>
-		<td>{{ date('F d, Y', strtotime($ddrform->date_requested)) }}</td>
-		<td>
+		<td style="border: 0 ! important;">{{ date('F d, Y', strtotime($ddrform->date_requested)) }}</td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Date
 		</strong>
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 		@foreach($ddrform->ddrapprovers as $approver)
 			{{ date('F d, Y', strtotime($approver->date_approved)) }}
 			@endforeach
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 		<strong>
 		Date
 		</strong>
 		</td>
-		<td>
+		<td style="border: 0 ! important;">
 			@foreach($ddrform->ddrmrs as $mr)
 			{{ date('F d, Y', strtotime($mr->verified_date)) }}
 			@endforeach

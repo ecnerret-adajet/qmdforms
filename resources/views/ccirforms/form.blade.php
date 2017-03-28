@@ -120,7 +120,7 @@
 </div>
 
 <div class="col-md-12">
-{!! Form::input('date', 'date_delivery', $ccirform->date_delivery->format('Y-m-d'), ['class' => 'form-control'] ) !!}
+{!! Form::input('date', 'date_delivery',null, ['class' => 'form-control'] ) !!}
 @if ($errors->has('date_delivery'))
 <span class="help-block">
 <strong>{{ $errors->first('date_delivery') }}</strong>
@@ -154,7 +154,7 @@
 </div>
 
 <div class="col-md-12">
-{!! Form::input('date', 'return_date', $ccirform->return_date->format('Y-m-d'), ['class' => 'form-control'] ) !!}
+{!! Form::input('date', 'return_date', null, ['class' => 'form-control'] ) !!}
 @if ($errors->has('return_date'))
 <span class="help-block">
 <strong>{{ $errors->first('return_date') }}</strong>
@@ -198,12 +198,18 @@ Infested:
 Dirty Packaging: 
 {{ Form::checkbox('dirty_package', 1) }}
 </div>
+
+<div class="col-md-2">
+Others: 
+{!! Form::text('others', null, ['class' => 'form-control'] ) !!}
 </div>
 
-<div class="form-group{{ $errors->has('conduct_traceability') ? ' has-error' : '' }}">
+</div>
+
+<div class="form-group{{ $errors->has('other_details') ? ' has-error' : '' }}">
 <div class="col-md-12">
-For others, please specify:  
-{!! Form::text('others', null, ['class' => 'form-control'] ) !!}
+Other Details:  
+{!! Form::textarea('other_details', null, ['class' => 'form-control','rows' => '3'] ) !!}
 </div>
 </div>
 

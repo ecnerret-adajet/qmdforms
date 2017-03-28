@@ -47,7 +47,7 @@ class DrdrformsToReviewerNotification extends Notification
                     ->success()
                     ->subject('Document Review and Distribution Request: Reviewer')
                     ->greeting('Good day!')
-                    ->line('Your request is successfully approved by '.$this->drdrform->name)
+                    ->line($this->drdrform->name.' has submited a request under your review and approval. Please confirm within 3 working days. ')
                     ->action('Visit the portal now',  url('/drdrforms/reviewer/create/'.$this->drdrform->id))
                     ->line('Thank you, have a nice day!');
     }

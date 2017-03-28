@@ -35,6 +35,9 @@ class Ccirform extends Model
         'infested',
         'dirty_package',
         'others',
+        'other_details',
+
+
     	'attach_file',
         'active',
         'mark_verified'

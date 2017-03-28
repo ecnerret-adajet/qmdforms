@@ -234,7 +234,7 @@
 			@if(!empty($ccirform->others))
 			<img src="{{asset('image/checked.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
 			@else
-				<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
+			<img src="{{asset('image/uncheck.png')}}" style="width: auto; height: 20px; margin-left: 8px;">
 			@endif
 		</td>
 	</tr>
@@ -242,11 +242,23 @@
 	<tr>
 		<td class="info">
 		<strong>
-		For Other please specify:
+		For others, please specify
 		</strong>
 		</td>
 		<td colspan="5">
 			{{$ccirform->others}}
+
+		</td>
+	</tr>
+
+		<tr>
+		<td class="info">
+		<strong>
+		Other Details:
+		</strong>
+		</td>
+		<td colspan="6">
+			{{$ccirform->other_details}}
 		</td>
 	</tr>
 

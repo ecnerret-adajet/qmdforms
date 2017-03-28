@@ -179,7 +179,6 @@ class NcnformsController extends Controller
 
             $this->validate($request, [
                 'action_taken' => 'required',
-                'responsible' => 'required',
                 'execution_date' => 'required',
             ]);
 
@@ -190,12 +189,15 @@ class NcnformsController extends Controller
             // $ncnnotified->execution_date = Carbon::now();
             $ncnnotified->name = Auth::user()->name;
             $ncnnotified->position = Auth::user()->position;
+            if($request->hasFile('attach_file')){
+            $ncnnotified->attach_file = $request->file('attach_file')->store('ncnnotified');
+            }
             $ncnnotified->save();
 
             Notification::send($ncnform->user, new NcnnotifiedEmail($ncnnotified));
 
             alert()->success('Success Message', 'Submitted Succesfully');
-            return redirect('submitted');
+            return redirect('notified');
     }
 
 

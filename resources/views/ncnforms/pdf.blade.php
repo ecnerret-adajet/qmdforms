@@ -186,10 +186,8 @@
 	</strong>
 	</td>
 	<td>
-		@foreach($ncnform->ncnapprovers->take(1) as $approver)
-			@foreach($approver->users as $user)
-				{{ $user->name }}
-			@endforeach
+	@foreach($ncnform->ncnnotifieds->take(1) as $ncnnotified)
+				{{ $ncnnotified->name }}
 		@endforeach
 	</td>
 </tr>
@@ -232,10 +230,8 @@
 			</td>
 
 			<td colspan="3">
-		@foreach($ncnform->ncnapprovers->take(1) as $approver)
-			@foreach($approver->users as $user)
-				{{ $user->name }}
-			@endforeach
+	@foreach($ncnform->ncnnotifieds->take(1) as $ncnnotified)
+				{{ $ncnnotified->name }}
 		@endforeach
 			</td>
 		</tr>
@@ -247,11 +243,9 @@
 			</strong>
 			</td>
 			<td>
-		@foreach($ncnform->ncnapprovers->take(1) as $approver)
-			@foreach($approver->users as $user)
-				{{ $user->position }}
-			@endforeach
-		@endforeach
+		@foreach($ncnform->ncnnotifieds->take(1) as $ncnnotified)
+						{{ $ncnnotified->position }}
+				@endforeach
 			</td>
 			<td class="info">
 			<strong>
@@ -259,7 +253,7 @@
 			</strong>
 			</td>
 			<td>
-				@foreach($ncnform->ncnnotifieds as $notified)
+				@foreach($ncnform->ncnnotifieds->take(1) as $notified)
 				{{ date('F d, Y', strtotime($notified->execution_date)) }}		
 				@endforeach	
 			</td>

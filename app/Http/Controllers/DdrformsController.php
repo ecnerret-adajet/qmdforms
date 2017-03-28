@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Collection;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\DrdrformRequest;
 use App\Notifications\DdrformsToApproverNotification;
 use App\Notifications\DdrformApprovedFailedNotification;
 use App\Notifications\DdrformApprovedSuccessNotification;
@@ -83,21 +84,8 @@ class DdrformsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DrdrformRequest $request)
     {
-
-        $this->validate($request, [
-            'date_needed' => 'required|date',
-            'department_list' => 'required',
-            'company_list' => 'required',
-            'user_list' => 'required',
-            'date_needed' => 'required|date',
-            'ddrdistribution_list' => 'required'
-        ], [
-            'ddrdistribution_list.required' => 'Reason of Distribution is required'
-
-        ]); 
-
 
         $ddrform = Auth::user()->ddrforms()->create($request->all());
         $ddrform->name = Auth::user()->name;

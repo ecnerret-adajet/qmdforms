@@ -1,12 +1,19 @@
 @extends('layouts.admin-layout')
 @section('content')
 
+@role((['Administrator','Notified','Moderator']))
+
 @foreach($drdrform->drdrreviewers->take(1) as $reviewer)
 <a href="{{  str_replace('public/','storage/app/',asset($reviewer->attach_file)) }}" class="btn btn-primary" download> 
-    Download Attachement 
+    Download Attachement - Reviewer
  </a>
 @endforeach
 
+@foreach($drdrform->drdrapprovers->take(1) as $approver)
+<a href="{{  str_replace('public/','storage/app/',asset($approver->attach_file)) }}" class="btn btn-primary" download> 
+    Download Attachement - Approver
+ </a>
+@endforeach
 
 @forelse($drdrform->drdrapprovers as $approver)
 <a href="{{url('drdrforms/pdf/'.$drdrform->id)}}" target="_blank" class="btn btn-primary">Print as PDF</a>
@@ -14,6 +21,7 @@
 <a class="btn btn-primary" href="#" disabled>No Copyholder yet</a>
 @endforelse
 
+@endrole
 
       <hr/>
 

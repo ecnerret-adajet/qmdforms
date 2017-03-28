@@ -47,7 +47,7 @@ class DdrformsToApproverNotification extends Notification
                     ->success()
                     ->subject('Document Distribution Request')
                     ->greeting('Good day!')
-                    ->line($this->ddrform->name.' has submitted a document request under your approval')
+                    ->line($this->ddrform->name.' has submitted a request under your approval')
                     ->action('Visit the portal now',  url('/ddrforms/approver/create/'.$this->ddrform->id))
                     ->line('Thank you, have a nice day!');
     }

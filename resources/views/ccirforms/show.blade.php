@@ -2,6 +2,7 @@
 @extends('layouts.admin-layout')
 @section('content')
 
+@role((['Administrator','Notified','Moderator']))
   <a href="{{  str_replace('public/','storage/app/',asset($ccirform->attach_file)) }}" class="btn btn-primary" download> 
         Download Attachement 
   </a>
@@ -9,6 +10,7 @@
    <a href="{{url('ccirforms/pdf/'.$ccirform->id)}}" target="_blank" class="btn btn-primary">  
        Print as PDF
   </a> 
+@endrole
 
 <hr/>
 
@@ -142,22 +144,25 @@
 		</td>
 		<td>Others</td>
 		<td>
-			{{$ccirform->others}}
+			@if(!empty($ccirform->others))
+			<i class="ion-checkmark-round" style="color: green;"></i>
+			@endif
 		</td>
 	</tr>
 
 	<tr>
 		<td>For Other please specify:</td>
-		<td colspan="5"></td>
+		<td colspan="5">
+						{{$ccirform->others}}
+		</td>
 	</tr>
 
 	<tr>
 		<td>
 		Other Details:<br/>
-		(Attach extra sheet if necessary)
 		</td>
 		<td colspan="6">
-
+			{{$ccirform->other_details}}
 		</td>
 	</tr>
 </table>

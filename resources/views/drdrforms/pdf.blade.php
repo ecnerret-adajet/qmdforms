@@ -350,12 +350,12 @@ Yellow stamp with "Obsolete" and use as reference
 
 <table>
 	
-<table class="table" border="0">
+<table class="table" style="border: 0 ! important;">
 
 
 	<tr>
-		<td width="80px">Verified by:</td>
-		<td colspan="3">
+		<td width="80px" style="border: 0 ! important;">Verified by:</td>
+		<td colspan="3" style="border: 0 ! important;">
 		@foreach($drdrform->drdrmrs as $drdrmr)
 			{{$drdrmr->verified_by}}
 		@endforeach
@@ -364,14 +364,14 @@ Yellow stamp with "Obsolete" and use as reference
 
 
 	<tr>
-		<td width="80px">Position:</td>
-		<td>
+		<td width="80px" style="border: 0 ! important;">Position:</td>
+		<td style="border: 0 ! important;">
 		@foreach($drdrform->drdrmrs as $drdrmr)
 			{{$drdrmr->position}}
 		@endforeach
 		</td>
-		<td width="80px">Date:</td>
-		<td>
+		<td width="80px" style="border: 0 ! important;">Date:</td>
+		<td style="border: 0 ! important;">
 		@foreach($drdrform->drdrmrs as $drdrmr)
 			{{ date('F d, Y', strtotime($drdrmr->verified_date)) }}
 			@endforeach

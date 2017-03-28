@@ -150,33 +150,25 @@ For others, please specify:
 						1
 						</td>
 
-						<td class="{{ $errors->has('document_title[]') ? ' has-error' : '' }}">
+						<td class="{{ $errors->has('document_title.0') ? ' has-error' : '' }}">
 						<input type="text" name='document_title[]'  placeholder='Document title' class="form-control" id='document_title_0' />
 						</td>
 
-						<td class="{{ $errors->has('control_code[]') ? ' has-error' : '' }}">
+						<td class="{{ $errors->has('control_code.0') ? ' has-error' : '' }}">
 						<input type="text" name='control_code[]' placeholder='Control code' class="form-control" id='control_code_0' />
 						</td>
 
-						<td class="{{ $errors->has('rev_no[]') ? ' has-error' : '' }}">
+						<td class="{{ $errors->has('rev_no.0') ? ' has-error' : '' }}">
 						<input type="text" name='rev_no[]' placeholder='Rev No.' class="form-control" id='rev_no_0' />
 						</td>
 
-						<td class="{{ $errors->has('copy_no[]') ? ' has-error' : '' }}">
+						<td class="{{ $errors->has('copy_no.0') ? ' has-error' : '' }}">
 						<input type="text" name='copy_no[]' placeholder='Copy no' class="form-control" id='copy_no_0' />
 						</td>
 
-						<td class="{{ $errors->has('copy_holder[]') ? ' has-error' : '' }}">
+						<td class="{{ $errors->has('copy_holder.0') ? ' has-error' : '' }}">
 						<input type="text" name='copy_holder[]' placeholder='Copy holder' class="form-control" id='copy_holder_0'/>
 						</td>
-
-<!-- 						<td class="{{ $errors->has('recieved_by[]') ? ' has-error' : '' }}">
-						<input type="text" name='recieved_by[]' placeholder='Recieved by' class="form-control" id='recieved_by_0' />
-						</td>
-
-						<td class="{{ $errors->has('date_list[]') ? ' has-error' : '' }}">
-						<input type="date" name='date_list[]' class="form-control" id='date_list_0' />
-						</td> -->
 
 					</tr>
                     <tr id='addr1'></tr>

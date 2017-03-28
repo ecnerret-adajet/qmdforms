@@ -5,9 +5,11 @@
         Download Attachement 
   </a>
 
+@role((['Administrator','Notified','Moderator']))
    <a href="{{url('ncnforms/pdf/'.$ncnform->id)}}" target="_blank" class="btn btn-primary">  
        Print as PDF
   </a> 
+  @endrole
                             <hr/>
 
 <table class="table table-bordered">
@@ -186,15 +188,13 @@
 		<tr>
 			<td>Responsible:</td>
 			<td>
-		@foreach($ncnform->ncnapprovers->take(1) as $approver)
-			@foreach($approver->users as $user)
-				{{ $user->position }}
-			@endforeach
+		@foreach($ncnform->ncnnotifieds->take(1) as $ncnnotified)
+				{{ $ncnnotified->name }}
 		@endforeach
 			</td>
 			<td>Execution Date:</td>
 			<td>
-				@foreach($ncnform->ncnnotifieds as $notified)
+				@foreach($ncnform->ncnnotifieds->take(1) as $notified)
 				{{ date('F d, Y', strtotime($notified->execution_date)) }}		
 				@endforeach	
 			</td>

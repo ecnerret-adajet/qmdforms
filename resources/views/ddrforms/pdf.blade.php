@@ -51,7 +51,7 @@
 			Effective Date
 			</td>
 			<td colspan="2">
-			Feb. 25, 2017
+			February 27, 2017
 			</td>
 		</tr>
 		<tr>

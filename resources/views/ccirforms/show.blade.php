@@ -92,23 +92,23 @@
 		</td>
 		<td>Delivery Date</td>
 		<td colspan="3">
-			{{ date('F m Y', strtotime($ccirform->date_delivery)) }}
+			{{ date('F d Y', strtotime($ccirform->date_delivery)) }}
 		</td>
 	</tr>
 
 	<tr>
-		<td>Quantity of sample recieved?</td>
+		<td>Quantity of sample</td>
 		<td colspan="2">
 			{{$ccirform->quantity_received}}
 		</td>
 		<td>Return Date</td>
 		<td colspan="3">
-			{{ date('F m Y', strtotime($ccirform->retrun_date)) }}
+			{{ date('F d Y', strtotime($ccirform->return_date)) }}
 		</td>
 	</tr>
 
 	<tr>
-		<td rowspan="3">Nature of Compalaint</td>
+		<td rowspan="3">Nature of Complaint</td>
 		<td>Wet/Lumpy</td>
 		<td>
 			@if($ccirform->wet_lumpy == 1)

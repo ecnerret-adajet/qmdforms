@@ -132,14 +132,14 @@
 		</strong>
 		</td>
 		<td colspan="3">
-			{{ date('F m Y', strtotime($ccirform->date_delivery)) }}
+			{{ date('F d Y', strtotime($ccirform->date_delivery)) }}
 		</td>
 	</tr>
 
 	<tr>
 		<td class="info">
 		<strong>
-		Quantity of sample recieved?
+		Quantity of sample
 		</strong>
 		</td>
 		<td colspan="2">
@@ -151,14 +151,14 @@
 		</strong>
 		</td>
 		<td colspan="3">
-			{{ date('F m Y', strtotime($ccirform->retrun_date)) }}
+			{{ date('F d Y', strtotime($ccirform->return_date)) }}
 		</td>
 	</tr>
 
 	<tr>
 		<td rowspan="3" class="info">
 		<strong>
-		Nature of Compalaint:
+		Nature of Complaint:
 		</strong>
 		</td>
 		<td class="info">

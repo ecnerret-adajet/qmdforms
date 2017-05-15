@@ -43,7 +43,7 @@
 			Effective Date
 			</td>
 			<td>
-			
+			February 27, 2017
 			</td>
 		</tr>
 		<tr>

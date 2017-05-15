@@ -78,7 +78,7 @@ class CcirformsController extends Controller
         $ccirform->companies()->attach($request->input('company_list'));
 
         //send email to approver
-        Notification::send(User::where('email','tqmmnl-ilogroup@lafilgroup.com')->get(), new CcirformToMrNotification($ccirform));
+        Notification::send(User::find(32), new CcirformToMrNotification($ccirform));
 
         alert()->success('Success Message', 'Submitted Succesfully');
         return redirect('submitted');

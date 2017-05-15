@@ -30,13 +30,13 @@
                     <th>
                      Position
                     </th>
-                    <th>
+<!--                     <th>
                        Company
                     </th>
                     <th>
                       Department
                     </th>
-                    <th>
+ -->                    <th>
                         Role
                     </th>
 
@@ -56,7 +56,7 @@
                         <td>
                         {{$user->position}}
                         </td>                       
-                        <td>
+                      <!--   <td>
                         @foreach($user->companies as $company)
                             {{$company->name}}
                         @endforeach
@@ -65,7 +65,7 @@
                         @foreach($user->departments as $department)
                             {{ str_limit($department->name, 10)}}
                         @endforeach
-                        </td>
+                        </td> -->
                         <td>
                         @foreach($user->roles as $role)
                             {{$role->name}}<br/>

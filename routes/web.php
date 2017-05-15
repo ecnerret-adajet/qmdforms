@@ -12,13 +12,8 @@
 */
 
 Route::get('/', function () {
-	if (Auth::guest()){
-    return view('auth.login');
-    }
-    else{
-    return view('home');
-    }
-});
+    return redirect('home');
+})->middleware('auth');
 
 Auth::routes();
 
@@ -77,6 +72,9 @@ Route::post('/ccirforms/verified/{id}', 'CcirformsController@verified');
  * admin page route setup
  */
 Route::get('/submitted','AdminPageController@submitted');
+Route::get('/reviewed','AdminPageController@reviewed');
+Route::get('/reviewerpending','AdminPageController@pendingReviewer');
+Route::get('/approverpending','AdminPageController@pendingApprover');
 Route::get('/dashboard', 'AdminPageController@forms');
 Route::get('/settings', 'AdminPageController@settings');
 

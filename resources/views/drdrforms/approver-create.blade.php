@@ -1,6 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+@forelse($drdrform->drdrapprovers->take(1) as $drdrapprover)
+@foreach($drdrapprover->statuses as $status)
+@if($status->id == 1)
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center">
+        <h1>This request is already approved</h1>
+</div>
+</div>
+</div>  
+
+
+@else
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center">
+        <h1>This request is disapproved!</h1>
+</div>
+</div>
+</div>  
+
+@endif   
+@endforeach
+@empty
+
+
+
+
+
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -120,7 +156,7 @@
         {!! csrf_field() !!}
 
 
-	@include('drdrforms.approver-form', ['submitButtonText' => 'Submit'])
+    @include('drdrforms.approver-form', ['submitButtonText' => 'Submit'])
                     
      
        
@@ -130,4 +166,16 @@
         </div>
     </div>
 </div>
+
+
+@endforelse
+
+
+
+
+
+
+
+
+
 @endsection

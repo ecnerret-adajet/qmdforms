@@ -13,6 +13,11 @@ use App\Ncnform;
 use App\Ccirform;
 use App\Company;
 use App\Department;
+use App\Drdrapprover;
+use App\Ddrapprover;
+use App\Ncnapprover;
+use App\Status;
+use App\Drdrreviewer;
 
 class AdminPageController extends Controller
 {
@@ -35,6 +40,59 @@ class AdminPageController extends Controller
             'ccirformsown'
         ));
     }
+
+    public function reviewed(){
+
+        $drdrformsreviewed = Drdrform::whereHas('drdrapprovers', function($q){
+            $q->where('user_id',Auth::user()->id);
+        })->get();
+
+        $ddrformsreviewed = Ddrform::whereHas('ddrapprovers', function($q){
+            $q->where('user_id',Auth::user()->id);
+        })->get();
+
+        $ncnformsreviewed = Ncnform::whereHas('ncnapprovers', function($q){
+            $q->where('user_id',Auth::user()->id);
+        })->get();
+
+        return view('admin.reviewed', compact('drdrformsreviewed','ddrformsreviewed','ncnformsreviewed'));
+    }
+
+    public function pendingReviewer(){
+
+
+        $drdrformsown = Drdrform::whereHas('users', function($q){
+            $q->where('user_id', Auth::user()->id);
+        })->doesntHave('drdrreviewers')->get();
+ 
+
+        return view('admin.pendingReviewer', compact('drdrformsown'));
+
+    }
+
+    public function pendingApprover(){
+
+
+        $drdrformsown = Drdrform::whereHas('users', function($q){
+            $q->where('user_id', Auth::user()->id);
+        })->doesntHave('drdrapprovers')->get();
+
+
+        $ddrformsown = Ddrform::whereHas('users', function($q){
+            $q->where('user_id', Auth::user()->id);
+        })->doesntHave('ddrapprovers')->get();
+
+        $ncnformsown = Ncnform::whereHas('users', function($q){
+            $q->where('user_id', Auth::user()->id);
+        })->doesntHave('ncnapprovers')->get();
+
+        return view('admin.pendingApprover', compact(
+            'drdrformsown',
+            'ddrformsown',
+            'ncnformsown'
+        ));
+    }   
+
 
     public function forms()
     {

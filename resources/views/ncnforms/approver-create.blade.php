@@ -1,6 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+@forelse($ncnform->ncnapprovers->take(1) as $ncnapprover)
+@foreach($ncnapprover->statuses as $status)
+@if($status->id == 1)
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center">
+        <h1>This request is already approved</h1>
+</div>
+</div>
+</div>  
+
+
+       
+@else
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center">
+        <h1>This request is disapproved!</h1>
+</div>
+</div>
+</div>  
+
+ 
+@endif   
+@endforeach
+@empty
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -121,7 +154,7 @@
 
 
 
-	@include('ncnforms.approver-form', ['submitButtonText' => 'Submit'])
+    @include('ncnforms.approver-form', ['submitButtonText' => 'Submit'])
                     
      
        
@@ -131,4 +164,12 @@
         </div>
     </div>
 </div>
+
+
+@endforelse
+
+
+
+
+
 @endsection

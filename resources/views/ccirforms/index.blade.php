@@ -70,7 +70,7 @@
                         {{$ccirform->customer_reference}}
                         </td>                       
                         <td>
-                        {{$ccirform->brand_name}}
+                        {{ str_limit($ccirform->brand_name, 10)  }}
                         </td>
                         <td>
                         {{$ccirform->date_issuance}}

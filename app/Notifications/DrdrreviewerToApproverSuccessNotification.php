@@ -43,11 +43,22 @@ class DrdrreviewerToApproverSuccessNotification extends Notification
      */
     public function toMail($notifiable)
     {
+
+        foreach($this->drdrreviewer->drdrform->types as $type){
+            $request_type = $type->name;
+        }
+
         return (new MailMessage)
                 ->success()
                     ->subject('Document Review and Ristribution Request: Approver')
                     ->greeting('Good day!')
                     ->line($this->drdrreviewer->name.' has submited a request under your review and approval. Please confirm within 24 hours.')
+
+                    ->line('Type of Request: '.$request_type)
+                    ->line('Title: '.$this->drdrreviewer->drdrform->document_title)
+                    ->line('Revision No: '.$this->drdrreviewer->drdrform->revision_number)
+                    ->line('Reason of change: '.$this->drdrreviewer->drdrform->reason_request)
+                    
                     ->action('Visit the portal now',  url('/drdrforms/approver/create/'.$this->drdrreviewer->drdrform->id))
                     ->line('Thank you, have a nice day!');
     }

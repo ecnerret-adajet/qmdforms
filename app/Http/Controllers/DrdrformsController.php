@@ -103,7 +103,6 @@ class DrdrformsController extends Controller
             'document_title' => 'required',
             'reason_request' => 'required',
             'revision_number' => 'required',
-            'attach_file' => 'required',
             'company_list' => 'required',
             'type_list' => 'required',
             'user_list' => 'required',
@@ -115,7 +114,9 @@ class DrdrformsController extends Controller
         $drdrform->name = Auth::user()->name; //fake to main form
         $drdrform->position = Auth::user()->position; //fake to main form
         $drdrform->date_request = Carbon::now(); //fake to main form
+         if($request->hasFile('attach_file')){
         $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
+      }
         $drdrform->save();
 
         $drdrform->companies()->attach($request->input('company_list'));
@@ -137,7 +138,7 @@ class DrdrformsController extends Controller
             'remarks' => 'required',
             'status_list' => 'required',
             'user_list' => 'required',
-            'attach_file' => 'required',
+            // 'attach_file' => 'required',
             'consider_document' => 'required'
         ]); 
 
@@ -150,7 +151,11 @@ class DrdrformsController extends Controller
         $drdrreviewer->date_review = Carbon::now();
         $drdrreviewer->name = Auth::user()->name;
         $drdrreviewer->position = Auth::user()->position;
+
+        if($request->hasFile('attach_file')){
         $drdrreviewer->attach_file = $request->file('attach_file')->store('drdrreviewer');
+        }
+
         $drdrreviewer->save();
         /**
          * belongs to many method
@@ -182,7 +187,7 @@ class DrdrformsController extends Controller
 
         $this->validate($request, [
             'remarks' => 'required',
-            'attach_file' => 'required',
+            // 'attach_file' => 'required',
             'status_list' => 'required',
             'date_effective' => 'required|date',
             'copyholder.*' => 'required',
@@ -197,12 +202,18 @@ class DrdrformsController extends Controller
         $drdrapprover->user()->associate(Auth::user());
         $drdrapprover->drdrform()->associate($drdrform);
         $drdrapprover->remarks = $request->input('remarks');
-        $drdrapprover->attach_file = $request->input('attach_file');
+
+        // $drdrapprover->attach_file = $request->input('attach_file');
+
         $drdrapprover->date_effective = $request->input('date_effective');
         $drdrapprover->name = Auth::user()->name;
         $drdrapprover->position = Auth::user()->position;
         $drdrapprover->date_approved = Carbon::now();
+
+         if($request->hasFile('attach_file')){
         $drdrapprover->attach_file = $request->file('attach_file')->store('drdrapprover');
+        }
+
         $drdrapprover->save();
         $drdrapprover->statuses()->attach($request->input('status_list'));
 

@@ -48,8 +48,12 @@ class NcnformsController extends Controller
      */
     public function forNotified(){
         $ncnnotifieds = Ncnnotified::whereHas('ncnform', function($q){
-                $q->where('id',Auth::user()->id);
+                $q->where('user_id',Auth::user()->id);
         })->get();
+
+        // $ncnnotifieds = Ncnnotified::where('name', Auth::user()->name)->get();
+
+
         return view('ncnforms.notified_forms', compact('ncnnotifieds'));
     }
 

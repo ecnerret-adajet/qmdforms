@@ -89,6 +89,35 @@
                     Submitted Forms
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('reviewed') }}">
+                    <i class="ion-ios-copy-outline"></i>
+                    Reviewed Forms
+                    </a>
+                </li>
+
+                @role(('Reviewer'))
+                <li>
+                    <a href="{{ url('reviewerpending') }}">
+                    <i class="ion-ios-copy-outline"></i>
+                    Pending Reviews
+                    </a>
+                </li>
+                @endrole
+
+                @role(('Approver'))
+                <li>
+                    <a href="{{ url('approverpending') }}">
+                    <i class="ion-ios-copy-outline"></i>
+                    Pending Approvals
+                    </a>
+                </li>
+                @endrole
+
+
+
+
+
                @endif
 
                @role(('Notified'))

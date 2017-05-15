@@ -42,10 +42,10 @@
 		</tr>
 		<tr>
 			<td> 
-			Doc No. <strong>LFQM-F-029b</strong>
+			Doc No. <strong>LFQM-F-002</strong>
 			</td>
 			<td>
-			Rev No. <strong>00</strong>
+			Rev No. <strong>03</strong>
 			</td>
 			<td>
 			Effective Date

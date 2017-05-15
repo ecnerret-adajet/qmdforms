@@ -67,7 +67,7 @@
 	<tr>
 		<td>Date of Issuance:</td>
 		<td colspan="6">
-		{{ date('F m Y', strtotime($ccirform->date_issuance)) }}
+		{{ date('F d Y', strtotime($ccirform->date_issuance)) }}
 		</td>
 	</tr>
 

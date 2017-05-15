@@ -68,13 +68,14 @@
                         </td>
                         <td>
                         @foreach($drdrform->companies as $company)
-                          {{$company->name}}
+                          {{str_limit($company->name,15) }}
                         @endforeach
                         </td>                       
                         <td>
                         {{$drdrform->revision_number}}
                         </td>
                         <td>
+                        
                         @forelse($drdrform->drdrreviewers->take(1) as $drdrreviewer)
                             @foreach($drdrreviewer->statuses as $status)
                                 @if($status->id == 1)
@@ -90,6 +91,8 @@
                         @endforelse
 
                         </td>
+
+
                         <td>
                         @forelse($drdrform->drdrapprovers->take(1) as $drdrapprover)
                             @foreach($drdrapprover->statuses as $status)
@@ -105,6 +108,10 @@
                         </button>
                         @endforelse
                         </td>
+
+
+
+
                         <td>
                         <div class="btn-group">
                         <div class="btn-group">

@@ -82,6 +82,12 @@
                     </a>
                 </li>
               @else
+                <li>
+                    <a href="{{ url('home') }}">
+                    <i class="ion-ios-copy-outline"></i>
+                    Home
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{ url('submitted') }}">

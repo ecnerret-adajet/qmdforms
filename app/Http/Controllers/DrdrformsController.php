@@ -306,9 +306,17 @@ class DrdrformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Drdrform $drdrform)
     {
-        //
+        $companies = Company::pluck('name','id');
+        $types = Type::pluck('name','id');
+
+        $users = User::whereHas('roles', function($q){
+            $q->where('id',3); // to revierwer
+        })->pluck('name','id');
+
+
+        return view('drdrforms.edit', compact('companies','types','users','drdrform'));
     }
 
     /**
@@ -318,9 +326,33 @@ class DrdrformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Drdrform $drdrform)
     {
-        //
+
+         $this->validate($request, [
+            'document_title' => 'required',
+            'reason_request' => 'required',
+            'revision_number' => 'required',
+            'company_list' => 'required',
+            'type_list' => 'required',
+            'user_list' => 'required',
+        ]); 
+
+    
+        $drdrform->update($request->except('name', 'position','date_request','attach_file'));
+        
+        // if($request->hasFile('attach_file')){
+        //   $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
+        // }
+        $drdrform->save();
+
+        $drdrform->companies()->sync( (array) $request->input('company_list'));
+        $drdrform->types()->sync( (array) $request->input('type_list'));
+        $drdrform->users()->sync( (array) $request->input('user_list'));
+
+
+        alert()->success('Success Message', 'Update Succesfully');
+        return redirect('drdrforms');
     }
 
 
@@ -351,6 +383,17 @@ class DrdrformsController extends Controller
         $drdrform->delete();
         
         alert()->success('Success Message', 'Document is succefully trashed');
+        return redirect('drdrforms');
+    }
+
+    public function restore(Request $request, $id)
+    {
+        Drdrform::withTrashed()->find($id)->restore();
+        $drdrform = Drdrform::findOrFail($id);
+        $drdrform->active = 1;
+        $drdrform->save();
+
+        alert()->success('Success Message', 'Restore Successful!');
         return redirect('drdrforms');
     }
 

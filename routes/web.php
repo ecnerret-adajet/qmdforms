@@ -33,6 +33,7 @@ Route::post('/drdrforms/drdrmr/{id}', 'DrdrformsController@drdrmr');
 Route::post('/drdrforms/archive/{id}', 'DrdrformsController@archive');
 Route::get('/drdrforms/pdf/{drdrform}', 'DrdrformsController@pdf');
 Route::get('/drdrforms/download/{id}', 'DrdrformsController@downloadFile');
+Route::post('/drdrforms/restore/{id}','DrdrformsController@restore');
 
 /**
  * ddrform setup route

@@ -59,10 +59,10 @@
                         </a>
                         </td>
                         <td>
-                        {{$drdrform->document_title}}
+                        {{  str_limit($drdrform->document_title, 15) }}
                         </td>
                         <td>
-                        {{$drdrform->reason_request}}
+                        {{  str_limit($drdrform->reason_request, 15) }}
                         </td>                       
                         <td>
                         {{$drdrform->revision_number}}

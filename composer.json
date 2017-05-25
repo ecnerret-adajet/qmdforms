@@ -12,8 +12,7 @@
         "uxweb/sweet-alert": "^1.4",
         "maatwebsite/excel": "^2.1",
         "guzzlehttp/guzzle": "^6.2",
-        "barryvdh/laravel-dompdf": "^0.8.0",
-        "genealabs/laravel-caffeine": "^0.4.2"
+        "barryvdh/laravel-dompdf": "^0.8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

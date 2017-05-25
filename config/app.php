@@ -172,7 +172,6 @@ return [
          UxWeb\SweetAlert\SweetAlertServiceProvider::class,
          Maatwebsite\Excel\ExcelServiceProvider::class,
          Barryvdh\DomPDF\ServiceProvider::class,
-         GeneaLabs\LaravelCaffeine\Providers\LaravelCaffeineService::class,
 
         /*
          * Application Service Providers...

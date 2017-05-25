@@ -67,10 +67,10 @@
                         </a>
                         </td>
                         <td>
-                        {{$drdrform->document_title}}
+                         {{  str_limit($drdrform->document_title, 15) }}
                         </td>
                         <td>
-                        {{$drdrform->reason_request}}
+                         {{  str_limit($drdrform->reason_request, 15) }}
                         </td>                       
                         <td>
                         {{$drdrform->revision_number}}
@@ -160,7 +160,7 @@
                         {{$ddrform->name}}
                         </td>
                         <td>
-                        {{$ddrform->position}}
+                         {{  str_limit($ddrform->position, 15) }}
                         </td>                       
                         <td>
                         {{$ddrform->date_needed}}

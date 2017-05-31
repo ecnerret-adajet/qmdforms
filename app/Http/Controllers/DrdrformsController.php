@@ -311,13 +311,42 @@ class DrdrformsController extends Controller
         $companies = Company::pluck('name','id');
         $types = Type::pluck('name','id');
 
-        $users = User::whereHas('roles', function($q){
+        foreach($drdrform->users as $user){
+          $reviewer_name = $user->id; // reviewer name
+        }
+
+
+        $reviewer = Drdrreviewer::with('users')->whereHas('drdrform', function($q) use ($drdrform){
+        $q->where('id',$drdrform->id);
+        })->take(1)->first();
+        foreach($reviewer->users->take(1) as $user){
+          $approver_name = $user->id; // approver name
+        }
+
+        $approver = Drdrapprover::whereHas('drdrform', function($q) use ($drdrform){
+        $q->where('id',$drdrform->id);
+        })->take(1)->first();
+
+
+        $drdrmr = Drdrmr::whereHas('drdrform', function($q) use ($drdrform){
+        $q->where('id',$drdrform->id);
+        })->take(1)->first();
+
+        //users dropdown
+
+        $reviewer_list = User::whereHas('roles', function($q){
             $q->where('id',3); // to revierwer
         })->pluck('name','id');
 
+        $approver_list = User::whereHas('roles', function($q){
+            $q->where('id',2); // to approver
+        })->pluck('name','id');
 
-        return view('drdrforms.edit', compact('companies','types','users','drdrform'));
+        return view('drdrforms.edit', compact('companies',
+          'drdrmr','approver','types','reviewer_list','approver_list','drdrform','approver_name','reviewer_name'));
     }
+      
+
 
     /**
      * Update the specified resource in storage.
@@ -326,29 +355,66 @@ class DrdrformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Drdrform $drdrform)
+    public function update(Request $request,
+      Drdrreviewer $drdrreviewer, 
+      Drdrapprover $drdrapprover,
+      Drdrform $drdrform)
     {
-
          $this->validate($request, [
             'document_title' => 'required',
             'reason_request' => 'required',
             'revision_number' => 'required',
             'company_list' => 'required',
             'type_list' => 'required',
-            'user_list' => 'required',
+            'approver_list' => 'required',
+            'reviewer_list' => 'required',
         ]); 
 
-    
-        $drdrform->update($request->except('name', 'position','date_request','attach_file'));
-        
-        // if($request->hasFile('attach_file')){
-        //   $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
-        // }
+
+        $drdrform->update($request->except('date_request'));
+        if($request->hasFile('attach_file')){
+          $drdrform->attach_file = $request->file('attach_file')->store('drdrforms');
+        }
         $drdrform->save();
 
         $drdrform->companies()->sync( (array) $request->input('company_list'));
         $drdrform->types()->sync( (array) $request->input('type_list'));
-        $drdrform->users()->sync( (array) $request->input('user_list'));
+        $drdrform->users()->sync( (array) $request->input('reviewer_list'));
+        foreach($drdrform->users->take(1) as $pass){
+          $reviewer_namex = $pass->name;
+          $reviewer_positionx = $pass->position;
+        }
+
+
+        $drdrreviewer = Drdrreviewer::with('users')->whereHas('drdrform', function($q) use ($drdrform){
+        $q->where('id',$drdrform->id);
+        })->take(1)->first();
+        $drdrreviewer->name = $reviewer_namex;
+        $drdrreviewer->position = $reviewer_positionx;
+        $drdrreviewer->save();
+        $drdrreviewer->users()->sync( (array) $request->input('approver_list'));
+        foreach($drdrreviewer->users->take(1) as $pass){
+          $reviewer_namey = $pass->name;
+          $reviewer_positiony = $pass->position;
+        }
+
+
+        //updates drdrform for approver's database
+        $approver = Drdrapprover::whereHas('drdrform', function($q) use ($drdrform){
+        $q->where('id',$drdrform->id);
+        })->take(1)->first();
+        $approver->date_effective = $request->input('date_effective');
+        $approver->name = $reviewer_namey;
+        $approver->position = $reviewer_positiony;
+        $approver->save();
+
+
+        //update verified date
+        $drdrmr = Drdrmr::whereHas('drdrform', function($q) use ($drdrform){
+        $q->where('id',$drdrform->id);
+        })->take(1)->first();
+        $drdrmr->verified_date = $request->input('verified_date');
+        $drdrmr->save();
 
 
         alert()->success('Success Message', 'Update Succesfully');
@@ -397,4 +463,5 @@ class DrdrformsController extends Controller
         return redirect('drdrforms');
     }
 
+    
 }

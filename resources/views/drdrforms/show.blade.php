@@ -271,7 +271,7 @@
 			<tbody>
 				<tr>
 					<td style="border-left: 0 ! important;">
-					@foreach($drdrform->drdrapprovers as $approver)
+					@foreach($drdrform->drdrapprovers->take(1)  as $approver)
 							{{ date('F d, Y', strtotime($approver->date_effective)) }}
 					@endforeach
 					</td>

@@ -73,18 +73,21 @@ class AdminPageController extends Controller
     public function pendingApprover(){
 
 
-        $drdrformsown = Drdrform::whereHas('users', function($q){
+        $drdrformsown = Drdrform::whereHas('drdrreviewers.users', function($q){
             $q->where('user_id', Auth::user()->id);
-        })->doesntHave('drdrapprovers')->get();
+        })->doesntHave('drdrapprovers')->get(); 
 
 
         $ddrformsown = Ddrform::whereHas('users', function($q){
             $q->where('user_id', Auth::user()->id);
         })->doesntHave('ddrapprovers')->get();
 
+
+
         $ncnformsown = Ncnform::whereHas('users', function($q){
             $q->where('user_id', Auth::user()->id);
         })->doesntHave('ncnapprovers')->get();
+
 
         return view('admin.pendingApprover', compact(
             'drdrformsown',

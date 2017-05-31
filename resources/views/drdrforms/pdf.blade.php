@@ -275,7 +275,7 @@
 			<td class="info">Copyholder (Department)</td>
 			<td rowspan="{{   $row =  (  $approver->drdrcopyholders->count() == 0 ? 0 :  $approver->drdrcopyholders->count() + 1  )  }}"> 
 			<strong>Effective date: </strong> 
-			@foreach($drdrform->drdrapprovers as $approver)
+			@foreach($drdrform->drdrapprovers->take(1) as $approver)
 			{{ date('Y-m-d', strtotime($approver->date_effective)) }}
 			@endforeach	
 			<br/>

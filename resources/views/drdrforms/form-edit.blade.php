@@ -109,40 +109,119 @@
 </div>
 
 
-  <div class="form-group{{ $errors->has('attach_file') ? ' has-error' : '' }}">
-  <div class="col-md-12">
-  <label class="control-label">
-  Attach file
-  </label>
-  </div>
-   <div class="col-md-12">                                
-   <input name="attach_file" type="file" class="filestyle" data-size="sm" data-buttonName="btn-primary" data-buttonBefore="true">
-
-  @if ($errors->has('attach_file'))
-<span class="help-block">
-<strong>{{ $errors->first('attach_file') }}</strong>
-</span>
-@endif
-</div>
-</div>
-
-
-<div class="form-group{{ $errors->has('user_list') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('reviewer_list') ? ' has-error' : '' }}">
 <div class="col-md-12 ">
 <label class="control-label">
-{!! Form::label('user_list', 'Reviewer:') !!}
+{!! Form::label('reviewer_list', 'Reviewer:') !!}
 </label>
 </div>
 
 <div class="col-md-12">
-{!! Form::select('user_list', $users, null, ['class' => 'form-control', 'placeholder' => '--- Select Reviewer ---'] ) !!}
-@if ($errors->has('user_list'))
+{!! Form::select('reviewer_list', $reviewer_list, $reviewer_name, ['class' => 'form-control', 'placeholder' => '--- Select Reviewer ---'] ) !!}
+@if ($errors->has('reviewer_list'))
 <span class="help-block">
-<strong>{{ $errors->first('user_list') }}</strong>
+<strong>{{ $errors->first('reviewer_list') }}</strong>
 </span>
 @endif
 </div>
 </div>
+
+<div class="form-group{{ $errors->has('approver_list') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('approver_list', 'Approver:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::select('approver_list', $approver_list, $approver_name, ['class' => 'form-control', 'placeholder' => '--- Select Reviewer ---'] ) !!}
+@if ($errors->has('approver_list'))
+<span class="help-block">
+<strong>{{ $errors->first('approver_list') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+
+
+<hr/>
+
+<!-- updates approver date_effective -->
+@if(!empty($approver))
+<div class="form-group{{ $errors->has('date_effective') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('date_effective', 'Effective Date:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::input('date', 'date_effective', $approver->date_effective->format('Y-m-d'), ['class' => 'form-control'] ) !!}
+@if ($errors->has('date_effective'))
+<span class="help-block">
+<strong>{{ $errors->first('date_effective') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+@else
+
+<div class="form-group{{ $errors->has('date_effective') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+Effective Date
+</label>
+</div>
+
+<div class="col-md-12">
+NO EFFECTIVE DATE YET
+</div>
+</div>
+
+
+@endif
+
+
+@if(!empty($drdrmr))
+
+<div class="form-group{{ $errors->has('verified_date') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+{!! Form::label('verified_date', 'Verified Date:') !!}
+</label>
+</div>
+
+<div class="col-md-12">
+{!! Form::input('date', 'verified_date', $drdrmr->verified_date->format('Y-m-d'), ['class' => 'form-control', 'rows' => '3'] ) !!}
+@if ($errors->has('verified_date'))
+<span class="help-block">
+<strong>{{ $errors->first('verified_date') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+@else
+
+<div class="form-group{{ $errors->has('verified_date') ? ' has-error' : '' }}">
+<div class="col-md-12 ">
+<label class="control-label">
+Verified Date
+</label>
+</div>
+
+<div class="col-md-12">
+NO VERIFIED DATE YET
+</div>
+</div>
+
+@endif
+
+<hr/>
+
+
 
 
 <!-- submit or cancel button section -->

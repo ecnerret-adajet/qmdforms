@@ -133,9 +133,12 @@
                               Mark as archive
                             </a>
                             </li>
+                              
                             @role(('Administrator'))
                             <li><a href="{{url('drdrforms/'.$drdrform->id.'/edit')}}">Edit Document</a></li>
                             @endrole
+
+
                            </ul>
                         </div>
                       </div>
@@ -190,14 +193,14 @@
                         {{ str_limit($drdrform->document_title, 15)}}
                         </td>
                         <td>
-                        {{ str_limit($drdrform->reason_request, 15)}}
+                         {{ str_limit($drdrform->reason_request, 15)}}
                         </td>                       
                         <td>
                         {{$drdrform->revision_number}}
                         </td>
                         <td>
                         @forelse($drdrform->drdrreviewers->take(1) as $drdrreviewer)
-                            @foreach($drdrreviewer->statuses->take(1) as $status)
+                            @foreach($drdrreviewer->statuses as $status)
                                 @if($status->id == 1)
                              <button class="btn btn-primary btn-block disabled"> <i class="ion-checkmark-circled"></i> Approved </button>   
                                 @else
@@ -213,7 +216,7 @@
                         </td>
                         <td>
                         @forelse($drdrform->drdrapprovers->take(1) as $drdrapprover)
-                            @foreach($drdrapprover->statuses->take(1) as $status)
+                            @foreach($drdrapprover->statuses as $status)
                                 @if($status->id == 1)
                               <button class="btn btn-primary btn-block disabled"> <i class="ion-checkmark-circled"></i> Approved </button>       
                                 @else
@@ -234,12 +237,11 @@
                             <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu">
-                            <li>
+                           <li>
                             <a data-toggle="modal" data-target=".bs-restore{{$drdrform->id}}-modal-lg" href="">
                                Restore
                             </a>
                             </li>
-                   
                            </ul>
                         </div>
                       </div>
@@ -380,6 +382,7 @@
 </div>
 
 
+
 @foreach($drdrtrashed as $drdrform)
         <!-- restore a document -->
         <div class="modal fade bs-restore{{$drdrform->id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -421,7 +424,6 @@
         </div><!-- /.modal -->    
 
 @endforeach
-
 
 
 @foreach($drdrforms as $drdrform)
@@ -552,6 +554,8 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->      
+
+
 
 @endforeach
 

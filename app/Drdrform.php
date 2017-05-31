@@ -17,10 +17,9 @@ class Drdrform extends Model
     	'document_title',
         'reason_request',
     	'revision_number',
+        'name',
     	'attach_file',
         'active',
-        'name',
-        'position',
     	'date_request' //date
     ];
 
